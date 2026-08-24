@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Balanced Life Care | V2</title>
+<meta name="description" content="Balanced Life Care provides convenient and affordable telehealth care and teleconsulting solutions for the body, mind, and soul.">
+
+<style>
+:root{
+  --ink:#173b36;
+  --ink-soft:#4b6660;
+  --green:#a8cbbd;
+  --green-dark:#0b4f43;
+  --accent:#0b7967;
+  --accent-dark:#075b4e;
+  --cream:#f7f5ef;
+  --white:#fff;
+  --line:#d9e5df;
+  --max:1240px;
+  --radius-lg:32px;
+  --radius-md:20px;
+  --shadow:0 25px 70px rgba(23,59,54,.12);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  color:var(--ink);
+  background:var(--white);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.55;
+}
+
+img{
+  display:block;
+  max-width:100%;
+}
+
+a{
+  color:inherit;
+}
+
+button,
+input,
+textarea{
+  font:inherit;
+}
+
+.container{
+  width:min(calc(100% - 40px),var(--max));
+  margin-inline:auto;
+}
+
+.section{
+  padding:110px 0;
+}
+
+.eyebrow{
+  margin:0 0 14px;
+  color:var(--accent);
+  font-size:.78rem;
+  font-weight:800;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+
+.section-heading{
+  max-width:720px;
+  margin-bottom:52px;
+}
+
+.section-heading h2{
+  margin:0;
+  font-size:clamp(2.2rem,5vw,4.2rem);
+  line-height:.98;
+  letter-spacing:-.055em;
+  font-weight:750;
+}
+
+.section-heading p{
+  max-width:650px;
+  margin:20px 0 0;
+  color:var(--ink-soft);
+  font-size:1.08rem;
+}
+
+/* Buttons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:50px;
+  padding:13px 22px;
+  border:1px solid transparent;
+  border-radius:999px;
+  background:var(--accent);
+  color:#fff;
+  font-size:.95rem;
+  font-weight:750;
+  text-decoration:none;
+  transition:transform .18s ease,background .18s ease,box-shadow .18s ease;
+}
+
+.btn:hover{
+  background:var(--accent-dark);
+  transform:translateY(-2px);
+  box-shadow:0 12px 25px rgba(11,121,103,.18);
+}
+
+.btn--light{
+  background:#fff;
+  color:var(--ink);
+}
+
+.btn--light:hover{
+  background:#f2f8f5;
+  color:var(--ink);
+}
+
+.btn--outline{
+  background:transparent;
+  color:var(--ink);
+  border-color:var(--line);
+}
+
+.btn--outline:hover{
+  background:#edf5f1;
+  border-color:#8fb5a8;
+  box-shadow:none;
+}
+
+/* Top bar */
+.topbar{
+  background:var(--ink);
+  color:#fff;
+  font-size:.78rem;
+}
+
+.topbar-inner{
+  min-height:38px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:24px;
+  text-align:center;
+}
+
+.topbar a{
+  text-decoration:none;
+}
+
+/* Header */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(255,255,255,.94);
+  border-bottom:1px solid rgba(217,229,223,.9);
+  backdrop-filter:blur(14px);
+}
+
+.nav{
+  min-height:78px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+
+.brand{
+  display:inline-flex;
+  align-items:center;
+  text-decoration:none;
+  flex-shrink:0;
+}
+
+.brand img{
+  width:166px;
+  height:auto;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  margin-left:auto;
+}
+
+.nav-links a{
+  color:var(--ink-soft);
+  font-size:.9rem;
+  font-weight:650;
+  text-decoration:none;
+}
+
+.nav-links a:hover{
+  color:var(--accent);
+}
+
+.menu-toggle{
+  display:none;
+  position:relative;
+  width:44px;
+  height:44px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fff;
+  cursor:pointer;
+}
+
+.menu-toggle span,
+.menu-toggle::before,
+.menu-toggle::after{
+  content:"";
+  position:absolute;
+  left:12px;
+  width:20px;
+  height:2px;
+  background:var(--ink);
+  border-radius:10px;
+}
+
+.menu-toggle::before{
+  top:14px;
+}
+
+.menu-toggle span{
+  top:21px;
+}
+
+.menu-toggle::after{
+  top:28px;
+}
+
+/* Hero */
+.hero{
+  overflow:hidden;
+  padding:54px 0 34px;
+  background:var(--cream);
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:.92fr 1.08fr;
+  gap:60px;
+  align-items:center;
+  min-height:650px;
+}
+
+.hero-copy{
+  padding:40px 0;
+}
+
+.hero h1{
+  max-width:690px;
+  margin:0;
+  font-size:clamp(3.4rem,7vw,6.8rem);
+  line-height:.9;
+  letter-spacing:-.075em;
+  font-weight:780;
+}
+
+.hero h1 em{
+  color:var(--accent);
+  font-style:normal;
+}
+
+.hero-lead{
+  max-width:580px;
+  margin:28px 0 0;
+  color:var(--ink-soft);
+  font-size:clamp(1.05rem,1.7vw,1.28rem);
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:30px;
+}
+
+.hero-note{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:22px;
+  color:var(--ink-soft);
+  font-size:.84rem;
+}
+
+.hero-note::before{
+  content:"";
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 0 6px rgba(11,121,103,.1);
+  flex-shrink:0;
+}
+
+.hero-visual{
+  position:relative;
+  min-height:590px;
+}
+
+.hero-image{
+  width:100%;
+  height:590px;
+  object-fit:cover;
+  object-position:center;
+  border-radius:34px;
+  box-shadow:var(--shadow);
+}
+
+.hero-card{
+  position:absolute;
+  right:-20px;
+  bottom:28px;
+  width:min(310px,72%);
+  padding:24px;
+  border-radius:22px;
+  background:rgba(255,255,255,.96);
+  box-shadow:0 20px 55px rgba(23,59,54,.15);
+}
+
+.hero-card small{
+  display:block;
+  margin-bottom:7px;
+  color:var(--accent);
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+}
+
+.hero-card strong{
+  display:block;
+  font-size:1.18rem;
+  line-height:1.15;
+}
+
+.hero-card p{
+  margin:9px 0 0;
+  color:var(--ink-soft);
+  font-size:.88rem;
+}
+
+/* Trust strip */
+.trust-strip{
+  padding:24px 0;
+  background:var(--ink);
+  color:#fff;
+}
+
+.trust-items{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+.trust-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-height:50px;
+  font-size:.9rem;
+  font-weight:650;
+}
+
+.trust-icon{
+  display:grid;
+  place-items:center;
+  width:34px;
+  height:34px;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:50%;
+  flex-shrink:0;
+}
+
+/* Care options */
+.care-section{
+  background:#fff;
+}
+
+.care-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.care-card{
+  min-height:260px;
+  padding:30px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#fff;
+  text-decoration:none;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+}
+
+.care-card:hover{
+  transform:translateY(-5px);
+  border-color:#8fb5a8;
+  box-shadow:var(--shadow);
+}
+
+.care-number{
+  color:var(--accent);
+  font-size:.74rem;
+  font-weight:800;
+  letter-spacing:.12em;
+}
+
+.care-card h3{
+  max-width:280px;
+  margin:30px 0 8px;
+  font-size:1.65rem;
+  line-height:1.05;
+  letter-spacing:-.035em;
+}
+
+.care-card p{
+  margin:0;
+  color:var(--ink-soft);
+  font-size:.91rem;
+}
+
+.care-arrow{
+  align-self:flex-end;
+  color:var(--accent);
+  font-size:1.35rem;
+}
+
+/* =========================================================
+   GLP-1 WEIGHT MANAGEMENT
+   ========================================================= */
+
+.feature{
+  position:relative;
+  width:100%;
+  padding:0;
+  overflow:hidden;
+  background:#a8cbbd;
+}
+
+.feature-container{
+  position:relative;
+  width:min(1240px,calc(100% - 40px));
+  min-height:700px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:52% 48%;
+  align-items:stretch;
+  background:transparent;
+}
+
+.feature-copy{
+  position:relative;
+  z-index:3;
+  max-width:680px;
+  padding:80px 10px 80px 20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  background:transparent;
+}
+
+.feature-copy h2{
+  max-width:780px;
+  margin:0;
+  color:#173b36;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(3.2rem,5.2vw,5.3rem);
+  line-height:.92;
+  letter-spacing:-.055em;
+  font-weight:600;
+}
+
+.feature-description{
+  max-width:500px;
+  margin:25px 0 0;
+  color:#405d57;
+  font-size:1.08rem;
+  line-height:1.5;
+}
+
+.feature-list{
+  display:grid;
+  gap:13px;
+  margin:27px 0;
+  padding:0;
+  list-style:none;
+}
+
+.feature-list li{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  color:#173b36;
+  font-size:.98rem;
+  line-height:1.45;
+}
+
+.feature-list li span:first-child{
+  display:grid;
+  place-items:center;
+  width:24px;
+  height:24px;
+  flex-shrink:0;
+  margin-top:1px;
+  border-radius:50%;
+  background:#0b7967;
+  color:#fff;
+  font-size:.72rem;
+  font-weight:900;
+}
+
+.feature-copy .btn{
+  align-self:flex-start;
+  margin-top:5px;
+}
+
+/* Right transparent image */
+.feature-image-wrap{
+  position:relative;
+  z-index:2;
+  min-height:700px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  background:transparent;
+}
+
+.feature-image{
+  display:block;
+  width:100%;
+  max-width:720px;
+  height:700px;
+  margin:0 auto;
+  object-fit:contain;
+  object-position:center bottom;
+  background:transparent;
+  transform:scale(1.60) translateX(-120px);
+  transform-origin:center bottom;
+}
+
+/* How it works */
+.process{
+  background:#fff;
+}
+
+.process-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+.process-step{
+  padding:36px 28px 40px;
+  border-right:1px solid var(--line);
+}
+
+.process-step:last-child{
+  border-right:0;
+}
+
+.step-number{
+  color:var(--accent);
+  font-size:.76rem;
+  font-weight:800;
+  letter-spacing:.12em;
+}
+
+.process-step h3{
+  margin:60px 0 12px;
+  font-size:1.45rem;
+  line-height:1.05;
+  letter-spacing:-.035em;
+}
+
+.process-step p{
+  margin:0;
+  color:var(--ink-soft);
+  font-size:.92rem;
+}
+
+/* About */
+.about{
+  background:var(--cream);
+}
+
+.about-grid{
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:80px;
+  align-items:start;
+}
+
+.about-title{
+  position:sticky;
+  top:120px;
+}
+
+.about-title h2{
+  margin:0;
+  font-size:clamp(2.5rem,5vw,5rem);
+  line-height:.94;
+  letter-spacing:-.065em;
+}
+
+.about-copy{
+  max-width:700px;
+}
+
+.about-copy .lead{
+  margin:0;
+  color:var(--ink);
+  font-size:1.35rem;
+  line-height:1.35;
+}
+
+.about-copy p{
+  color:var(--ink-soft);
+}
+
+.about-highlight{
+  margin-top:34px;
+  padding:28px;
+  border-radius:22px;
+  background:var(--ink);
+  color:#fff;
+}
+
+.about-highlight strong{
+  display:block;
+  margin-bottom:8px;
+  font-size:1.1rem;
+}
+
+.about-highlight p{
+  margin:0;
+  color:rgba(255,255,255,.75);
+  font-size:.92rem;
+}
+
+/* Contact */
+.contact{
+  background:var(--ink);
+  color:#fff;
+}
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:70px;
+  align-items:start;
+}
+
+.contact-copy h2{
+  margin:0;
+  font-size:clamp(2.7rem,5vw,5.4rem);
+  line-height:.92;
+  letter-spacing:-.065em;
+}
+
+.contact-copy>p{
+  max-width:500px;
+  margin:24px 0 0;
+  color:rgba(255,255,255,.72);
+  font-size:1.05rem;
+}
+
+.contact-details{
+  display:grid;
+  gap:12px;
+  margin-top:32px;
+}
+
+.contact-details a{
+  color:#fff;
+  text-decoration:none;
+}
+
+.contact-form{
+  padding:30px;
+  border-radius:26px;
+  background:#fff;
+  color:var(--ink);
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.field{
+  display:grid;
+  gap:7px;
+}
+
+.field--full{
+  grid-column:1/-1;
+}
+
+.field label{
+  font-size:.78rem;
+  font-weight:750;
+}
+
+.field input,
+.field textarea{
+  width:100%;
+  padding:13px 14px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#fff;
+  color:var(--ink);
+  outline:none;
+}
+
+.field input:focus,
+.field textarea:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(11,121,103,.1);
+}
+
+.field textarea{
+  min-height:130px;
+  resize:vertical;
+}
+
+.contact-form .btn{
+  width:100%;
+  margin-top:18px;
+}
+
+/* Disclaimer */
+.disclaimer{
+  padding:35px 0;
+  background:#102c28;
+  color:rgba(255,255,255,.68);
+  font-size:.76rem;
+}
+
+.disclaimer p{
+  margin:0 0 12px;
+}
+
+.disclaimer p:last-child{
+  margin-bottom:0;
+}
+
+/* Footer */
+footer{
+  padding:55px 0 25px;
+  background:#0b211e;
+  color:#fff;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr;
+  gap:50px;
+  padding-bottom:45px;
+}
+
+.footer-brand img{
+  width:175px;
+  margin-bottom:18px;
+}
+
+.footer-brand p{
+  max-width:390px;
+  margin:0;
+  color:rgba(255,255,255,.65);
+  font-size:.9rem;
+}
+
+.footer-col h3{
+  margin:0 0 15px;
+  font-size:.82rem;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+}
+
+.footer-col a{
+  display:block;
+  width:fit-content;
+  margin:8px 0;
+  color:rgba(255,255,255,.68);
+  font-size:.88rem;
+  text-decoration:none;
+}
+
+.footer-col a:hover{
+  color:#fff;
+}
+
+.footer-bottom{
+  padding-top:22px;
+  border-top:1px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.5);
+  font-size:.76rem;
+}
+
+/* Tablet */
+@media(max-width:980px){
+  .nav-links{
+    display:none;
+  }
+
+  .menu-toggle{
+    display:block;
+  }
+
+  .hero-grid{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+
+  .hero-copy{
+    padding-bottom:0;
+  }
+
+  .hero-visual{
+    min-height:480px;
+  }
+
+  .hero-image{
+    height:480px;
+  }
+
+  .care-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .trust-items{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .process-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .process-step:nth-child(2){
+    border-right:0;
+  }
+
+  .process-step:nth-child(-n+2){
+    border-bottom:1px solid var(--line);
+  }
+
+  .about-grid{
+    grid-template-columns:1fr;
+  }
+
+  .about-title{
+    position:static;
+  }
+
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .footer-brand{
+    grid-column:1/-1;
+  }
+
+  .feature-container{
+    grid-template-columns:48% 52%;
+    min-height:600px;
+  }
+
+  .feature-copy{
+    padding:60px 15px 60px 10px;
+  }
+
+  .feature-copy h2{
+    font-size:clamp(2.7rem,5vw,4.3rem);
+  }
+
+  .feature-image-wrap{
+    min-height:600px;
+  }
+
+  .feature-image{
+    height:600px;
+  }
+}
+
+/* Mobile */
+@media(max-width:700px){
+  .container{
+    width:calc(100% - 28px);
+  }
+
+  .section{
+    padding:76px 0;
+  }
+
+  .topbar-inner{
+    padding:8px 0;
+    font-size:.7rem;
+  }
+
+  .nav{
+    min-height:68px;
+  }
+
+  .brand img{
+    width:142px;
+  }
+
+  .hero{
+    padding-top:24px;
+  }
+
+  .hero h1{
+    font-size:clamp(3.1rem,16vw,5rem);
+  }
+
+  .hero-visual{
+    min-height:390px;
+  }
+
+  .hero-image{
+    height:390px;
+    border-radius:24px;
+  }
+
+  .hero-card{
+    right:10px;
+    bottom:16px;
+    width:78%;
+    padding:18px;
+  }
+
+  .trust-items{
+    grid-template-columns:1fr;
+  }
+
+  .care-grid{
+    grid-template-columns:1fr;
+  }
+
+  .care-card{
+    min-height:220px;
+  }
+
+  .process-grid{
+    grid-template-columns:1fr;
+  }
+
+  .process-step{
+    border-right:0;
+    border-bottom:1px solid var(--line);
+  }
+
+  .process-step:last-child{
+    border-bottom:0;
+  }
+
+  .process-step h3{
+    margin-top:35px;
+  }
+
+  /* GLP-1 mobile */
+  .feature{
+    padding:0;
+  }
+
+  .feature-container{
+    width:calc(100% - 28px);
+    display:flex;
+    flex-direction:column;
+    min-height:auto;
+  }
+
+  .feature-copy{
+    width:100%;
+    max-width:none;
+    padding:50px 0 25px;
+    background:transparent;
+  }
+
+  .feature-copy h2{
+    font-size:clamp(2.8rem,13vw,4rem);
+  }
+
+  .feature-description{
+    font-size:1rem;
+  }
+
+  .feature-image-wrap{
+    width:100%;
+    min-height:auto;
+    height:auto;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+  }
+
+  .feature-image{
+    width:120%;
+    max-width:600px;
+    height:auto;
+    object-fit:contain;
+    object-position:center bottom;
+  }
+
+  /* Contact */
+  .contact-form{
+    padding:20px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .field--full{
+    grid-column:auto;
+  }
+
+  /* Footer */
+  .footer-grid{
+    grid-template-columns:1fr;
+  }
+
+  .footer-brand{
+    grid-column:auto;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Top Bar -->
+<div class="topbar">
+  <div class="container topbar-inner">
+    <span>Providing optimal care options for the body, mind, and soul.</span>
+    <a href="#contact">Contact Balanced Life Care →</a>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="#" aria-label="Balanced Life Care home">
+      <img src="../v1/assets/logo.png" alt="Balanced Life Care">
+    </a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#care">Care Options</a>
+      <a href="#weight-management">Weight Management</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#about">About</a>
+    </nav>
+
+    <button class="menu-toggle" type="button" aria-label="Open menu">
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Convenient telehealth care</p>
+
+      <h1>
+        Your health.<br>
+        Your life.<br>
+        <em>Your care.</em>
+      </h1>
+
+      <p class="hero-lead">
+        Convenient and affordable Telehealth care and Teleconsulting
+        solutions designed to fit your body, mind, and soul — right
+        from the comfort of your home.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn--outline" href="#care">Explore Care Options</a>
+      </div>
+
+      <div class="hero-note">
+        Self-pay care for people who are uninsured or underinsured.
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <img class="hero-image" src="../v1/assets/about-consultation.png" alt="Balanced Life Care telehealth consultation">
+
+      <div class="hero-card">
+        <small>Balanced Life Care</small>
+        <strong>Care that fits into your life.</strong>
+        <p>
+          We connect individuals with experienced healthcare providers
+          through accessible telehealth care.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Strip -->
+<section class="trust-strip">
+  <div class="container trust-items">
+    <div class="trust-item">
+      <span class="trust-icon">✓</span>
+      <span>Telehealth access throughout the United States</span>
+    </div>
+
+    <div class="trust-item">
+      <span class="trust-icon">✓</span>
+      <span>Convenient care from home</span>
+    </div>
+
+    <div class="trust-item">
+      <span class="trust-icon">✓</span>
+      <span>Affordable self-pay options</span>
+    </div>
+
+    <div class="trust-item">
+      <span class="trust-icon">✓</span>
+      <span>Care coordination with licensed independent providers</span>
+    </div>
+  </div>
+</section>
+
+<!-- Care Options -->
+<section class="section care-section" id="care">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">Explore your options</p>
+      <h2>Care built around what matters to you.</h2>
+      <p>
+        From medical weight loss to sexual wellness and mental health,
+        Balanced Life Care helps connect you with care options for
+        your body, mind, and soul.
+      </p>
+    </div>
+
+    <div class="care-grid">
+      <a class="care-card" href="#weight-management">
+        <span class="care-number">01 / WEIGHT MANAGEMENT</span>
+        <div>
+          <h3>Medical Weight Loss</h3>
+          <p>
+            Progressive medical weight loss programs designed to create
+            lasting, transformative results.
+          </p>
+        </div>
+        <span class="care-arrow">↗</span>
+      </a>
+
+      <a class="care-card" href="#womens-hrt">
+        <span class="care-number">02 / WOMEN'S HEALTH</span>
+        <div>
+          <h3>Women’s HRT</h3>
+          <p>
+            Explore curated care options designed around women’s health needs.
+          </p>
+        </div>
+        <span class="care-arrow">↗</span>
+      </a>
+
+      <a class="care-card" href="#mens-health">
+        <span class="care-number">03 / MEN'S HEALTH</span>
+        <div>
+          <h3>Testosterone Replacement</h3>
+          <p>
+            Explore testosterone replacement care options through the
+            Balanced Life Care network.
+          </p>
+        </div>
+        <span class="care-arrow">↗</span>
+      </a>
+
+      <a class="care-card" href="#sexual-wellness">
+        <span class="care-number">04 / SEXUAL WELLNESS</span>
+        <div>
+          <h3>Sexual Wellness</h3>
+          <p>
+            Convenient telehealth options for sexual wellness needs.
+          </p>
+        </div>
+        <span class="care-arrow">↗</span>
+      </a>
+
+      <a class="care-card" href="#sti-care">
+        <span class="care-number">05 / SEXUAL HEALTH</span>
+        <div>
+          <h3>STD Testing &amp; Treatment</h3>
+          <p>
+            Access telehealth care options for STD testing and treatment needs.
+          </p>
+        </div>
+        <span class="care-arrow">↗</span>
+      </a>
+
+      <a class="care-card" href="#mental-health">
+        <span class="care-number">06 / MENTAL HEALTH</span>
+        <div>
+          <h3>Mental Health</h3>
+          <p>
+            Accessible telehealth options for mental health support.
+          </p>
+        </div>
+        <span class="care-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- GLP-1 Weight Management -->
+<section class="feature" id="weight-management">
+  <div class="feature-container">
+
+    <div class="feature-copy">
+      <p class="feature-eyebrow">Medical Weight Management</p>
+
+      <h2>GLP-1 medical weight loss plans.</h2>
+
+      <p class="feature-description">
+        Progressive medical weight loss programs designed to create
+        lasting, transformative results.
+      </p>
+
+      <ul class="feature-list">
+        <li>
+          <span>✓</span>
+          <span>Convenient telehealth care from home</span>
+        </li>
+
+        <li>
+          <span>✓</span>
+          <span>Provider-guided care when clinically appropriate</span>
+        </li>
+
+        <li>
+          <span>✓</span>
+          <span>Curated weight management options</span>
+        </li>
+
+        <li>
+          <span>✓</span>
+          <span>Ongoing care coordination through Balanced Life Care</span>
+        </li>
+      </ul>
+
+      <a class="btn" href="#contact">Explore Weight Management</a>
+    </div>
+
+    <div class="feature-image-wrap">
+      <img
+        class="feature-image"
+        src="../v2/assets/glp1-plans.png"
+        alt="Balanced Life Care GLP-1 medical weight loss plans"
+      >
+    </div>
+
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="section process" id="how-it-works">
+  <div class="container">
+    <div class="section-heading">
+      <p class="eyebrow">A simpler path to care</p>
+      <h2>Start from home. Take it one step at a time.</h2>
+      <p>
+        The experience is designed to make navigating care feel more
+        straightforward and accessible.
+      </p>
+    </div>
+
+    <div class="process-grid">
+      <article class="process-step">
+        <span class="step-number">01</span>
+        <h3>Choose your care option</h3>
+        <p>
+          Explore the care plans and services that match your needs.
+        </p>
+      </article>
+
+      <article class="process-step">
+        <span class="step-number">02</span>
+        <h3>Connect through telehealth</h3>
+        <p>
+          Begin your care journey from the comfort of your home.
+        </p>
+      </article>
+
+      <article class="process-step">
+        <span class="step-number">03</span>
+        <h3>Provider review</h3>
+        <p>
+          Independent licensed physicians and practitioners determine
+          appropriate medical care.
+        </p>
+      </article>
+
+      <article class="process-step">
+        <span class="step-number">04</span>
+        <h3>Continue your care</h3>
+        <p>
+          Follow the care plan and stay connected to the appropriate
+          provider and support resources.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="section about" id="about">
+  <div class="container about-grid">
+    <div class="about-title">
+      <p class="eyebrow">About us</p>
+      <h2>Healthcare shouldn't feel so complicated.</h2>
+    </div>
+
+    <div class="about-copy">
+      <p class="lead">
+        Balanced Life Care understands how frustrating it can be to
+        navigate the complexity of healthcare.
+      </p>
+
+      <p>
+        We aim to provide Telehealth care solutions that are readily
+        accessible throughout the United States. Balanced Life Care
+        connects individuals to experienced healthcare providers and
+        helps coordinate care options for the body, mind, and soul.
+      </p>
+
+      <p>
+        Whether you need help with medical weight loss, STD testing and
+        treatment, sexual wellness, or mental health services, Balanced
+        Life Care offers affordable self-pay options for people who are
+        uninsured or underinsured.
+      </p>
+
+      <div class="about-highlight">
+        <strong>Care from the comfort of home.</strong>
+        <p>
+          We strive to make healthcare more accessible and help people
+          find care options that fit their needs.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="section contact" id="contact">
+  <div class="container contact-grid">
+    <div class="contact-copy">
+      <p class="eyebrow" style="color:#9ed3c5;">Talk to us</p>
+
+      <h2>Ready to take the next step?</h2>
+
+      <p>
+        Whether you need help with weight loss, mental health, sexual
+        wellness, or another care option, get in touch with Balanced
+        Life Care.
+      </p>
+
+      <div class="contact-details">
+        <a href="mailto:support@balancedlife-care.com">
+          support@balancedlife-care.com
+        </a>
+        <a href="tel:+17025837891">(702) 583-7891</a>
+      </div>
+    </div>
+
+    <form class="contact-form" action="#" method="post">
+      <div class="form-grid">
+        <div class="field">
+          <label for="first-name">First Name</label>
+          <input id="first-name" name="first_name" type="text" autocomplete="given-name">
+        </div>
+
+        <div class="field">
+          <label for="last-name">Last Name</label>
+          <input id="last-name" name="last_name" type="text" autocomplete="family-name">
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone Number</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel">
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email">
+        </div>
+
+        <div class="field field--full">
+          <label for="subject">Subject</label>
+          <input id="subject" name="subject" type="text">
+        </div>
+
+        <div class="field field--full">
+          <label for="message">Message</label>
+          <textarea id="message" name="message"></textarea>
+        </div>
+      </div>
+
+      <button class="btn" type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- Disclaimer -->
+<section class="disclaimer">
+  <div class="container">
+    <p>
+      Balanced Life Care is a care coordination service collaborating
+      with licensed independent physicians and practitioners who offer
+      services through Balanced Life Care. Balanced Life Care does not
+      directly offer medical or pharmacy services, and payment does not
+      ensure the issuance or dispensing of a prescription. Medical
+      services are administered by independent providers.
+    </p>
+
+    <p>
+      The content on this website serves informational purposes only
+      and should not be considered a replacement for professional
+      medical advice, diagnosis, or treatment. If you have inquiries
+      or concerns regarding your health, consult with your doctor.
+      This site functions as an advertisement for services and is not
+      specific to any particular medication.
+    </p>
+  </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <img src="../v1/assets/logo-reversed.png" alt="Balanced Life Care">
+        <p>
+          Telehealth care coordination for the body, mind, and soul.
+          Serving people looking for convenient and affordable self-pay
+          care options.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Care</h3>
+        <a href="#weight-management">Weight Management</a>
+        <a href="#womens-hrt">Women’s HRT</a>
+        <a href="#mens-health">Testosterone Replacement</a>
+        <a href="#sexual-wellness">Sexual Wellness</a>
+        <a href="#sti-care">STD Testing &amp; Treatment</a>
+        <a href="#mental-health">Mental Health</a>
+      </div>
+
+      <div class="footer-col">
+        <h3>Company</h3>
+        <a href="#about">About</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#contact">Contact</a>
+        <a href="mailto:support@balancedlife-care.com">Email Us</a>
+        <a href="tel:+17025837891">Call Us</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2022–2026 Balanced Life Care, LLC. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
