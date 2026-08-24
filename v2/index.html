@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Balanced Life Care | V2</title>
-<meta name="description" content="Balanced Life Care provides convenient and affordable telehealth care and teleconsulting solutions for the body, mind, and soul.">
+
+<meta
+  name="description"
+  content="Balanced Life Care provides convenient and affordable telehealth care and teleconsulting solutions for the body, mind, and soul."
+>
 
 <style>
+
 :root{
   --ink:#173b36;
   --ink-soft:#4b6660;
@@ -92,7 +101,11 @@ textarea{
   font-size:1.08rem;
 }
 
-/* Buttons */
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
 .btn{
   display:inline-flex;
   align-items:center;
@@ -106,7 +119,10 @@ textarea{
   font-size:.95rem;
   font-weight:750;
   text-decoration:none;
-  transition:transform .18s ease,background .18s ease,box-shadow .18s ease;
+  transition:
+    transform .18s ease,
+    background .18s ease,
+    box-shadow .18s ease;
 }
 
 .btn:hover{
@@ -137,7 +153,11 @@ textarea{
   box-shadow:none;
 }
 
-/* Top bar */
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
 .topbar{
   background:var(--ink);
   color:#fff;
@@ -157,7 +177,11 @@ textarea{
   text-decoration:none;
 }
 
-/* Header */
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
 .site-header{
   position:sticky;
   top:0;
@@ -240,7 +264,11 @@ textarea{
   top:28px;
 }
 
-/* Hero */
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
 .hero{
   overflow:hidden;
   padding:54px 0 34px;
@@ -348,7 +376,10 @@ textarea{
   opacity:0;
   visibility:hidden;
   transform:translate(-50%,-45%);
-  transition:opacity .3s ease,visibility .3s ease,transform .3s ease;
+  transition:
+    opacity .3s ease,
+    visibility .3s ease,
+    transform .3s ease;
   pointer-events:none;
 }
 
@@ -384,7 +415,11 @@ textarea{
   text-shadow:0 2px 10px rgba(0,0,0,.35);
 }
 
-/* Trust strip */
+
+/* =========================================================
+   TRUST STRIP
+   ========================================================= */
+
 .trust-strip{
   padding:24px 0;
   background:var(--ink);
@@ -416,7 +451,11 @@ textarea{
   flex-shrink:0;
 }
 
-/* Care options */
+
+/* =========================================================
+   CARE OPTIONS
+   ========================================================= */
+
 .care-section{
   background:#fff;
 }
@@ -437,7 +476,10 @@ textarea{
   border-radius:18px;
   background:#fff;
   text-decoration:none;
-  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    border-color .18s ease;
 }
 
 .care-card:hover{
@@ -473,6 +515,7 @@ textarea{
   font-size:1.35rem;
 }
 
+
 /* =========================================================
    GLP-1 WEIGHT MANAGEMENT
    ========================================================= */
@@ -496,12 +539,11 @@ textarea{
   background:transparent;
 }
 
-/* Left text */
 .feature-copy{
   position:relative;
   z-index:3;
   max-width:620px;
-  padding:80px 20px 80px 20px;
+  padding:80px 20px;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -572,7 +614,6 @@ textarea{
   margin-top:5px;
 }
 
-/* Right transparent image */
 .feature-image-wrap{
   position:relative;
   z-index:2;
@@ -596,7 +637,219 @@ textarea{
   transform-origin:center bottom;
 }
 
-/* How it works */
+
+/* =========================================================
+   PRODUCTS CAROUSEL
+   ========================================================= */
+
+.products-section{
+  padding:100px 0;
+  background:#f7f5ef;
+  overflow:hidden;
+}
+
+.products-heading{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:30px;
+  margin-bottom:42px;
+}
+
+.products-heading .section-heading{
+  margin-bottom:0;
+}
+
+.products-heading h2{
+  max-width:780px;
+}
+
+.products-controls{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-shrink:0;
+}
+
+.products-arrow{
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--line);
+  border-radius:50%;
+  background:#fff;
+  color:var(--ink);
+  font-size:1.2rem;
+  cursor:pointer;
+  transition:
+    background .18s ease,
+    color .18s ease,
+    border-color .18s ease,
+    transform .18s ease;
+}
+
+.products-arrow:hover{
+  background:var(--accent);
+  color:#fff;
+  border-color:var(--accent);
+  transform:translateY(-2px);
+}
+
+.products-arrow:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+  transform:none;
+}
+
+.products-viewport{
+  width:100%;
+  overflow:hidden;
+  position:relative;
+}
+
+.products-track{
+  display:flex;
+  gap:24px;
+  transform:translate3d(0,0,0);
+  transition:transform .6s cubic-bezier(.22,.61,.36,1);
+  will-change:transform;
+}
+
+.product-card{
+  flex:0 0 calc((100% - 72px) / 4);
+  min-width:0;
+}
+
+.product-image{
+  position:relative;
+  width:100%;
+  aspect-ratio:1 / 1;
+  overflow:hidden;
+  background:#dbe9e3;
+}
+
+.product-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .45s ease;
+}
+
+.product-card:hover .product-image img{
+  transform:scale(1.04);
+}
+
+.product-badge{
+  position:absolute;
+  top:14px;
+  left:14px;
+  z-index:2;
+  padding:6px 12px;
+  border-radius:999px;
+  background:#f1f5a8;
+  color:#173b36;
+  font-size:.72rem;
+  font-weight:800;
+}
+
+.product-info{
+  padding-top:16px;
+}
+
+.product-status{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  margin-bottom:9px;
+  padding:5px 10px;
+  border-radius:999px;
+  background:#d9f3e8;
+  color:#087b5d;
+  font-size:.72rem;
+  font-weight:750;
+}
+
+.product-status::before{
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#0b7967;
+}
+
+.product-name{
+  margin:0;
+  color:var(--ink);
+  font-size:1.2rem;
+  line-height:1.18;
+  letter-spacing:-.025em;
+}
+
+.product-price{
+  margin:6px 0 0;
+  color:var(--ink-soft);
+  font-size:.88rem;
+  font-weight:650;
+}
+
+/* Product buttons removed */
+.product-actions{
+  display:none;
+}
+
+.products-footer{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:10px;
+  margin-top:30px;
+}
+
+.products-progress{
+  width:72px;
+  height:6px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#e2e8e4;
+}
+
+.products-progress-bar{
+  width:25%;
+  height:100%;
+  border-radius:999px;
+  background:#1d1d1d;
+  transform:translateX(0);
+  transition:transform .6s ease;
+}
+
+.products-status{
+  min-width:42px;
+  color:var(--ink-soft);
+  font-size:.78rem;
+  font-weight:650;
+  text-align:right;
+}
+
+.product-image--loading{
+  display:grid;
+  place-items:center;
+}
+
+.product-image--loading::after{
+  content:"Balanced Life Care";
+  color:rgba(23,59,54,.45);
+  font-size:.75rem;
+  font-weight:800;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+
+/* =========================================================
+   HOW IT WORKS
+   ========================================================= */
+
 .process{
   background:#fff;
 }
@@ -637,7 +890,11 @@ textarea{
   font-size:.92rem;
 }
 
-/* About */
+
+/* =========================================================
+   ABOUT
+   ========================================================= */
+
 .about{
   background:var(--cream);
 }
@@ -696,7 +953,11 @@ textarea{
   font-size:.92rem;
 }
 
-/* Contact */
+
+/* =========================================================
+   CONTACT
+   ========================================================= */
+
 .contact{
   background:var(--ink);
   color:#fff;
@@ -788,7 +1049,11 @@ textarea{
   margin-top:18px;
 }
 
-/* Disclaimer */
+
+/* =========================================================
+   DISCLAIMER
+   ========================================================= */
+
 .disclaimer{
   padding:35px 0;
   background:#102c28;
@@ -804,7 +1069,11 @@ textarea{
   margin-bottom:0;
 }
 
-/* Footer */
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
 footer{
   padding:55px 0 25px;
   background:#0b211e;
@@ -857,8 +1126,13 @@ footer{
   font-size:.76rem;
 }
 
-/* Tablet */
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
 @media(max-width:980px){
+
   .nav-links{
     display:none;
   }
@@ -944,10 +1218,30 @@ footer{
   .feature-image{
     height:600px;
   }
+
+  /* Products */
+  .products-heading{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .product-card{
+    flex-basis:calc((100% - 24px) / 2);
+  }
+
+  .products-progress-bar{
+    width:50%;
+  }
+
 }
 
-/* Mobile */
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media(max-width:700px){
+
   .container{
     width:calc(100% - 28px);
   }
@@ -1024,7 +1318,9 @@ footer{
     margin-top:35px;
   }
 
+
   /* GLP-1 mobile */
+
   .feature{
     padding:0;
   }
@@ -1068,7 +1364,37 @@ footer{
     object-position:center bottom;
   }
 
+
+  /* Products mobile */
+
+  .products-section{
+    padding:76px 0;
+  }
+
+  .products-heading{
+    margin-bottom:28px;
+  }
+
+  .products-controls{
+    width:100%;
+    justify-content:flex-end;
+  }
+
+  .product-card{
+    flex-basis:100%;
+  }
+
+  .products-footer{
+    margin-top:24px;
+  }
+
+  .products-progress-bar{
+    width:100%;
+  }
+
+
   /* Contact */
+
   .contact-form{
     padding:20px;
   }
@@ -1081,7 +1407,9 @@ footer{
     grid-column:auto;
   }
 
+
   /* Footer */
+
   .footer-grid{
     grid-template-columns:1fr;
   }
@@ -1089,47 +1417,115 @@ footer{
   .footer-brand{
     grid-column:auto;
   }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
-<!-- Top Bar -->
-<div class="topbar">
-  <div class="container topbar-inner">
-    <span>Providing optimal care options for the body, mind, and soul.</span>
-    <a href="#contact">Contact Balanced Life Care →</a>
-  </div>
-</div>
 
-<!-- Header -->
-<header class="site-header">
-  <div class="container nav">
-    <a class="brand" href="#" aria-label="Balanced Life Care home">
-      <img src="../v1/assets/logo.png" alt="Balanced Life Care">
+<!-- =========================================================
+     TOP BAR
+     ========================================================= -->
+
+<div class="topbar">
+
+  <div class="container topbar-inner">
+
+    <span>
+      Providing optimal care options for the body, mind, and soul.
+    </span>
+
+    <a href="#contact">
+      Contact Balanced Life Care →
     </a>
 
-    <nav class="nav-links" aria-label="Main navigation">
-      <a href="#care">Care Options</a>
-      <a href="#weight-management">Weight Management</a>
-      <a href="#how-it-works">How It Works</a>
-      <a href="#about">About</a>
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
+<header class="site-header">
+
+  <div class="container nav">
+
+    <a
+      class="brand"
+      href="#"
+      aria-label="Balanced Life Care home"
+    >
+
+      <img
+        src="../v1/assets/logo.png"
+        alt="Balanced Life Care"
+      >
+
+    </a>
+
+
+    <nav
+      class="nav-links"
+      aria-label="Main navigation"
+    >
+
+      <a href="#care">
+        Care Options
+      </a>
+
+      <a href="#weight-management">
+        Weight Management
+      </a>
+
+      <a href="#how-it-works">
+        How It Works
+      </a>
+
+      <a href="#about">
+        About
+      </a>
+
     </nav>
 
-    <button class="menu-toggle" type="button" aria-label="Open menu">
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label="Open menu"
+    >
+
       <span></span>
+
     </button>
+
   </div>
+
 </header>
+
 
 <main>
 
-<!-- Hero -->
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+
 <section class="hero">
+
   <div class="container hero-grid">
+
     <div class="hero-copy">
-      <p class="eyebrow">Convenient telehealth care</p>
+
+      <p class="eyebrow">
+        Convenient telehealth care
+      </p>
 
       <h1>
         Your health.<br>
@@ -1144,147 +1540,350 @@ footer{
       </p>
 
       <div class="hero-actions">
-        <a class="btn btn--outline" href="#care">Explore Care Options</a>
+
+        <a
+          class="btn btn--outline"
+          href="#care"
+        >
+          Explore Care Options
+        </a>
+
       </div>
 
       <div class="hero-note">
         Self-pay care for people who are uninsured or underinsured.
       </div>
+
     </div>
 
+
     <div class="hero-visual">
-      <img class="hero-image" src="../v1/assets/about-consultation.png" alt="Balanced Life Care telehealth consultation">
+
+      <img
+        class="hero-image"
+        src="../v1/assets/about-consultation.png"
+        alt="Balanced Life Care telehealth consultation"
+      >
 
       <div class="hero-card">
-        <small>Balanced Life Care</small>
-        <strong>Care that fits into your life.</strong>
+
+        <small>
+          Balanced Life Care
+        </small>
+
+        <strong>
+          Care that fits into your life.
+        </strong>
+
         <p>
           We connect individuals with experienced healthcare providers
           through accessible telehealth care.
         </p>
+
       </div>
+
     </div>
+
   </div>
+
 </section>
 
-<!-- Trust Strip -->
+
+<!-- =========================================================
+     TRUST STRIP
+     ========================================================= -->
+
 <section class="trust-strip">
+
   <div class="container trust-items">
-    <div class="trust-item">
-      <span class="trust-icon">✓</span>
-      <span>Telehealth access throughout the United States</span>
-    </div>
 
     <div class="trust-item">
-      <span class="trust-icon">✓</span>
-      <span>Convenient care from home</span>
+
+      <span class="trust-icon">
+        ✓
+      </span>
+
+      <span>
+        Telehealth access throughout the United States
+      </span>
+
     </div>
 
-    <div class="trust-item">
-      <span class="trust-icon">✓</span>
-      <span>Affordable self-pay options</span>
-    </div>
 
     <div class="trust-item">
-      <span class="trust-icon">✓</span>
-      <span>Care coordination with licensed independent providers</span>
+
+      <span class="trust-icon">
+        ✓
+      </span>
+
+      <span>
+        Convenient care from home
+      </span>
+
     </div>
+
+
+    <div class="trust-item">
+
+      <span class="trust-icon">
+        ✓
+      </span>
+
+      <span>
+        Affordable self-pay options
+      </span>
+
+    </div>
+
+
+    <div class="trust-item">
+
+      <span class="trust-icon">
+        ✓
+      </span>
+
+      <span>
+        Care coordination with licensed independent providers
+      </span>
+
+    </div>
+
   </div>
+
 </section>
 
-<!-- Care Options -->
-<section class="section care-section" id="care">
+
+<!-- =========================================================
+     CARE OPTIONS
+     ========================================================= -->
+
+<section
+  class="section care-section"
+  id="care"
+>
+
   <div class="container">
+
     <div class="section-heading">
-      <p class="eyebrow">Explore your options</p>
-      <h2>Care built around what matters to you.</h2>
+
+      <p class="eyebrow">
+        Explore your options
+      </p>
+
+      <h2>
+        Care built around what matters to you.
+      </h2>
+
       <p>
         From medical weight loss to sexual wellness and mental health,
         Balanced Life Care helps connect you with care options for
         your body, mind, and soul.
       </p>
+
     </div>
 
+
     <div class="care-grid">
-      <a class="care-card" href="#weight-management">
-        <span class="care-number">01 / WEIGHT MANAGEMENT</span>
+
+
+      <a
+        class="care-card"
+        href="#weight-management"
+      >
+
+        <span class="care-number">
+          01 / WEIGHT MANAGEMENT
+        </span>
+
         <div>
-          <h3>Medical Weight Loss</h3>
+
+          <h3>
+            Medical Weight Loss
+          </h3>
+
           <p>
             Progressive medical weight loss programs designed to create
             lasting, transformative results.
           </p>
+
         </div>
-        <span class="care-arrow">↗</span>
+
+        <span class="care-arrow">
+          ↗
+        </span>
+
       </a>
 
-      <a class="care-card" href="#womens-hrt">
-        <span class="care-number">02 / WOMEN'S HEALTH</span>
+
+      <a
+        class="care-card"
+        href="#womens-hrt"
+      >
+
+        <span class="care-number">
+          02 / WOMEN'S HEALTH
+        </span>
+
         <div>
-          <h3>Women’s HRT</h3>
+
+          <h3>
+            Women’s HRT
+          </h3>
+
           <p>
             Explore curated care options designed around women’s health needs.
           </p>
+
         </div>
-        <span class="care-arrow">↗</span>
+
+        <span class="care-arrow">
+          ↗
+        </span>
+
       </a>
 
-      <a class="care-card" href="#mens-health">
-        <span class="care-number">03 / MEN'S HEALTH</span>
+
+      <a
+        class="care-card"
+        href="#mens-health"
+      >
+
+        <span class="care-number">
+          03 / MEN'S HEALTH
+        </span>
+
         <div>
-          <h3>Testosterone Replacement</h3>
+
+          <h3>
+            Testosterone Replacement
+          </h3>
+
           <p>
             Explore testosterone replacement care options through the
             Balanced Life Care network.
           </p>
+
         </div>
-        <span class="care-arrow">↗</span>
+
+        <span class="care-arrow">
+          ↗
+        </span>
+
       </a>
 
-      <a class="care-card" href="#sexual-wellness">
-        <span class="care-number">04 / SEXUAL WELLNESS</span>
+
+      <a
+        class="care-card"
+        href="#sexual-wellness"
+      >
+
+        <span class="care-number">
+          04 / SEXUAL WELLNESS
+        </span>
+
         <div>
-          <h3>Sexual Wellness</h3>
+
+          <h3>
+            Sexual Wellness
+          </h3>
+
           <p>
             Convenient telehealth options for sexual wellness needs.
           </p>
+
         </div>
-        <span class="care-arrow">↗</span>
+
+        <span class="care-arrow">
+          ↗
+        </span>
+
       </a>
 
-      <a class="care-card" href="#sti-care">
-        <span class="care-number">05 / SEXUAL HEALTH</span>
+
+      <a
+        class="care-card"
+        href="#sti-care"
+      >
+
+        <span class="care-number">
+          05 / SEXUAL HEALTH
+        </span>
+
         <div>
-          <h3>STD Testing &amp; Treatment</h3>
+
+          <h3>
+            STD Testing &amp; Treatment
+          </h3>
+
           <p>
             Access telehealth care options for STD testing and treatment needs.
           </p>
+
         </div>
-        <span class="care-arrow">↗</span>
+
+        <span class="care-arrow">
+          ↗
+        </span>
+
       </a>
 
-      <a class="care-card" href="#mental-health">
-        <span class="care-number">06 / MENTAL HEALTH</span>
+
+      <a
+        class="care-card"
+        href="#mental-health"
+      >
+
+        <span class="care-number">
+          06 / MENTAL HEALTH
+        </span>
+
         <div>
-          <h3>Mental Health</h3>
+
+          <h3>
+            Mental Health
+          </h3>
+
           <p>
             Accessible telehealth options for mental health support.
           </p>
+
         </div>
-        <span class="care-arrow">↗</span>
+
+        <span class="care-arrow">
+          ↗
+        </span>
+
       </a>
+
+
     </div>
+
   </div>
+
 </section>
 
-<!-- GLP-1 Weight Management -->
-<section class="feature" id="weight-management">
+
+<!-- =========================================================
+     GLP-1 WEIGHT MANAGEMENT
+     ========================================================= -->
+
+<section
+  class="feature"
+  id="weight-management"
+>
+
   <div class="feature-container">
 
-    <div class="feature-copy">
-      <p class="feature-eyebrow">Medical Weight Management</p>
 
-      <h2>GLP-1 medical weight loss plans.</h2>
+    <div class="feature-copy">
+
+      <p class="feature-eyebrow">
+        Medical Weight Management
+      </p>
+
+      <h2>
+        GLP-1 medical weight loss plans.
+      </h2>
 
       <p class="feature-description">
         Progressive medical weight loss programs designed to create
@@ -1292,100 +1891,499 @@ footer{
       </p>
 
       <ul class="feature-list">
-        <li>
-          <span>✓</span>
-          <span>Convenient telehealth care from home</span>
-        </li>
 
         <li>
-          <span>✓</span>
-          <span>Provider-guided care when clinically appropriate</span>
+
+          <span>
+            ✓
+          </span>
+
+          <span>
+            Convenient telehealth care from home
+          </span>
+
         </li>
 
-        <li>
-          <span>✓</span>
-          <span>Curated weight management options</span>
-        </li>
 
         <li>
-          <span>✓</span>
-          <span>Ongoing care coordination through Balanced Life Care</span>
+
+          <span>
+            ✓
+          </span>
+
+          <span>
+            Provider-guided care when clinically appropriate
+          </span>
+
         </li>
+
+
+        <li>
+
+          <span>
+            ✓
+          </span>
+
+          <span>
+            Curated weight management options
+          </span>
+
+        </li>
+
+
+        <li>
+
+          <span>
+            ✓
+          </span>
+
+          <span>
+            Ongoing care coordination through Balanced Life Care
+          </span>
+
+        </li>
+
       </ul>
 
-      <a class="btn" href="#contact">Explore Weight Management</a>
+
+      <a
+        class="btn"
+        href="#contact"
+      >
+        Explore Weight Management
+      </a>
+
     </div>
 
+
     <div class="feature-image-wrap">
+
       <img
         class="feature-image"
         src="../v2/assets/glp1-plans.png"
         alt="Balanced Life Care GLP-1 medical weight loss plans"
       >
+
     </div>
 
   </div>
+
 </section>
 
-<!-- How It Works -->
-<section class="section process" id="how-it-works">
+
+<!-- =========================================================
+     PRODUCTS CAROUSEL
+     ========================================================= -->
+
+<section
+  class="products-section"
+  id="products"
+>
+
   <div class="container">
+
+
+    <div class="products-heading">
+
+      <div class="section-heading">
+
+        <p class="eyebrow">
+          Featured care options
+        </p>
+
+        <h2>
+          Explore our weight management products.
+        </h2>
+
+        <p>
+          Explore available weight management options through
+          Balanced Life Care.
+        </p>
+
+      </div>
+
+
+      <div class="products-controls">
+
+        <button
+          class="products-arrow"
+          id="products-prev"
+          type="button"
+          aria-label="Previous products"
+        >
+          ←
+        </button>
+
+        <button
+          class="products-arrow"
+          id="products-next"
+          type="button"
+          aria-label="Next products"
+        >
+          →
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="products-viewport"
+      id="products-viewport"
+      aria-live="polite"
+    >
+
+      <div
+        class="products-track"
+        id="products-track"
+      >
+
+
+        <!-- PRODUCT 01 -->
+
+        <article class="product-card">
+
+          <div class="product-image product-image--loading">
+
+            <span class="product-badge">
+              Featured
+            </span>
+
+          </div>
+
+
+          <div class="product-info">
+
+            <span class="product-status">
+              Available
+            </span>
+
+            <h3 class="product-name">
+              Phentermine Weight Loss Treatment
+            </h3>
+
+            <p class="product-price">
+              Starting at $165
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- PRODUCT 02 -->
+
+        <article class="product-card">
+
+          <div class="product-image product-image--loading">
+
+            <span class="product-badge">
+              Popular
+            </span>
+
+          </div>
+
+
+          <div class="product-info">
+
+            <span class="product-status">
+              Available
+            </span>
+
+            <h3 class="product-name">
+              Craving Control
+            </h3>
+
+            <p class="product-price">
+              $39.99 – $79.99
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- PRODUCT 03 -->
+
+        <article class="product-card">
+
+          <div class="product-image product-image--loading">
+          </div>
+
+
+          <div class="product-info">
+
+            <span class="product-status">
+              Available
+            </span>
+
+            <h3 class="product-name">
+              Hydrochlorothiazide (HCTZ)
+            </h3>
+
+            <p class="product-price">
+              $45 – $90
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- PRODUCT 04 -->
+
+        <article class="product-card">
+
+          <div class="product-image product-image--loading">
+          </div>
+
+
+          <div class="product-info">
+
+            <span class="product-status">
+              Available
+            </span>
+
+            <h3 class="product-name">
+              Phendimetrazine Tartrate
+            </h3>
+
+            <p class="product-price">
+              $399.99
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- PRODUCT 05 -->
+
+        <article class="product-card">
+
+          <div class="product-image product-image--loading">
+          </div>
+
+
+          <div class="product-info">
+
+            <span class="product-status">
+              Available
+            </span>
+
+            <h3 class="product-name">
+              Phentermine/Topiramate Capsules
+            </h3>
+
+            <p class="product-price">
+              $199.99 – $429.99
+            </p>
+
+          </div>
+
+        </article>
+
+
+        <!-- PRODUCT 06 -->
+
+        <article class="product-card">
+
+          <div class="product-image product-image--loading">
+
+            <span class="product-badge">
+              GLP-1
+            </span>
+
+          </div>
+
+
+          <div class="product-info">
+
+            <span class="product-status">
+              Available
+            </span>
+
+            <h3 class="product-name">
+              Semaglutide (GLP-1) Weight Management Program
+            </h3>
+
+            <p class="product-price">
+              $299 / month
+            </p>
+
+          </div>
+
+        </article>
+
+
+      </div>
+
+    </div>
+
+
+    <div class="products-footer">
+
+      <div class="products-progress">
+
+        <div
+          class="products-progress-bar"
+          id="products-progress-bar"
+        ></div>
+
+      </div>
+
+
+      <span
+        class="products-status"
+        id="products-status"
+      >
+        1 / 3
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     HOW IT WORKS
+     ========================================================= -->
+
+<section
+  class="section process"
+  id="how-it-works"
+>
+
+  <div class="container">
+
     <div class="section-heading">
-      <p class="eyebrow">A simpler path to care</p>
-      <h2>Start from home. Take it one step at a time.</h2>
+
+      <p class="eyebrow">
+        A simpler path to care
+      </p>
+
+      <h2>
+        Start from home. Take it one step at a time.
+      </h2>
+
       <p>
         The experience is designed to make navigating care feel more
         straightforward and accessible.
       </p>
+
     </div>
 
+
     <div class="process-grid">
+
+
       <article class="process-step">
-        <span class="step-number">01</span>
-        <h3>Choose your care option</h3>
+
+        <span class="step-number">
+          01
+        </span>
+
+        <h3>
+          Choose your care option
+        </h3>
+
         <p>
           Explore the care plans and services that match your needs.
         </p>
+
       </article>
 
+
       <article class="process-step">
-        <span class="step-number">02</span>
-        <h3>Connect through telehealth</h3>
+
+        <span class="step-number">
+          02
+        </span>
+
+        <h3>
+          Connect through telehealth
+        </h3>
+
         <p>
           Begin your care journey from the comfort of your home.
         </p>
+
       </article>
 
+
       <article class="process-step">
-        <span class="step-number">03</span>
-        <h3>Provider review</h3>
+
+        <span class="step-number">
+          03
+        </span>
+
+        <h3>
+          Provider review
+        </h3>
+
         <p>
           Independent licensed physicians and practitioners determine
           appropriate medical care.
         </p>
+
       </article>
 
+
       <article class="process-step">
-        <span class="step-number">04</span>
-        <h3>Continue your care</h3>
+
+        <span class="step-number">
+          04
+        </span>
+
+        <h3>
+          Continue your care
+        </h3>
+
         <p>
           Follow the care plan and stay connected to the appropriate
           provider and support resources.
         </p>
+
       </article>
+
+
     </div>
+
   </div>
+
 </section>
 
-<!-- About -->
-<section class="section about" id="about">
+
+<!-- =========================================================
+     ABOUT
+     ========================================================= -->
+
+<section
+  class="section about"
+  id="about"
+>
+
   <div class="container about-grid">
+
+
     <div class="about-title">
-      <p class="eyebrow">About us</p>
-      <h2>Healthcare shouldn't feel so complicated.</h2>
+
+      <p class="eyebrow">
+        About us
+      </p>
+
+      <h2>
+        Healthcare shouldn't feel so complicated.
+      </h2>
+
     </div>
 
+
     <div class="about-copy">
+
       <p class="lead">
         Balanced Life Care understands how frustrating it can be to
         navigate the complexity of healthcare.
@@ -1405,24 +2403,51 @@ footer{
         uninsured or underinsured.
       </p>
 
+
       <div class="about-highlight">
-        <strong>Care from the comfort of home.</strong>
+
+        <strong>
+          Care from the comfort of home.
+        </strong>
+
         <p>
           We strive to make healthcare more accessible and help people
           find care options that fit their needs.
         </p>
+
       </div>
+
     </div>
+
   </div>
+
 </section>
 
-<!-- Contact -->
-<section class="section contact" id="contact">
-  <div class="container contact-grid">
-    <div class="contact-copy">
-      <p class="eyebrow" style="color:#9ed3c5;">Talk to us</p>
 
-      <h2>Ready to take the next step?</h2>
+<!-- =========================================================
+     CONTACT
+     ========================================================= -->
+
+<section
+  class="section contact"
+  id="contact"
+>
+
+  <div class="container contact-grid">
+
+
+    <div class="contact-copy">
+
+      <p
+        class="eyebrow"
+        style="color:#9ed3c5;"
+      >
+        Talk to us
+      </p>
+
+      <h2>
+        Ready to take the next step?
+      </h2>
 
       <p>
         Whether you need help with weight loss, mental health, sexual
@@ -1430,55 +2455,149 @@ footer{
         Life Care.
       </p>
 
+
       <div class="contact-details">
+
         <a href="mailto:support@balancedlife-care.com">
           support@balancedlife-care.com
         </a>
-        <a href="tel:+17025837891">(702) 583-7891</a>
+
+        <a href="tel:+17025837891">
+          (702) 583-7891
+        </a>
+
       </div>
+
     </div>
 
-    <form class="contact-form" action="#" method="post">
+
+    <form
+      class="contact-form"
+      action="#"
+      method="post"
+    >
+
       <div class="form-grid">
-        <div class="field">
-          <label for="first-name">First Name</label>
-          <input id="first-name" name="first_name" type="text" autocomplete="given-name">
-        </div>
+
 
         <div class="field">
-          <label for="last-name">Last Name</label>
-          <input id="last-name" name="last_name" type="text" autocomplete="family-name">
+
+          <label for="first-name">
+            First Name
+          </label>
+
+          <input
+            id="first-name"
+            name="first_name"
+            type="text"
+            autocomplete="given-name"
+          >
+
         </div>
 
-        <div class="field">
-          <label for="phone">Phone Number</label>
-          <input id="phone" name="phone" type="tel" autocomplete="tel">
-        </div>
 
         <div class="field">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="email" autocomplete="email">
+
+          <label for="last-name">
+            Last Name
+          </label>
+
+          <input
+            id="last-name"
+            name="last_name"
+            type="text"
+            autocomplete="family-name"
+          >
+
         </div>
+
+
+        <div class="field">
+
+          <label for="phone">
+            Phone Number
+          </label>
+
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            autocomplete="tel"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="email">
+            Email
+          </label>
+
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+          >
+
+        </div>
+
 
         <div class="field field--full">
-          <label for="subject">Subject</label>
-          <input id="subject" name="subject" type="text">
+
+          <label for="subject">
+            Subject
+          </label>
+
+          <input
+            id="subject"
+            name="subject"
+            type="text"
+          >
+
         </div>
 
+
         <div class="field field--full">
-          <label for="message">Message</label>
-          <textarea id="message" name="message"></textarea>
+
+          <label for="message">
+            Message
+          </label>
+
+          <textarea
+            id="message"
+            name="message"
+          ></textarea>
+
         </div>
+
+
       </div>
 
-      <button class="btn" type="submit">Send Message</button>
+
+      <button
+        class="btn"
+        type="submit"
+      >
+        Send Message
+      </button>
+
     </form>
+
   </div>
+
 </section>
 
-<!-- Disclaimer -->
+
+<!-- =========================================================
+     DISCLAIMER
+     ========================================================= -->
+
 <section class="disclaimer">
+
   <div class="container">
+
     <p>
       Balanced Life Care is a care coordination service collaborating
       with licensed independent physicians and practitioners who offer
@@ -1496,51 +2615,512 @@ footer{
       This site functions as an advertisement for services and is not
       specific to any particular medication.
     </p>
+
   </div>
+
 </section>
+
 
 </main>
 
-<!-- Footer -->
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
 <footer>
+
   <div class="container">
+
     <div class="footer-grid">
 
+
       <div class="footer-brand">
-        <img src="../v1/assets/logo-reversed.png" alt="Balanced Life Care">
+
+        <img
+          src="../v1/assets/logo-reversed.png"
+          alt="Balanced Life Care"
+        >
+
         <p>
           Telehealth care coordination for the body, mind, and soul.
           Serving people looking for convenient and affordable self-pay
           care options.
         </p>
+
       </div>
 
-      <div class="footer-col">
-        <h3>Care</h3>
-        <a href="#weight-management">Weight Management</a>
-        <a href="#womens-hrt">Women’s HRT</a>
-        <a href="#mens-health">Testosterone Replacement</a>
-        <a href="#sexual-wellness">Sexual Wellness</a>
-        <a href="#sti-care">STD Testing &amp; Treatment</a>
-        <a href="#mental-health">Mental Health</a>
-      </div>
 
       <div class="footer-col">
-        <h3>Company</h3>
-        <a href="#about">About</a>
-        <a href="#how-it-works">How It Works</a>
-        <a href="#contact">Contact</a>
-        <a href="mailto:support@balancedlife-care.com">Email Us</a>
-        <a href="tel:+17025837891">Call Us</a>
+
+        <h3>
+          Care
+        </h3>
+
+        <a href="#weight-management">
+          Weight Management
+        </a>
+
+        <a href="#womens-hrt">
+          Women’s HRT
+        </a>
+
+        <a href="#mens-health">
+          Testosterone Replacement
+        </a>
+
+        <a href="#sexual-wellness">
+          Sexual Wellness
+        </a>
+
+        <a href="#sti-care">
+          STD Testing &amp; Treatment
+        </a>
+
+        <a href="#mental-health">
+          Mental Health
+        </a>
+
       </div>
+
+
+      <div class="footer-col">
+
+        <h3>
+          Company
+        </h3>
+
+        <a href="#about">
+          About
+        </a>
+
+        <a href="#how-it-works">
+          How It Works
+        </a>
+
+        <a href="#contact">
+          Contact
+        </a>
+
+        <a href="mailto:support@balancedlife-care.com">
+          Email Us
+        </a>
+
+        <a href="tel:+17025837891">
+          Call Us
+        </a>
+
+      </div>
+
 
     </div>
+
 
     <div class="footer-bottom">
+
       © 2022–2026 Balanced Life Care, LLC. All rights reserved.
+
     </div>
+
   </div>
+
 </footer>
 
+
+<!-- =========================================================
+     PRODUCTS CAROUSEL JAVASCRIPT
+     ========================================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+  const track =
+    document.getElementById("products-track");
+
+  const viewport =
+    document.getElementById("products-viewport");
+
+  const prevBtn =
+    document.getElementById("products-prev");
+
+  const nextBtn =
+    document.getElementById("products-next");
+
+  const status =
+    document.getElementById("products-status");
+
+  const progressBar =
+    document.getElementById("products-progress-bar");
+
+
+  if(
+    !track ||
+    !viewport ||
+    !prevBtn ||
+    !nextBtn
+  ){
+    return;
+  }
+
+
+  const products =
+    Array.from(
+      track.querySelectorAll(".product-card")
+    );
+
+
+  const totalProducts =
+    products.length;
+
+
+  let currentIndex = 0;
+
+  let autoPlay = null;
+
+
+  /*
+   * Determine how many products
+   * are visible at the current screen width.
+   */
+
+  function getVisibleProducts(){
+
+    if(window.innerWidth <= 700){
+      return 1;
+    }
+
+    if(window.innerWidth <= 980){
+      return 2;
+    }
+
+    return 4;
+
+  }
+
+
+  /*
+   * Calculate the exact distance
+   * required to move one product.
+   */
+
+  function getStepSize(){
+
+    if(!products.length){
+      return 0;
+    }
+
+
+    const card =
+      products[0];
+
+
+    const cardWidth =
+      card.getBoundingClientRect().width;
+
+
+    const trackStyle =
+      window.getComputedStyle(track);
+
+
+    const gap =
+      parseFloat(trackStyle.columnGap) || 0;
+
+
+    return cardWidth + gap;
+
+  }
+
+
+  /*
+   * Find the last position that still
+   * keeps the visible cards inside
+   * the carousel.
+   */
+
+  function getMaxIndex(){
+
+    return Math.max(
+      0,
+      totalProducts - getVisibleProducts()
+    );
+
+  }
+
+
+  /*
+   * Update the carousel position.
+   */
+
+  function updateCarousel(animate = true){
+
+    const step =
+      getStepSize();
+
+
+    if(!step){
+      return;
+    }
+
+
+    const maxIndex =
+      getMaxIndex();
+
+
+    currentIndex =
+      Math.max(
+        0,
+        Math.min(
+          currentIndex,
+          maxIndex
+        )
+      );
+
+
+    track.style.transition =
+      animate
+        ? "transform .6s cubic-bezier(.22,.61,.36,1)"
+        : "none";
+
+
+    track.style.transform =
+      `translate3d(-${currentIndex * step}px, 0, 0)`;
+
+
+    /*
+     * Product counter.
+     */
+
+    const displayedProduct =
+      Math.min(
+        currentIndex + 1,
+        totalProducts
+      );
+
+
+    status.textContent =
+      `${displayedProduct} / ${totalProducts}`;
+
+
+    /*
+     * Progress bar.
+     */
+
+    const progress =
+      totalProducts > 1
+        ? currentIndex / (totalProducts - 1)
+        : 0;
+
+
+    progressBar.style.transform =
+      `translateX(${progress * 300}%)`;
+
+  }
+
+
+  /*
+   * Move forward.
+   *
+   * When the final position is reached,
+   * return to the beginning.
+   */
+
+  function goNext(){
+
+    const maxIndex =
+      getMaxIndex();
+
+
+    if(currentIndex >= maxIndex){
+
+      currentIndex = 0;
+
+    }else{
+
+      currentIndex++;
+
+    }
+
+
+    updateCarousel(true);
+
+  }
+
+
+  /*
+   * Move backward.
+   *
+   * When we're at the beginning,
+   * jump to the final position.
+   */
+
+  function goPrevious(){
+
+    const maxIndex =
+      getMaxIndex();
+
+
+    if(currentIndex <= 0){
+
+      currentIndex = maxIndex;
+
+    }else{
+
+      currentIndex--;
+
+    }
+
+
+    updateCarousel(true);
+
+  }
+
+
+  /*
+   * Start automatic movement.
+   *
+   * Every 5 seconds.
+   */
+
+  function startAutoPlay(){
+
+    stopAutoPlay();
+
+
+    autoPlay =
+      setInterval(
+        function(){
+
+          goNext();
+
+        },
+        5000
+      );
+
+  }
+
+
+  /*
+   * Stop automatic movement.
+   */
+
+  function stopAutoPlay(){
+
+    if(autoPlay){
+
+      clearInterval(autoPlay);
+
+      autoPlay = null;
+
+    }
+
+  }
+
+
+  /*
+   * Next arrow.
+   */
+
+  nextBtn.addEventListener(
+    "click",
+    function(){
+
+      goNext();
+
+      startAutoPlay();
+
+    }
+  );
+
+
+  /*
+   * Previous arrow.
+   */
+
+  prevBtn.addEventListener(
+    "click",
+    function(){
+
+      goPrevious();
+
+      startAutoPlay();
+
+    }
+  );
+
+
+  /*
+   * Pause while hovering over
+   * the product carousel.
+   */
+
+  viewport.addEventListener(
+    "mouseenter",
+    stopAutoPlay
+  );
+
+
+  viewport.addEventListener(
+    "mouseleave",
+    startAutoPlay
+  );
+
+
+  /*
+   * Recalculate position after
+   * the browser window changes size.
+   */
+
+  let resizeTimer;
+
+
+  window.addEventListener(
+    "resize",
+    function(){
+
+      clearTimeout(resizeTimer);
+
+
+      resizeTimer =
+        setTimeout(
+          function(){
+
+            currentIndex =
+              Math.min(
+                currentIndex,
+                getMaxIndex()
+              );
+
+
+            updateCarousel(false);
+
+          },
+          150
+        );
+
+    }
+  );
+
+
+  /*
+   * Initial carousel setup.
+   */
+
+  requestAnimationFrame(
+    function(){
+
+      updateCarousel(false);
+
+      startAutoPlay();
+
+    }
+  );
+
+});
+
+</script>
+
+
 </body>
+
 </html>
