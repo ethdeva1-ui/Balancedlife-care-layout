@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#06bda1">
+<title>Balanced Life Care — Telehealth Care Coordination</title>
+<meta name="description" content="Balanced Life Care coordinates convenient, affordable telehealth care with licensed independent physicians across all 50 states. Medical consultation required; payment does not guarantee a prescription.">
+<link rel="canonical" href="https://balancedlife-care.com/">
+<link rel="icon" href="assets/favicon.png" sizes="32x32">
+<link rel="icon" href="assets/logo-mark.png" sizes="any">
+<link rel="apple-touch-icon" href="assets/logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Palette sampled from the logo: teal-green #06BDA1 and charcoal #313032,
+   on white. --green is the logo ink (fills, graphics); --brand is the
+   text-safe darkening of it (4.9:1 on white). */
+:root{
+  --bg:#ffffff; --surface:#ffffff; --surface-2:#f1faf7;
+  --ink:#0e1211; --ink-2:#4c5654; --ink-3:#78827f;
+  --line:#e4eae8; --line-2:#cfd8d5;
+  --green:#06bda1; --brand:#068068; --brand-2:#04604e; --brand-soft:#e2f8f2;
+  --alert:#b3261e;
+  --warn-bg:#f6f8f7; --warn-line:#dfe6e4; --warn-ink:#2a302e;
+  --radius:14px; --radius-lg:22px;
+  --shadow:0 1px 2px rgba(14,18,17,.05),0 10px 30px -18px rgba(14,18,17,.3);
+  --maxw:1140px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.15;letter-spacing:-.015em;margin:0 0 .5em}
+h1{font-size:clamp(2.1rem,5vw,3.5rem)}
+h2{font-size:clamp(1.6rem,3.4vw,2.35rem)}
+h3{font-size:1.12rem;font-family:Inter,sans-serif;font-weight:600;letter-spacing:0}
+p{margin:0 0 1em}
+a{color:var(--brand);text-underline-offset:3px}
+img{max-width:100%}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:-9999px;top:0;background:var(--brand);color:#fff;padding:10px 16px;z-index:99;border-radius:0 0 8px 0}
+.skip:focus{left:0}
+:focus-visible{outline:2.5px solid var(--brand);outline-offset:3px;border-radius:4px}
+
+/* ---------- Safety bar (LegitScript: emergency disclaimer above the fold) ---------- */
+.safety{background:var(--ink);color:#d7dedc;font-size:.85rem;padding:9px 0}
+.safety .wrap{display:flex;gap:10px;align-items:center;justify-content:center;text-align:center;flex-wrap:wrap}
+.safety strong{color:#fff}
+.safety a{color:var(--green);text-decoration-color:color-mix(in srgb,var(--green) 55%,transparent)}
+
+/* ---------- Header ---------- */
+header{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:26px;height:72px}
+.brand{display:inline-flex;align-items:center;text-decoration:none;flex:none}
+.brand img{height:44px;width:auto;display:block}
+@media (max-width:420px){.brand img{height:36px}}
+.nav ul{list-style:none;display:flex;gap:22px;margin:0;padding:0;margin-left:auto}
+.nav ul a{color:var(--ink-2);text-decoration:none;font-size:.95rem;font-weight:500}
+.nav ul a:hover{color:var(--brand)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:100px;font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:.16s}
+.btn-primary{background:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brand-2);transform:translateY(-1px)}
+.btn-ghost{border-color:var(--line-2);color:var(--ink);background:var(--surface)}
+.btn-ghost:hover{border-color:var(--brand)}
+.menu-btn{display:none;margin-left:auto;background:none;border:1px solid var(--line-2);border-radius:10px;padding:8px 12px;color:var(--ink);font-size:.9rem}
+@media (max-width:900px){
+  .nav ul{display:none}
+  .nav .btn-primary{display:none}
+  .menu-btn{display:block}
+  .nav[data-open="true"] ul{display:flex;position:absolute;top:72px;left:0;right:0;flex-direction:column;background:var(--surface);border-bottom:1px solid var(--line);padding:16px 22px;gap:16px;margin:0}
+}
+
+/* ---------- Banner ---------- */
+.hero{position:relative;padding:86px 0 132px;overflow:hidden;isolation:isolate;
+  background:
+    radial-gradient(120% 90% at 88% 6%, color-mix(in srgb,var(--green) 30%,transparent) 0%, transparent 58%),
+    radial-gradient(90% 80% at 6% 96%, color-mix(in srgb,var(--brand) 18%,transparent) 0%, transparent 60%),
+    linear-gradient(168deg, var(--brand-soft) 0%, var(--bg) 62%);
+}
+/* decorative organic shapes echoing the logo mark */
+.hero-deco{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.hero-deco svg{position:absolute;color:var(--brand)}
+.hero-deco .watermark{position:absolute;top:-56px;right:-80px;width:440px;height:auto;opacity:.10;transform:rotate(-8deg)}
+@media (max-width:900px){.hero-deco .watermark{width:280px;top:-40px;right:-70px;opacity:.07}}
+.hero-deco .d2{bottom:34px;left:-120px;width:420px;opacity:.10;color:var(--green)}
+.hero-deco .grid-dots{position:absolute;inset:0;opacity:.5;
+  background-image:radial-gradient(color-mix(in srgb,var(--brand) 28%,transparent) 1px,transparent 1px);
+  background-size:26px 26px;
+  -webkit-mask-image:linear-gradient(to bottom right,#000,transparent 62%);
+  mask-image:linear-gradient(to bottom right,#000,transparent 62%)}
+/* wave divider into the trust strip */
+.hero-wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:76px;z-index:-1;color:var(--surface-2)}
+.hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:56px;align-items:center;position:relative}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:36px}.hero{padding:52px 0 96px}.hero-wave{height:52px}}
+.banner-tagline{font-family:Fraunces,serif;font-size:1rem;font-style:italic;color:var(--brand);margin:0 0 14px}
+.banner-marks{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.banner-marks span{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;font-weight:600;color:var(--ink-2);
+  background:color-mix(in srgb,var(--surface) 78%,transparent);border:1px solid var(--line);
+  padding:7px 13px;border-radius:100px;backdrop-filter:blur(6px)}
+.banner-marks svg{width:14px;height:14px;color:var(--brand);flex:none}
+.hero .hero-card{background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(10px);
+  box-shadow:0 2px 4px rgba(20,40,35,.05),0 30px 60px -34px rgba(6,128,104,.45)}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;background:var(--brand-soft);color:var(--brand);padding:7px 14px;border-radius:100px;font-size:.8rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:20px}
+.lede{font-size:1.14rem;color:var(--ink-2);max-width:52ch}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0 18px}
+.microcopy{font-size:.85rem;color:var(--ink-3);max-width:50ch}
+.hero-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow)}
+.hero-card h3{font-family:Fraunces,serif;font-size:1.25rem;font-weight:600}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.steps li:last-child{border-bottom:0;padding-bottom:0}
+.steps li::before{content:counter(s);flex:none;width:28px;height:28px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-size:.85rem;font-weight:600}
+.steps b{display:block;font-size:.98rem}
+.steps span{font-size:.88rem;color:var(--ink-2)}
+
+/* ---------- GLP-1 feature ---------- */
+.glp1{background:var(--surface-2);padding:64px 0}
+.glp1-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:52px;align-items:center}
+@media (max-width:940px){.glp1{padding:44px 0}.glp1-grid{grid-template-columns:1fr;gap:30px}}
+.glp1-intro{font-size:.82rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);margin:0 0 10px}
+.glp1 h2{margin:0 0 6px;line-height:1}
+.glp1 .big{display:block;font-size:clamp(3.2rem,7.5vw,5rem);color:var(--green);letter-spacing:-.03em}
+.glp1 .sub{display:block;font-size:clamp(1.35rem,2.6vw,1.9rem);color:var(--ink)}
+.glp1 .lede{margin-top:16px}
+.glp1 .cta-row{margin:26px 0 0}
+.glp1-rx{margin-top:22px;padding-top:16px;border-top:1px solid var(--line-2);font-size:.8rem;color:var(--ink-3);max-width:54ch}
+.glp1-figure{margin:0}
+.glp1-figure img{display:block;width:100%;height:auto;border-radius:var(--radius-lg);
+  box-shadow:0 2px 6px rgba(14,18,17,.06),0 34px 60px -34px rgba(6,128,104,.5)}
+.glp1-figure figcaption{margin-top:12px;font-size:.78rem;color:var(--ink-3)}
+
+/* ---------- Trust strip ---------- */
+.trust{border-block:1px solid var(--line);background:var(--surface-2)}
+.trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-block:26px}
+@media (max-width:820px){.trust .wrap{grid-template-columns:repeat(2,1fr)}}
+.trust-item{display:flex;gap:12px;align-items:flex-start;font-size:.9rem;color:var(--ink-2)}
+.trust-item b{display:block;color:var(--ink);font-size:.95rem}
+.tick{flex:none;width:20px;height:20px;margin-top:2px;color:var(--brand)}
+
+/* ---------- Video ---------- */
+.video-sec{padding:76px 0}
+@media (max-width:820px){.video-sec{padding:52px 0}}
+.video-head{max-width:60ch;margin:0 auto 34px;text-align:center}
+.video-head p{color:var(--ink-2);margin-bottom:0}
+.video-frame{max-width:900px;margin:0 auto;border-radius:var(--radius-lg);overflow:hidden;
+  background:var(--ink);line-height:0;
+  box-shadow:0 2px 6px rgba(14,18,17,.06),0 40px 70px -38px rgba(6,128,104,.55)}
+.video-frame video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:var(--ink)}
+.video-note{max-width:900px;margin:14px auto 0;font-size:.8rem;color:var(--ink-3);text-align:center}
+
+/* ---------- About ---------- */
+.about{background:var(--surface-2);padding:76px 0}
+@media (max-width:940px){.about{padding:52px 0}}
+.about-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:52px;align-items:center}
+@media (max-width:940px){.about-grid{grid-template-columns:1fr;gap:32px}}
+.about-figure{margin:0;position:relative}
+.about-figure img{display:block;width:100%;height:auto;border-radius:var(--radius-lg);
+  box-shadow:0 2px 6px rgba(14,18,17,.06),0 36px 64px -36px rgba(6,128,104,.5)}
+.about-eyebrow{font-size:.82rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);margin:0 0 10px}
+.about h2{margin-bottom:18px}
+.about p{color:var(--ink-2)}
+.about-more[hidden]{display:none}
+.readmore{margin-top:6px;background:none;border:0;padding:0;font:inherit;font-size:.95rem;font-weight:600;
+  color:var(--brand);cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.readmore:hover{color:var(--brand-2)}
+.readmore svg{width:14px;height:14px;transition:transform .18s}
+.readmore[aria-expanded="true"] svg{transform:rotate(180deg)}
+.about-contact{margin-top:22px;padding-top:18px;border-top:1px solid var(--line-2);font-size:.95rem}
+
+/* ---------- Sections ---------- */
+section{padding:76px 0}
+@media (max-width:820px){section{padding:52px 0}}
+.sec-head{max-width:62ch;margin-bottom:38px}
+.sec-head p{color:var(--ink-2)}
+.grid{display:grid;gap:20px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+@media (max-width:900px){.g3{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.g3,.g2{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column}
+.card h3{margin-bottom:8px}
+.card p{font-size:.94rem;color:var(--ink-2);margin-bottom:14px}
+.card .rx{margin-top:auto;font-size:.78rem;color:var(--ink-3);border-top:1px solid var(--line);padding-top:12px}
+.pill{align-self:flex-start;font-size:.72rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:5px 10px;border-radius:100px;margin-bottom:14px}
+.pill-rx{background:var(--ink);color:#fff}
+.pill-otc{background:var(--brand-soft);color:var(--brand)}
+.icon{width:26px;height:26px;color:var(--brand);margin-bottom:14px}
+
+/* ---------- Callout ---------- */
+.callout{background:var(--warn-bg);border:1px solid var(--warn-line);border-left:3px solid var(--ink);color:var(--warn-ink);border-radius:6px var(--radius) var(--radius) 6px;padding:20px 22px;font-size:.92rem}
+.callout p:last-child{margin-bottom:0}
+.callout b{color:inherit}
+
+.band{background:var(--surface-2);border-block:1px solid var(--line)}
+
+/* ---------- Pricing ---------- */
+.price-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.price{font-family:Fraunces,serif;font-size:2rem;font-weight:600;line-height:1}
+.price small{font-family:Inter,sans-serif;font-size:.85rem;font-weight:500;color:var(--ink-3)}
+.price-card ul{list-style:none;margin:18px 0 0;padding:0;font-size:.92rem;color:var(--ink-2)}
+.price-card li{padding:7px 0 7px 24px;position:relative}
+.price-card li::before{content:"";position:absolute;left:0;top:14px;width:12px;height:2px;background:var(--brand);border-radius:2px}
+
+/* ---------- Providers ---------- */
+.provider{display:flex;gap:16px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.avatar{flex:none;width:52px;height:52px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-weight:600;font-family:Fraunces,serif;font-size:1.05rem}
+.provider b{display:block;font-size:.98rem}
+.provider span{font-size:.85rem;color:var(--ink-2)}
+
+/* ---------- FAQ ---------- */
+details{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px;margin-bottom:12px}
+details[open]{border-color:var(--line-2)}
+summary{cursor:pointer;font-weight:600;font-size:1rem;list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.4rem;color:var(--brand);line-height:1;flex:none}
+details[open] summary::after{content:"–"}
+details p{margin:14px 0 0;font-size:.94rem;color:var(--ink-2)}
+
+/* ---------- Contact ---------- */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
+label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px}
+input,textarea,select{width:100%;padding:12px 14px;border:1px solid var(--line-2);border-radius:10px;background:var(--surface);color:var(--ink);font:inherit;font-size:.95rem;margin-bottom:16px}
+textarea{min-height:120px;resize:vertical}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:.82rem;color:var(--ink-2);margin-bottom:18px}
+.consent input{width:auto;margin:3px 0 0}
+.info-list{list-style:none;margin:0;padding:0}
+.info-list li{padding:14px 0;border-bottom:1px solid var(--line);font-size:.94rem}
+.info-list b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3);margin-bottom:3px}
+
+/* ---------- Legal / disclosure block ---------- */
+.legal{font-size:.86rem;color:var(--ink-2)}
+.legal h3{font-size:.95rem;margin-bottom:6px;color:var(--ink)}
+.legal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px 40px}
+@media (max-width:820px){.legal-grid{grid-template-columns:1fr}}
+
+/* ---------- Footer ---------- */
+footer{background:var(--ink);padding:60px 0 32px;font-size:.9rem;color:#a8b2af}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px;margin-bottom:38px}
+@media (max-width:820px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.foot-grid{grid-template-columns:1fr}}
+footer h4{font-size:.8rem;text-transform:uppercase;letter-spacing:.07em;color:var(--green);margin:0 0 14px}
+footer ul{list-style:none;margin:0;padding:0}
+footer li{margin-bottom:9px}
+footer a{color:#c6cfcc;text-decoration:none}
+footer a:hover{color:var(--green);text-decoration:underline}
+.seal{display:inline-flex;align-items:center;gap:10px;border:1px dashed rgba(255,255,255,.28);border-radius:10px;padding:10px 14px;font-size:.78rem;color:#98a3a0;background:rgba(255,255,255,.04)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:.82rem;color:#8b9591}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<!-- LS: emergency + scope-of-service disclaimer, visible sitewide -->
+<div class="safety">
+  <div class="wrap">
+    <span><strong>Not for emergencies.</strong> If this is a medical emergency, call <a href="tel:911">911</a>. For mental health crisis support, call or text <a href="tel:988">988</a>.</span>
+  </div>
+</div>
+
+<header>
+  <div class="wrap">
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a class="brand" href="/" aria-label="Balanced Life Care — home">
+        <img src="assets/logo.png" alt="Balanced Life Care — providing optimal care options for your body, mind and soul" width="668" height="278">
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
+      <ul>
+        <li><a href="#glp1">GLP-1 plans</a></li>
+        <li><a href="#video">How it works</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#disclosures">Disclosures</a></li>
+      </ul>
+      <a class="btn btn-primary" href="#contact">Start an intake</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-deco" aria-hidden="true">
+    <div class="grid-dots"></div>
+    <!-- the brand mark itself, oversized as a watermark -->
+    <img class="watermark" src="assets/logo-mark.png" alt="" width="221" height="242">
+    <!-- cupped-hands motif echoing the mark -->
+    <svg class="d2" viewBox="0 0 220 120" fill="none"><path d="M8 34c34 44 96 62 150 40 22-9 40-24 54-42-6 48-44 84-96 86C64 120 22 88 8 34Z" fill="currentColor"/></svg>
+  </div>
+
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Telehealth care coordination · All 50 states</span>
+      <p class="banner-tagline">Providing optimal care options for your body, mind and soul</p>
+      <h1>Care for the body, mind, and soul — coordinated, transparent, and clinician-led.</h1>
+      <p class="lede">Balanced Life Care connects you with licensed independent physicians and nurse practitioners for weight management, hormone health, sexual wellness, and mental health — reviewed by a real clinician before anything is prescribed.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#contact">Begin your medical intake</a>
+        <a class="btn btn-ghost" href="tel:+17025837891">Call (702) 583-7891</a>
+      </div>
+      <p class="microcopy">A medical consultation with a licensed clinician is required before any medication may be prescribed or dispensed. Submitting an intake or making a payment does not guarantee that a prescription will be issued. Must be 18 or older.</p>
+      <div class="banner-marks">
+        <span><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 14 4 10l1.4-1.4L8 11.2l6.6-6.6L16 6z"/></svg>State-licensed clinicians</span>
+        <span><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 14 4 10l1.4-1.4L8 11.2l6.6-6.6L16 6z"/></svg>HIPAA-aligned &amp; confidential</span>
+        <span><svg viewBox="0 0 20 20" fill="currentColor"><path d="M8 14 4 10l1.4-1.4L8 11.2l6.6-6.6L16 6z"/></svg>Flat pricing, cancel anytime</span>
+      </div>
+    </div>
+
+    <aside class="hero-card" aria-label="How care works">
+      <h3>What happens after you start</h3>
+      <ol class="steps">
+        <li><div><b>Complete a medical intake</b><span>Health history, medications, and goals — about 10 minutes.</span></div></li>
+        <li><div><b>A licensed clinician reviews it</b><span>Independent providers licensed in your state. Labs may be required.</span></div></li>
+        <li><div><b>You get a clinical decision</b><span>A treatment plan, an alternative, or a referral — including "not appropriate."</span></div></li>
+        <li><div><b>Ongoing follow-up</b><span>Message your care team, adjust the plan, or stop at any time.</span></div></li>
+      </ol>
+    </aside>
+  </div>
+
+  <svg class="hero-wave" viewBox="0 0 1440 76" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 34c180 34 340 42 560 20s400-46 560-24c110 15 230 30 320 34v12H0Z" fill="currentColor"/>
+  </svg>
+</section>
+
+<!-- ================= GLP-1 FEATURE ================= -->
+<section class="glp1" id="glp1" aria-labelledby="glp1-h">
+  <div class="wrap glp1-grid">
+    <div>
+      <p class="glp1-intro">Introducing Our New</p>
+      <h2 id="glp1-h"><span class="big">GLP-1</span><span class="sub">Medical Weight Loss Plans</span></h2>
+      <p class="lede">Progressive medical weight loss programs designed to create lasting, transformative results.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="/curated-care-plans">Explore plans</a>
+        <a class="btn btn-ghost" href="#contact">Ask a question</a>
+      </div>
+      <p class="glp1-rx"><strong>Prescription required.</strong> Tirzepatide and semaglutide are prescription
+      medications. A consultation with a licensed clinician is required, and payment does not ensure prescription
+      issuance. Not everyone is a candidate, results vary, and no outcome is guaranteed. Where a compounded
+      formulation is prescribed, it is prepared by a licensed compounding pharmacy and is <strong>not
+      FDA-approved</strong>.</p>
+    </div>
+    <figure class="glp1-figure">
+      <img src="assets/glp1-plans.png" width="1024" height="576" loading="lazy" decoding="async"
+           alt="Now available: GLP-1 weight loss plans with tirzepatide and semaglutide — a woman holding a vial of tirzepatide.">
+    </figure>
+  </div>
+</section>
+
+<!-- ================= TRUST ================= -->
+<div class="trust">
+  <div class="wrap">
+    <div class="trust-item"><svg class="tick" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M8 14 4 10l1.4-1.4L8 11.2l6.6-6.6L16 6z"/></svg><div><b>Licensed clinicians only</b>State-licensed independent physicians &amp; NPs</div></div>
+    <div class="trust-item"><svg class="tick" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M8 14 4 10l1.4-1.4L8 11.2l6.6-6.6L16 6z"/></svg><div><b>Consultation required</b>No medication without a clinical evaluation</div></div>
+    <div class="trust-item"><svg class="tick" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M8 14 4 10l1.4-1.4L8 11.2l6.6-6.6L16 6z"/></svg><div><b>Transparent pricing</b>Flat fees shown before you pay — no hidden charges</div></div>
+    <div class="trust-item"><svg class="tick" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M8 14 4 10l1.4-1.4L8 11.2l6.6-6.6L16 6z"/></svg><div><b>Private &amp; HIPAA-aligned</b>Your records are never sold or shared for advertising</div></div>
+  </div>
+</div>
+
+<!-- ================= VIDEO ================= -->
+<section class="video-sec" id="video" aria-labelledby="video-h">
+  <div class="wrap">
+    <div class="video-head">
+      <h2 id="video-h">See how it works</h2>
+      <p>A short walkthrough of what care with Balanced Life Care actually looks like — from your first
+      intake to an independent clinician's decision.</p>
+    </div>
+    <div class="video-frame">
+      <video controls preload="none" playsinline loop
+             poster="assets/video-poster.png" width="1280" height="720">
+        <source src="assets/balanced-life-care.webm" type="video/webm">
+        <source src="assets/balanced-life-care.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+        <a href="assets/balanced-life-care.mp4">Download the video instead.</a>
+      </video>
+    </div>
+    <p class="video-note">This video is general information about the service. It is not medical advice, and it
+    does not guarantee eligibility for any treatment.</p>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="about" id="about" aria-labelledby="about-h">
+  <div class="wrap about-grid">
+    <figure class="about-figure">
+      <img src="assets/about-consultation.png" width="1024" height="647" loading="lazy" decoding="async"
+           alt="A patient holding a phone during a video consultation with a smiling clinician in a white coat.">
+    </figure>
+    <div>
+      <p class="about-eyebrow">About Us</p>
+      <h2 id="about-h">Balanced Life Care</h2>
+      <p>We understand how frustrating it gets to navigate the complexity of healthcare. That&rsquo;s why we aim to
+      provide Telehealth care solutions that are readily accessible throughout the United States. Balanced Life Care
+      connects individuals to the most experienced healthcare providers and ensures the delivery of the best optimal
+      outcomes for mind, body, and soul.</p>
+      <div class="about-more" id="aboutMore" hidden>
+        <p>Whether you need help with medical weight loss, STD testing &amp; treatment care, or looking for sexual
+        wellness or mental health services, we&rsquo;ve got you covered. Our affordable services are all self-pay only
+        and perfect for people who&rsquo;re not insured or under insured. We strive daily to make a difference in the
+        healthcare industry and assist people in need.</p>
+      </div>
+      <button class="readmore" id="aboutToggle" aria-expanded="false" aria-controls="aboutMore">
+        <span>Read more</span>
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 13 4 7l1.4-1.4L10 10.2l4.6-4.6L16 7z"/></svg>
+      </button>
+      <p class="about-contact">For further inquiries, <a href="#contact">Please Contact Us!</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <h2>Start your intake</h2>
+      <p style="color:var(--ink-2)">Tell us how to reach you and a care coordinator will follow up within one business day. Please do not include sensitive medical details in this form — your secure intake happens inside your patient portal.</p>
+      <form id="intakeForm" novalidate>
+        <label for="name">Full name</label>
+        <input id="name" name="name" autocomplete="name" required>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required>
+        <label for="state">State of residence</label>
+        <input id="state" name="state" autocomplete="address-level1" required>
+        <label for="interest">What are you interested in?</label>
+        <select id="interest" name="interest">
+          <option>Medical weight management</option>
+          <option>Women's hormone health</option>
+          <option>Men's hormone health</option>
+          <option>Sexual wellness</option>
+          <option>Mental health</option>
+          <option>STI testing &amp; treatment</option>
+          <option>Supplements &amp; wellness products</option>
+        </select>
+        <label for="msg">Anything else? (optional)</label>
+        <textarea id="msg" name="msg"></textarea>
+        <label class="consent"><input type="checkbox" id="age" required><span>I confirm I am 18 years of age or older and a resident of the United States.</span></label>
+        <label class="consent"><input type="checkbox" id="tos" required><span>I have read and agree to the <a href="/terms">Terms of Service</a>, <a href="/privacy">Privacy Policy</a>, and <a href="/telehealth-consent">Informed Consent to Telehealth</a>, and I understand that payment does not guarantee that a prescription will be issued.</span></label>
+        <button class="btn btn-primary" type="submit">Submit and continue</button>
+        <p id="formNote" style="font-size:.85rem;color:var(--brand);margin-top:14px" role="status"></p>
+      </form>
+    </div>
+    <div>
+      <h3 style="font-family:Fraunces,serif;font-size:1.3rem">Reach us directly</h3>
+      <ul class="info-list">
+        <li><b>Phone</b><a href="tel:+17025837891">(702) 583-7891</a> · Mon–Fri, 9am–6pm PT</li>
+        <li><b>Email</b><a href="mailto:support@balancedlife-care.com">support@balancedlife-care.com</a></li>
+        <li><b>Legal entity</b>[Legal Entity Name, LLC]</li>
+        <li><b>Business address</b>[Street Address]<br>[City, State ZIP], United States</li>
+        <li><b>Service area</b>All 50 states and Washington, D.C. (telehealth)</li>
+        <li><b>Emergencies</b>Call 911. Crisis support: call or text 988.</li>
+      </ul>
+      <div class="callout" style="margin-top:22px">
+        <p><b>This website does not provide medical advice.</b> Content here is for general information only and is not a substitute for professional diagnosis or treatment. Never disregard professional medical advice or delay seeking it because of something you read on this site.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DISCLOSURES ================= -->
+<section class="band" id="disclosures">
+  <div class="wrap legal">
+    <h2 style="margin-bottom:26px">Required disclosures</h2>
+    <div class="legal-grid">
+      <div>
+        <h3>Scope of service</h3>
+        <p>Balanced Life Care is a care coordination service collaborating with licensed independent physicians and advanced practice clinicians. Balanced Life Care does not directly provide medical services, does not practice medicine or pharmacy, and does not guarantee any clinical outcome.</p>
+      </div>
+      <div>
+        <h3>Consultation and prescription</h3>
+        <p>A consultation with a licensed clinician is required before any prescription medication is prescribed or dispensed. Payment does not ensure prescription issuance. Prescriptions are issued at the sole discretion of the treating clinician based on medical necessity.</p>
+      </div>
+      <div>
+        <h3>Licensure</h3>
+        <p>All treating clinicians hold active, unrestricted licenses in the state in which the patient is located at the time of the visit. License verification is available on request at <a href="mailto:support@balancedlife-care.com">support@balancedlife-care.com</a>. Pharmacy partners are licensed in the states they serve; pharmacy name and license number appear on your dispensing label.</p>
+      </div>
+      <div>
+        <h3>Controlled substances</h3>
+        <p>Controlled substances are prescribed only in accordance with the Ryan Haight Online Pharmacy Consumer Protection Act, DEA regulations, and applicable state law. We do not prescribe opioids, stimulants, or benzodiazepines through this service. Testosterone (Schedule III) requires confirmatory laboratory testing and ongoing monitoring.</p>
+      </div>
+      <div>
+        <h3>Eligibility</h3>
+        <p>Services are available only to individuals 18 years of age or older who are physically located in the United States at the time of the visit. Certain treatments are unavailable in certain states.</p>
+      </div>
+      <div>
+        <h3>Adverse events and complaints</h3>
+        <p>Report side effects to your clinician immediately and to the FDA MedWatch program at 1-800-FDA-1088 or <a href="https://www.fda.gov/medwatch" rel="noopener">fda.gov/medwatch</a>. Complaints about this service may be directed to <a href="mailto:support@balancedlife-care.com">support@balancedlife-care.com</a> and are acknowledged within two business days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="/" style="margin-bottom:16px" aria-label="Balanced Life Care — home">
+          <img src="assets/logo-reversed.png" alt="Balanced Life Care" width="668" height="278" style="height:58px">
+        </a>
+        <p style="max-width:34ch">Telehealth care coordination in all 50 states, working with licensed independent physicians.</p>
+        <div class="seal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg>
+          LegitScript certification seal — insert issued seal &amp; verification link here
+        </div>
+      </div>
+      <div>
+        <h4>Care</h4>
+        <ul>
+          <li><a href="/curated-care-plans">Curated Care Plans</a></li>
+          <li><a href="/care-collection">Care Collection</a></li>
+          <li><a href="/healin-naturals">Healin' Naturals</a></li>
+          <li><a href="/pricing">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="/clinicians">Our clinicians</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="/faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/terms">Terms of Service</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/notice-of-privacy-practices">Notice of Privacy Practices</a></li>
+          <li><a href="/telehealth-consent">Informed Consent to Telehealth</a></li>
+          <li><a href="/shipping-returns">Shipping, Refunds &amp; Returns</a></li>
+          <li><a href="#disclosures">Required disclosures</a></li>
+          <li><a href="/accessibility">Accessibility</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="yr">2026</span> [Legal Entity Name, LLC], dba Balanced Life Care. [Street Address], [City, State ZIP]. All rights reserved.</span>
+      <span>(702) 583-7891 · support@balancedlife-care.com</span>
+    </div>
+    <p style="font-size:.78rem;color:#8b9591;margin-top:18px;max-width:90ch">Balanced Life Care is a care coordination service collaborating with licensed independent physicians. We do not directly provide medical services. A consultation with a licensed clinician is required before any medication is prescribed or dispensed, and payment does not ensure prescription issuance. This site is intended for U.S. residents 18 and older and does not provide medical advice, diagnosis, or treatment.</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+var nav = document.getElementById('nav'), mb = document.getElementById('menuBtn');
+mb.addEventListener('click', function(){
+  var open = nav.getAttribute('data-open') === 'true';
+  nav.setAttribute('data-open', String(!open));
+  mb.setAttribute('aria-expanded', String(!open));
+});
+nav.querySelectorAll('ul a').forEach(function(a){
+  a.addEventListener('click', function(){ nav.setAttribute('data-open','false'); mb.setAttribute('aria-expanded','false'); });
+});
+
+var aboutBtn = document.getElementById('aboutToggle'),
+    aboutMore = document.getElementById('aboutMore');
+aboutBtn.addEventListener('click', function(){
+  var open = aboutBtn.getAttribute('aria-expanded') === 'true';
+  aboutBtn.setAttribute('aria-expanded', String(!open));
+  aboutMore.hidden = open;
+  aboutBtn.querySelector('span').textContent = open ? 'Read more' : 'Read less';
+});
+
+document.getElementById('intakeForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var note = document.getElementById('formNote');
+  if(!this.checkValidity()){ note.style.color = 'var(--alert)'; note.textContent = 'Please complete the required fields and both confirmations.'; return; }
+  note.style.color = 'var(--brand)';
+  note.textContent = 'Thank you — a care coordinator will contact you within one business day. (Demo form: connect to your HIPAA-compliant intake endpoint.)';
+  this.reset();
+});
+</script>
+</body>
+</html>
