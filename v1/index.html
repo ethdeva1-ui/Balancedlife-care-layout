@@ -14,244 +14,31 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-/* Palette sampled from the logo: teal-green #06BDA1 and charcoal #313032,
-   on white. --green is the logo ink (fills, graphics); --brand is the
-   text-safe darkening of it (4.9:1 on white). */
-:root{
-  --bg:#ffffff; --surface:#ffffff; --surface-2:#f1faf7;
-  --ink:#0e1211; --ink-2:#4c5654; --ink-3:#78827f;
-  --line:#e4eae8; --line-2:#cfd8d5;
-  --green:#06bda1; --brand:#068068; --brand-2:#04604e; --brand-soft:#e2f8f2;
-  --alert:#b3261e;
-  --warn-bg:#f6f8f7; --warn-line:#dfe6e4; --warn-ink:#2a302e;
-  --radius:14px; --radius-lg:22px;
-  --shadow:0 1px 2px rgba(14,18,17,.05),0 10px 30px -18px rgba(14,18,17,.3);
-  --maxw:1140px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.65 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
-h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.15;letter-spacing:-.015em;margin:0 0 .5em}
-h1{font-size:clamp(2.1rem,5vw,3.5rem)}
-h2{font-size:clamp(1.6rem,3.4vw,2.35rem)}
-h3{font-size:1.12rem;font-family:Inter,sans-serif;font-weight:600;letter-spacing:0}
-p{margin:0 0 1em}
-a{color:var(--brand);text-underline-offset:3px}
-img{max-width:100%}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.skip{position:absolute;left:-9999px;top:0;background:var(--brand);color:#fff;padding:10px 16px;z-index:99;border-radius:0 0 8px 0}
-.skip:focus{left:0}
-:focus-visible{outline:2.5px solid var(--brand);outline-offset:3px;border-radius:4px}
-
-/* ---------- Safety bar (LegitScript: emergency disclaimer above the fold) ---------- */
-.safety{background:var(--ink);color:#d7dedc;font-size:.85rem;padding:9px 0}
-.safety .wrap{display:flex;gap:10px;align-items:center;justify-content:center;text-align:center;flex-wrap:wrap}
-.safety strong{color:#fff}
-.safety a{color:var(--green);text-decoration-color:color-mix(in srgb,var(--green) 55%,transparent)}
-
-/* ---------- Header ---------- */
-header{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;gap:26px;height:72px}
-.brand{display:inline-flex;align-items:center;text-decoration:none;flex:none}
-.brand img{height:44px;width:auto;display:block}
-@media (max-width:420px){.brand img{height:36px}}
-.nav ul{list-style:none;display:flex;gap:22px;margin:0;padding:0;margin-left:auto}
-.nav ul a{color:var(--ink-2);text-decoration:none;font-size:.95rem;font-weight:500}
-.nav ul a:hover{color:var(--brand)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:100px;font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid transparent;cursor:pointer;transition:.16s}
-.btn-primary{background:var(--brand);color:#fff}
-.btn-primary:hover{background:var(--brand-2);transform:translateY(-1px)}
-.btn-ghost{border-color:var(--line-2);color:var(--ink);background:var(--surface)}
-.btn-ghost:hover{border-color:var(--brand)}
-.menu-btn{display:none;margin-left:auto;background:none;border:1px solid var(--line-2);border-radius:10px;padding:8px 12px;color:var(--ink);font-size:.9rem}
-@media (max-width:900px){
-  .nav ul{display:none}
-  .nav .btn-primary{display:none}
-  .menu-btn{display:block}
-  .nav[data-open="true"] ul{display:flex;position:absolute;top:72px;left:0;right:0;flex-direction:column;background:var(--surface);border-bottom:1px solid var(--line);padding:16px 22px;gap:16px;margin:0}
-}
-
-/* ---------- Banner ---------- */
-.hero{position:relative;padding:86px 0 132px;overflow:hidden;isolation:isolate;
-  background:
-    radial-gradient(120% 90% at 88% 6%, color-mix(in srgb,var(--green) 30%,transparent) 0%, transparent 58%),
-    radial-gradient(90% 80% at 6% 96%, color-mix(in srgb,var(--brand) 18%,transparent) 0%, transparent 60%),
-    linear-gradient(168deg, var(--brand-soft) 0%, var(--bg) 62%);
-}
-/* decorative organic shapes echoing the logo mark */
-.hero-deco{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-.hero-deco svg{position:absolute;color:var(--brand)}
-.hero-deco .watermark{position:absolute;top:-56px;right:-80px;width:440px;height:auto;opacity:.10;transform:rotate(-8deg)}
-@media (max-width:900px){.hero-deco .watermark{width:280px;top:-40px;right:-70px;opacity:.07}}
-.hero-deco .d2{bottom:34px;left:-120px;width:420px;opacity:.10;color:var(--green)}
-.hero-deco .grid-dots{position:absolute;inset:0;opacity:.5;
-  background-image:radial-gradient(color-mix(in srgb,var(--brand) 28%,transparent) 1px,transparent 1px);
-  background-size:26px 26px;
-  -webkit-mask-image:linear-gradient(to bottom right,#000,transparent 62%);
-  mask-image:linear-gradient(to bottom right,#000,transparent 62%)}
-/* wave divider into the trust strip */
-.hero-wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:76px;z-index:-1;color:var(--surface-2)}
-.hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:56px;align-items:center;position:relative}
-@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:36px}.hero{padding:52px 0 96px}.hero-wave{height:52px}}
-.banner-tagline{font-family:Fraunces,serif;font-size:1rem;font-style:italic;color:var(--brand);margin:0 0 14px}
-.banner-marks{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
-.banner-marks span{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;font-weight:600;color:var(--ink-2);
-  background:color-mix(in srgb,var(--surface) 78%,transparent);border:1px solid var(--line);
-  padding:7px 13px;border-radius:100px;backdrop-filter:blur(6px)}
-.banner-marks svg{width:14px;height:14px;color:var(--brand);flex:none}
-.hero .hero-card{background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(10px);
-  box-shadow:0 2px 4px rgba(20,40,35,.05),0 30px 60px -34px rgba(6,128,104,.45)}
-.eyebrow{display:inline-flex;align-items:center;gap:9px;background:var(--brand-soft);color:var(--brand);padding:7px 14px;border-radius:100px;font-size:.8rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:20px}
-.lede{font-size:1.14rem;color:var(--ink-2);max-width:52ch}
-.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0 18px}
-.microcopy{font-size:.85rem;color:var(--ink-3);max-width:50ch}
-.hero-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow)}
-.hero-card h3{font-family:Fraunces,serif;font-size:1.25rem;font-weight:600}
-.steps{list-style:none;margin:0;padding:0;counter-reset:s}
-.steps li{counter-increment:s;display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
-.steps li:last-child{border-bottom:0;padding-bottom:0}
-.steps li::before{content:counter(s);flex:none;width:28px;height:28px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-size:.85rem;font-weight:600}
-.steps b{display:block;font-size:.98rem}
-.steps span{font-size:.88rem;color:var(--ink-2)}
-
-/* ---------- GLP-1 feature ---------- */
-.glp1{background:var(--surface-2);padding:64px 0}
-.glp1-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:52px;align-items:center}
-@media (max-width:940px){.glp1{padding:44px 0}.glp1-grid{grid-template-columns:1fr;gap:30px}}
-.glp1-intro{font-size:.82rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);margin:0 0 10px}
-.glp1 h2{margin:0 0 6px;line-height:1}
-.glp1 .big{display:block;font-size:clamp(3.2rem,7.5vw,5rem);color:var(--green);letter-spacing:-.03em}
-.glp1 .sub{display:block;font-size:clamp(1.35rem,2.6vw,1.9rem);color:var(--ink)}
-.glp1 .lede{margin-top:16px}
-.glp1 .cta-row{margin:26px 0 0}
-.glp1-rx{margin-top:22px;padding-top:16px;border-top:1px solid var(--line-2);font-size:.8rem;color:var(--ink-3);max-width:54ch}
-.glp1-figure{margin:0}
-.glp1-figure img{display:block;width:100%;height:auto;border-radius:var(--radius-lg);
-  box-shadow:0 2px 6px rgba(14,18,17,.06),0 34px 60px -34px rgba(6,128,104,.5)}
-.glp1-figure figcaption{margin-top:12px;font-size:.78rem;color:var(--ink-3)}
-
-/* ---------- Trust strip ---------- */
-.trust{border-block:1px solid var(--line);background:var(--surface-2)}
-.trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-block:26px}
-@media (max-width:820px){.trust .wrap{grid-template-columns:repeat(2,1fr)}}
-.trust-item{display:flex;gap:12px;align-items:flex-start;font-size:.9rem;color:var(--ink-2)}
-.trust-item b{display:block;color:var(--ink);font-size:.95rem}
-.tick{flex:none;width:20px;height:20px;margin-top:2px;color:var(--brand)}
-
-/* ---------- Video ---------- */
-.video-sec{padding:76px 0}
-@media (max-width:820px){.video-sec{padding:52px 0}}
-.video-head{max-width:60ch;margin:0 auto 34px;text-align:center}
-.video-head p{color:var(--ink-2);margin-bottom:0}
-.video-frame{max-width:900px;margin:0 auto;border-radius:var(--radius-lg);overflow:hidden;
-  background:var(--ink);line-height:0;
-  box-shadow:0 2px 6px rgba(14,18,17,.06),0 40px 70px -38px rgba(6,128,104,.55)}
-.video-frame video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:var(--ink)}
-.video-note{max-width:900px;margin:14px auto 0;font-size:.8rem;color:var(--ink-3);text-align:center}
-
-/* ---------- About ---------- */
-.about{background:var(--surface-2);padding:76px 0}
-@media (max-width:940px){.about{padding:52px 0}}
-.about-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:52px;align-items:center}
-@media (max-width:940px){.about-grid{grid-template-columns:1fr;gap:32px}}
-.about-figure{margin:0;position:relative}
-.about-figure img{display:block;width:100%;height:auto;border-radius:var(--radius-lg);
-  box-shadow:0 2px 6px rgba(14,18,17,.06),0 36px 64px -36px rgba(6,128,104,.5)}
-.about-eyebrow{font-size:.82rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);margin:0 0 10px}
-.about h2{margin-bottom:18px}
-.about p{color:var(--ink-2)}
-.about-more[hidden]{display:none}
-.readmore{margin-top:6px;background:none;border:0;padding:0;font:inherit;font-size:.95rem;font-weight:600;
-  color:var(--brand);cursor:pointer;display:inline-flex;align-items:center;gap:7px}
-.readmore:hover{color:var(--brand-2)}
-.readmore svg{width:14px;height:14px;transition:transform .18s}
-.readmore[aria-expanded="true"] svg{transform:rotate(180deg)}
-.about-contact{margin-top:22px;padding-top:18px;border-top:1px solid var(--line-2);font-size:.95rem}
-
-/* ---------- Sections ---------- */
-section{padding:76px 0}
-@media (max-width:820px){section{padding:52px 0}}
-.sec-head{max-width:62ch;margin-bottom:38px}
-.sec-head p{color:var(--ink-2)}
-.grid{display:grid;gap:20px}
-.g3{grid-template-columns:repeat(3,1fr)}
-.g2{grid-template-columns:repeat(2,1fr)}
-@media (max-width:900px){.g3{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:640px){.g3,.g2{grid-template-columns:1fr}}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column}
-.card h3{margin-bottom:8px}
-.card p{font-size:.94rem;color:var(--ink-2);margin-bottom:14px}
-.card .rx{margin-top:auto;font-size:.78rem;color:var(--ink-3);border-top:1px solid var(--line);padding-top:12px}
-.pill{align-self:flex-start;font-size:.72rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:5px 10px;border-radius:100px;margin-bottom:14px}
-.pill-rx{background:var(--ink);color:#fff}
-.pill-otc{background:var(--brand-soft);color:var(--brand)}
-.icon{width:26px;height:26px;color:var(--brand);margin-bottom:14px}
-
-/* ---------- Callout ---------- */
-.callout{background:var(--warn-bg);border:1px solid var(--warn-line);border-left:3px solid var(--ink);color:var(--warn-ink);border-radius:6px var(--radius) var(--radius) 6px;padding:20px 22px;font-size:.92rem}
-.callout p:last-child{margin-bottom:0}
-.callout b{color:inherit}
-
-.band{background:var(--surface-2);border-block:1px solid var(--line)}
-
-/* ---------- Pricing ---------- */
-.price-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
-.price{font-family:Fraunces,serif;font-size:2rem;font-weight:600;line-height:1}
-.price small{font-family:Inter,sans-serif;font-size:.85rem;font-weight:500;color:var(--ink-3)}
-.price-card ul{list-style:none;margin:18px 0 0;padding:0;font-size:.92rem;color:var(--ink-2)}
-.price-card li{padding:7px 0 7px 24px;position:relative}
-.price-card li::before{content:"";position:absolute;left:0;top:14px;width:12px;height:2px;background:var(--brand);border-radius:2px}
-
-/* ---------- Providers ---------- */
-.provider{display:flex;gap:16px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
-.avatar{flex:none;width:52px;height:52px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-weight:600;font-family:Fraunces,serif;font-size:1.05rem}
-.provider b{display:block;font-size:.98rem}
-.provider span{font-size:.85rem;color:var(--ink-2)}
-
-/* ---------- FAQ ---------- */
-details{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px;margin-bottom:12px}
-details[open]{border-color:var(--line-2)}
-summary{cursor:pointer;font-weight:600;font-size:1rem;list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center}
-summary::-webkit-details-marker{display:none}
-summary::after{content:"+";font-size:1.4rem;color:var(--brand);line-height:1;flex:none}
-details[open] summary::after{content:"–"}
-details p{margin:14px 0 0;font-size:.94rem;color:var(--ink-2)}
-
-/* ---------- Contact ---------- */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-@media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
-label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px}
-input,textarea,select{width:100%;padding:12px 14px;border:1px solid var(--line-2);border-radius:10px;background:var(--surface);color:var(--ink);font:inherit;font-size:.95rem;margin-bottom:16px}
-textarea{min-height:120px;resize:vertical}
-.consent{display:flex;gap:10px;align-items:flex-start;font-size:.82rem;color:var(--ink-2);margin-bottom:18px}
-.consent input{width:auto;margin:3px 0 0}
-.info-list{list-style:none;margin:0;padding:0}
-.info-list li{padding:14px 0;border-bottom:1px solid var(--line);font-size:.94rem}
-.info-list b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3);margin-bottom:3px}
-
-/* ---------- Legal / disclosure block ---------- */
-.legal{font-size:.86rem;color:var(--ink-2)}
-.legal h3{font-size:.95rem;margin-bottom:6px;color:var(--ink)}
-.legal-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px 40px}
-@media (max-width:820px){.legal-grid{grid-template-columns:1fr}}
-
-/* ---------- Footer ---------- */
-footer{background:var(--ink);padding:60px 0 32px;font-size:.9rem;color:#a8b2af}
-.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px;margin-bottom:38px}
-@media (max-width:820px){.foot-grid{grid-template-columns:1fr 1fr}}
-@media (max-width:520px){.foot-grid{grid-template-columns:1fr}}
-footer h4{font-size:.8rem;text-transform:uppercase;letter-spacing:.07em;color:var(--green);margin:0 0 14px}
-footer ul{list-style:none;margin:0;padding:0}
-footer li{margin-bottom:9px}
-footer a{color:#c6cfcc;text-decoration:none}
-footer a:hover{color:var(--green);text-decoration:underline}
-.seal{display:inline-flex;align-items:center;gap:10px;border:1px dashed rgba(255,255,255,.28);border-radius:10px;padding:10px 14px;font-size:.78rem;color:#98a3a0;background:rgba(255,255,255,.04)}
-.foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:.82rem;color:#8b9591}
-</style>
+<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
+<!-- Menu icon sprite. Stroke icons, 24×24, inherit currentColor. -->
+<svg class="sprite" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <g id="i-chevron"><path d="M6 9l6 6 6-6"/></g>
+    <g id="i-weight"><path d="M5 8h14l2 11H3L5 8Z"/><path d="M9 8a3 3 0 1 1 6 0"/><path d="M12 11v5"/><path d="M9.5 13.5h5"/></g>
+    <g id="i-glp1"><path d="M14.5 3.5 20.5 9.5"/><path d="M17.5 6.5 8 16l-3.5.5L5 13l9.5-9.5 3 3Z"/><path d="M10 11l3 3"/></g>
+    <g id="i-capsule"><path d="M14.8 3.7a4.6 4.6 0 0 1 6.5 6.5l-7.6 7.6a4.6 4.6 0 0 1-6.5-6.5l7.6-7.6Z"/><path d="M10.6 7.9l6.5 6.5"/></g>
+    <g id="i-venus"><circle cx="12" cy="8.5" r="5"/><path d="M12 13.5V21"/><path d="M8.5 18h7"/></g>
+    <g id="i-mars"><circle cx="10" cy="14" r="5.5"/><path d="M14.5 9.5 20.5 3.5"/><path d="M15.5 3.5h5v5"/></g>
+    <g id="i-heart"><path d="M12 20s-7-4.4-7-9.3A4.2 4.2 0 0 1 12 7.7a4.2 4.2 0 0 1 7 3c0 4.9-7 9.3-7 9.3Z"/></g>
+    <g id="i-sparkle"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z"/><path d="M18.5 16.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8Z"/></g>
+    <g id="i-equipment"><rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M6.5 10.5h2.2l1.3-2.6 2 5.2 1.4-2.6h3.1"/><path d="M9 20h6"/><path d="M12 16.5V20"/></g>
+    <g id="i-fertility"><path d="M12 21c-1.5-3-5-4.8-5-8.5A5 5 0 0 1 12 7.5a5 5 0 0 1 5 5c0 3.7-3.5 5.5-5 8.5Z"/><path d="M12 7.5V3"/><path d="M12 5.2c1.6 0 2.8-1 3-2.2-1.6-.2-2.7.6-3 2.2Z"/></g>
+    <g id="i-tag"><path d="M11.5 3H20a1 1 0 0 1 1 1v8.5a2 2 0 0 1-.6 1.4l-6.5 6.5a2 2 0 0 1-2.8 0l-6.5-6.5a2 2 0 0 1 0-2.8l6.5-6.5A2 2 0 0 1 11.5 3Z"/><circle cx="16.5" cy="7.5" r="1.3"/></g>
+    <g id="i-arrow-right"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></g>
+    <g id="i-star"><path d="M12 3.6l2.6 5.3 5.8.85-4.2 4.1 1 5.75L12 16.9l-5.2 2.7 1-5.75-4.2-4.1 5.8-.85L12 3.6Z"/></g>
+    <g id="i-arrow-up"><path d="M12 19V5"/><path d="M6 11l6-6 6 6"/></g>
+    <g id="i-cart"><circle cx="9.5" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3.5h2.6l2.6 12.1h11.1l2.2-8.6H6.2"/></g>
+    <g id="i-supplements"><rect x="6" y="8" width="12" height="12.5" rx="2.5"/><path d="M8 3.5h8v4.5H8z"/><path d="M12 12v5"/><path d="M9.5 14.5h5"/></g>
+  </defs>
+</svg>
 <a class="skip" href="#main">Skip to main content</a>
 
 <!-- LS: emergency + scope-of-service disclaimer, visible sitewide -->
@@ -268,13 +55,81 @@ footer a:hover{color:var(--green);text-decoration:underline}
         <img src="assets/logo.png" alt="Balanced Life Care — providing optimal care options for your body, mind and soul" width="668" height="278">
       </a>
       <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
-      <ul>
-        <li><a href="#glp1">GLP-1 plans</a></li>
-        <li><a href="#video">How it works</a></li>
+      <ul class="menu">
+        <li><a href="#main" aria-current="page">Home</a></li>
         <li><a href="#about">About</a></li>
+
+        <li class="has-sub" data-sub="plans">
+          <a href="https://balancedlife-care.com/shop/">Curated Care Plans</a>
+          <button class="sub-btn" type="button" aria-expanded="false" aria-controls="sub-plans">
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chevron"/></svg>
+            <span class="sr">Show Curated Care Plans submenu</span>
+          </button>
+          <ul class="submenu" id="sub-plans">
+            <li class="sub-group">
+              <a href="https://balancedlife-care.com/product-category/medical-weight-loss/">
+                <svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-weight"/></svg>
+                <span>Weight Management</span>
+              </a>
+              <ul class="sub-nest">
+                <li><a href="https://balancedlife-care.com/glp-1-programs/">
+                  <svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-glp1"/></svg>
+                  <span>GLP-1</span>
+                </a></li>
+                <li><a href="https://balancedlife-care.com/product-category/phentermine/">
+                  <svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-capsule"/></svg>
+                  <span>Phentermine</span>
+                </a></li>
+              </ul>
+            </li>
+            <li><a href="https://balancedlife-care.com/product-category/womens-hrt/">
+              <svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-venus"/></svg>
+              <span>Women&rsquo;s HRT</span>
+            </a></li>
+            <li><a href="https://balancedlife-care.com/product-category/hormone-replacement-therapy/">
+              <svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mars"/></svg>
+              <span>Testosterone Replacement Therapy</span>
+            </a></li>
+            <li><a href="https://balancedlife-care.com/product-category/male-wellness/">
+              <svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart"/></svg>
+              <span>Sexual Wellness</span>
+            </a></li>
+          </ul>
+        </li>
+
+        <li class="has-sub" data-sub="collection">
+          <a href="https://balancedlife-care.com/shop/">Care Collection</a>
+          <button class="sub-btn" type="button" aria-expanded="false" aria-controls="sub-collection">
+            <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chevron"/></svg>
+            <span class="sr">Show Care Collection submenu</span>
+          </button>
+          <ul class="submenu" id="sub-collection">
+            <li><a href="https://balancedlife-care.com/product-category/beauty/">
+              <svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sparkle"/></svg>
+              <span>Beauty</span>
+            </a></li>
+            <li><a href="https://balancedlife-care.com/product-category/at-home-equipment/">
+              <svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-equipment"/></svg>
+              <span>Equipment</span>
+            </a></li>
+            <li><a href="https://balancedlife-care.com/product-category/fertility/">
+              <svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-fertility"/></svg>
+              <span>Fertility</span>
+            </a></li>
+            <li><a href="https://balancedlife-care.com/product-category/supplements/">
+              <svg class="mi" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-supplements"/></svg>
+              <span>Supplements</span>
+            </a></li>
+          </ul>
+        </li>
+
+        <li><a href="https://balancedlife-care.com/healin-naturals/">Healin&rsquo; Naturals</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="#disclosures">Disclosures</a></li>
       </ul>
+      <a class="cart" href="https://balancedlife-care.com/cart/" aria-label="Cart, 0 items">
+        <svg class="cart-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cart"/></svg>
+        <span class="cart-count" data-count="0" aria-hidden="true">0</span>
+      </a>
       <a class="btn btn-primary" href="#contact">Start an intake</a>
     </nav>
   </div>
@@ -407,6 +262,123 @@ footer a:hover{color:var(--green);text-decoration:underline}
         <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 13 4 7l1.4-1.4L10 10.2l4.6-4.6L16 7z"/></svg>
       </button>
       <p class="about-contact">For further inquiries, <a href="#contact">Please Contact Us!</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUCTS ================= -->
+<!-- Product names, prices and links mirror balancedlife-care.com/shop/.
+     "Best seller" flags and their rank/volume figures are NOT published on
+     the live shop — the bracketed values below are placeholders to replace
+     with real reporting before this page goes live. -->
+<section class="products" id="products" aria-labelledby="products-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="about-eyebrow">Most requested this quarter</p>
+      <h2 id="products-h">Best sellers</h2>
+      <p>Prescription items require a medical consultation with a licensed independent clinician. Pricing is shown in full before checkout, and payment does not guarantee that a prescription will be issued.</p>
+    </div>
+
+    <div class="grid g3 product-grid">
+
+      <article class="card product is-best">
+        <p class="best-flag"><svg class="best-star" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg>Best seller</p>
+        <button class="zoom" type="button" data-zoom-src="assets/SemaglutideTestimonial2.png" aria-label="Enlarge image: Patient testimonial for the Semaglutide GLP-1 program: before and after photos of Michelle, who reports losing 43 lbs">
+          <img class="product-media is-testimonial" src="assets/SemaglutideTestimonial2.png" alt="Patient testimonial for the Semaglutide GLP-1 program: before and after photos of Michelle, who reports losing 43 lbs" width="1080" height="1080" loading="lazy">
+        </button>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-glp1"/></svg>
+        <p class="product-cat">GLP-1</p>
+        <h3><a href="https://balancedlife-care.com/product/semaglutide-glp-1/">Semaglutide (GLP-1) Weight Management Program</a></h3>
+        <p class="product-price">$299.00 <small>/ month</small> <small>+ $149.00 activation</small></p>
+        <p class="best-detail">[#1 of all plans, last 90 days] &middot; [xx] active members &middot; clinician check-ins included</p>
+        <span class="pill pill-rx">Rx &mdash; consultation required</span>
+        <p class="rx">Testimonial reflects one individual&rsquo;s experience; results vary and are not typical. Compounded semaglutide is not FDA-approved. Not for use with a personal or family history of medullary thyroid carcinoma or MEN 2.</p>
+      </article>
+
+      <article class="card product is-best">
+        <p class="best-flag"><svg class="best-star" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg>Best seller</p>
+        <button class="zoom" type="button" data-zoom-src="assets/phentermine-weight-loss.webp" aria-label="Enlarge image: Phentermine Weight Loss Treatment">
+          <img class="product-media" src="assets/phentermine-weight-loss.webp" alt="Phentermine Weight Loss Treatment" width="1080" height="1080" loading="lazy">
+        </button>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-capsule"/></svg>
+        <p class="product-cat">Medical Weight Loss</p>
+        <h3><a href="https://balancedlife-care.com/product/phentermine-weight-loss-treatment/">Phentermine Weight Loss Treatment</a></h3>
+        <p class="product-price">$165.00 <small>&ndash; $1,170.00</small></p>
+        <p class="best-detail">[#2 overall, #1 in Medical Weight Loss] &middot; [xx] refills dispensed</p>
+        <span class="pill pill-rx">Rx &mdash; consultation required</span>
+        <p class="rx">Schedule IV controlled substance. Short-term use only, with blood-pressure and cardiac screening at intake.</p>
+      </article>
+
+      <article class="card product is-best">
+        <p class="best-flag"><svg class="best-star" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg>Best seller</p>
+        <button class="zoom" type="button" data-zoom-src="assets/Mic-B12-Injection.jpg" aria-label="Enlarge image: B12 + MIC Lipotropic Injection">
+          <img class="product-media" src="assets/Mic-B12-Injection.jpg" alt="B12 + MIC Lipotropic Injection" width="1080" height="1080" loading="lazy">
+        </button>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-glp1"/></svg>
+        <p class="product-cat">Supplements</p>
+        <h3><a href="https://balancedlife-care.com/product/b12-mic-lipotropic-injection/">B12 + MIC Lipotropic Injection</a></h3>
+        <p class="product-price">$400.00</p>
+        <p class="best-detail">[#3 overall] &middot; top add-on to weight-management plans</p>
+        <span class="pill pill-rx">Rx &mdash; consultation required</span>
+        <p class="rx">Self-administered injection. Training and sharps disposal guidance provided at onboarding.</p>
+      </article>
+
+      <article class="card product is-best">
+        <p class="best-flag"><svg class="best-star" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg>Best seller</p>
+        <button class="zoom" type="button" data-zoom-src="assets/craving-control-weight-loss-supplement.jpg" aria-label="Enlarge image: Craving Control weight loss supplement">
+          <img class="product-media" src="assets/craving-control-weight-loss-supplement.jpg" alt="Craving Control weight loss supplement" width="767" height="767" loading="lazy">
+        </button>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-supplements"/></svg>
+        <p class="product-cat">Supplements <span class="cat-sale"><svg class="cat-sale-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tag"/></svg>Sale</span></p>
+        <h3><a href="https://balancedlife-care.com/product/craving-control-weight-loss-supplement/">Craving Control &ndash; Weight Loss Supplement</a></h3>
+        <p class="product-price"><s>[$49.99]</s> $39.99 <small>&ndash; $79.99</small></p>
+        <p class="best-detail">[#4 overall] &middot; [xx] units sold, last 90 days</p>
+        <span class="pill pill-otc">Over the counter</span>
+        <p class="rx">Dietary supplement. No consultation required.</p>
+      </article>
+
+      <article class="card product is-best">
+        <p class="best-flag"><svg class="best-star" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg>Best seller</p>
+        <button class="zoom" type="button" data-zoom-src="assets/bi-estriol-cream.webp" aria-label="Enlarge image: Bi-Estriol Cream">
+          <img class="product-media" src="assets/bi-estriol-cream.webp" alt="Bi-Estriol Cream" width="1200" height="1000" loading="lazy">
+        </button>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-venus"/></svg>
+        <p class="product-cat">Skin Care</p>
+        <h3><a href="https://balancedlife-care.com/product/bi-estriol-cream/">Bi-Estriol Cream</a></h3>
+        <p class="product-price">$150.00</p>
+        <p class="best-detail">[#5 overall, #1 in Skin Care] &middot; [xx] refills dispensed</p>
+        <span class="pill pill-rx">Rx &mdash; consultation required</span>
+        <p class="rx">Compounded preparation; not an FDA-approved product. Hormone therapy requires clinical evaluation.</p>
+      </article>
+
+      <article class="card product is-best">
+        <p class="best-flag"><svg class="best-star" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-star"/></svg>Best seller</p>
+        <button class="zoom" type="button" data-zoom-src="assets/broad-spectrum-hemp-extract.png" aria-label="Enlarge image: Broad Spectrum Hemp Extract 600mg">
+          <img class="product-media" src="assets/broad-spectrum-hemp-extract.png" alt="Broad Spectrum Hemp Extract 600mg" width="991" height="1094" loading="lazy">
+        </button>
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-supplements"/></svg>
+        <p class="product-cat">Supplements <span class="cat-sale"><svg class="cat-sale-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-tag"/></svg>Sale</span></p>
+        <h3><a href="https://balancedlife-care.com/product/broad-spectrum-hemp-extract-600mg/">Broad Spectrum Hemp Extract (600mg)</a></h3>
+        <p class="product-price"><s>[$119.00]</s> $99.00</p>
+        <p class="best-detail">[#6 overall] &middot; [xx] units sold, last 90 days</p>
+        <span class="pill pill-otc">Over the counter</span>
+        <p class="rx">Dietary supplement. Contains no more than 0.3% THC.</p>
+      </article>
+
+    </div>
+
+    <div class="callout" style="margin-top:26px">
+      <p><b>Prescription items.</b> Nothing on this page can be purchased as medication without a consultation with a licensed independent clinician, who decides whether treatment is appropriate. Payment does not ensure that a prescription will be issued. Prices shown are for the medication and program fees described on each product page.</p>
+      <p><b>Dietary supplements.</b> These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease.</p>
+      <p><b>Compounded preparations.</b> Compounded drugs are not FDA-approved and are not reviewed by the FDA for safety, effectiveness, or manufacturing quality.</p>
+    </div>
+
+    <div class="products-all">
+      <a class="btn btn-primary" href="https://balancedlife-care.com/shop/">
+        View all products
+        <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+      </a>
+      <p class="products-note">Full catalogue and current pricing at <a href="https://balancedlife-care.com/shop/">balancedlife-care.com/shop</a></p>
     </div>
   </div>
 </section>
@@ -546,36 +518,18 @@ footer a:hover{color:var(--green);text-decoration:underline}
   </div>
 </footer>
 
-<script>
-document.getElementById('yr').textContent = new Date().getFullYear();
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Product image" hidden>
+  <button class="lightbox-close" type="button" id="lightboxClose" aria-label="Close image">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  <p class="lightbox-hint">Click the image to zoom &middot; Esc to close</p>
+</div>
 
-var nav = document.getElementById('nav'), mb = document.getElementById('menuBtn');
-mb.addEventListener('click', function(){
-  var open = nav.getAttribute('data-open') === 'true';
-  nav.setAttribute('data-open', String(!open));
-  mb.setAttribute('aria-expanded', String(!open));
-});
-nav.querySelectorAll('ul a').forEach(function(a){
-  a.addEventListener('click', function(){ nav.setAttribute('data-open','false'); mb.setAttribute('aria-expanded','false'); });
-});
+<button class="to-top" id="toTop" type="button" aria-label="Back to top">
+  <svg class="to-top-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow-up"/></svg>
+</button>
 
-var aboutBtn = document.getElementById('aboutToggle'),
-    aboutMore = document.getElementById('aboutMore');
-aboutBtn.addEventListener('click', function(){
-  var open = aboutBtn.getAttribute('aria-expanded') === 'true';
-  aboutBtn.setAttribute('aria-expanded', String(!open));
-  aboutMore.hidden = open;
-  aboutBtn.querySelector('span').textContent = open ? 'Read more' : 'Read less';
-});
-
-document.getElementById('intakeForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  var note = document.getElementById('formNote');
-  if(!this.checkValidity()){ note.style.color = 'var(--alert)'; note.textContent = 'Please complete the required fields and both confirmations.'; return; }
-  note.style.color = 'var(--brand)';
-  note.textContent = 'Thank you — a care coordinator will contact you within one business day. (Demo form: connect to your HIPAA-compliant intake endpoint.)';
-  this.reset();
-});
-</script>
+<script src="js/main.js" defer></script>
 </body>
 </html>
