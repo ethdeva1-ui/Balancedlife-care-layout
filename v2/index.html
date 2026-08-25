@@ -1,28 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Balanced Life Care | V2</title>
-
-<meta
-  name="description"
-  content="Balanced Life Care provides convenient and affordable telehealth care and teleconsulting solutions for the body, mind, and soul."
->
+<title>Balanced Life Care</title>
+<meta name="description" content="Balanced Life Care provides convenient and affordable telehealth care and teleconsulting solutions for the body, mind, and soul.">
 
 <style>
-
 :root{
   --ink:#173b36;
   --ink-soft:#4b6660;
   --green:#a8cbbd;
   --green-dark:#0b4f43;
-  --accent:#0b7967;
-  --accent-dark:#075b4e;
+  --accent:#18B99F;
+  --accent-dark:#0f907c;
+  --accent-light:#e4f8f4;
+  --accent-pale:#f0fbf8;
+  --trust-green:#128a74;
   --cream:#f7f5ef;
   --white:#fff;
   --line:#d9e5df;
@@ -92,6 +86,7 @@ textarea{
   line-height:.98;
   letter-spacing:-.055em;
   font-weight:750;
+  color:var(--accent);
 }
 
 .section-heading p{
@@ -100,7 +95,6 @@ textarea{
   color:var(--ink-soft);
   font-size:1.08rem;
 }
-
 
 /* =========================================================
    BUTTONS
@@ -128,7 +122,7 @@ textarea{
 .btn:hover{
   background:var(--accent-dark);
   transform:translateY(-2px);
-  box-shadow:0 12px 25px rgba(11,121,103,.18);
+  box-shadow:0 12px 25px rgba(24,185,159,.18);
 }
 
 .btn--light{
@@ -137,7 +131,7 @@ textarea{
 }
 
 .btn--light:hover{
-  background:#f2f8f5;
+  background:var(--accent-pale);
   color:var(--ink);
 }
 
@@ -148,11 +142,10 @@ textarea{
 }
 
 .btn--outline:hover{
-  background:#edf5f1;
-  border-color:#465852;
+  background:var(--accent-pale);
+  border-color:var(--accent);
   box-shadow:none;
 }
-
 
 /* =========================================================
    TOP BAR
@@ -177,7 +170,6 @@ textarea{
   text-decoration:none;
 }
 
-
 /* =========================================================
    HEADER
    ========================================================= */
@@ -186,7 +178,7 @@ textarea{
   position:sticky;
   top:0;
   z-index:50;
-  background:rgba(255,255,255,.94);
+  background:rgba(255,255,255,.96);
   border-bottom:1px solid rgba(217,229,223,.9);
   backdrop-filter:blur(14px);
 }
@@ -214,19 +206,145 @@ textarea{
 .nav-links{
   display:flex;
   align-items:center;
-  gap:28px;
+  gap:26px;
   margin-left:auto;
 }
 
-.nav-links a{
+.nav-links > a,
+.nav-dropdown > .nav-dropdown-toggle{
   color:var(--ink-soft);
-  font-size:.9rem;
+  font-size:.88rem;
   font-weight:650;
   text-decoration:none;
+  white-space:nowrap;
 }
 
-.nav-links a:hover{
+.nav-links > a:hover,
+.nav-dropdown:hover > .nav-dropdown-toggle,
+.nav-dropdown:focus-within > .nav-dropdown-toggle{
   color:var(--accent);
+}
+
+.nav-dropdown{
+  position:relative;
+}
+
+/* Invisible hover bridge keeps the dropdown open while the pointer
+   moves from the navigation label into the menu. */
+.nav-dropdown::after{
+  content:"";
+  position:absolute;
+  left:-10px;
+  right:-10px;
+  top:100%;
+  height:12px;
+}
+
+.nav-dropdown-toggle{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:0;
+  border:0;
+  background:transparent;
+  cursor:pointer;
+}
+
+.dropdown-chevron{
+  width:7px;
+  height:7px;
+  border-right:1.5px solid currentColor;
+  border-bottom:1.5px solid currentColor;
+  transform:rotate(45deg) translateY(-2px);
+  transition:transform .18s ease;
+}
+
+.nav-dropdown:hover .dropdown-chevron,
+.nav-dropdown:focus-within .dropdown-chevron,
+.nav-dropdown.is-open .dropdown-chevron{
+  transform:rotate(225deg) translateY(-1px);
+}
+
+.dropdown-menu{
+  position:absolute;
+  top:calc(100% + 10px);
+  left:50%;
+  min-width:230px;
+  padding:10px;
+  margin:0;
+  list-style:none;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:0 20px 45px rgba(23,59,54,.14);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translate(-50%,8px);
+  transition:
+    opacity .18s ease,
+    visibility .18s ease,
+    transform .18s ease;
+}
+
+.dropdown-menu::before{
+  content:"";
+  position:absolute;
+  top:-8px;
+  left:50%;
+  width:14px;
+  height:14px;
+  background:#fff;
+  border-left:1px solid var(--line);
+  border-top:1px solid var(--line);
+  transform:translateX(-50%) rotate(45deg);
+}
+
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu,
+.nav-dropdown.is-open .dropdown-menu{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transform:translate(-50%,0);
+}
+
+.dropdown-menu a{
+  display:block;
+  padding:11px 13px;
+  border-radius:10px;
+  color:var(--ink);
+  font-size:.87rem;
+  font-weight:650;
+  text-decoration:none;
+  white-space:nowrap;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu a:focus{
+  background:var(--accent-pale);
+  color:var(--accent-dark);
+}
+
+.cart-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:var(--ink-soft);
+  font-size:.88rem;
+  font-weight:650;
+  text-decoration:none;
+  white-space:nowrap;
+}
+
+.cart-link:hover{
+  color:var(--accent);
+}
+
+.cart-icon{
+  width:20px;
+  height:20px;
+  flex-shrink:0;
 }
 
 .menu-toggle{
@@ -264,55 +382,68 @@ textarea{
   top:28px;
 }
 
-
 /* =========================================================
    HERO
    ========================================================= */
 
 .hero{
+  position:relative;
   overflow:hidden;
-  padding:54px 0 34px;
-  background:var(--cream);
+  padding:70px 0 26px;
+  background:#fffbfb;
 }
 
+/* ---------------------------------------------------------
+   MAIN GRID
+   --------------------------------------------------------- */
+
 .hero-grid{
+  position:relative;
   display:grid;
-  grid-template-columns:.92fr 1.08fr;
-  gap:60px;
+  grid-template-columns:.9fr 1.1fr;
+  gap:70px;
   align-items:center;
   min-height:650px;
 }
 
+/* ---------------------------------------------------------
+   LEFT CONTENT
+   --------------------------------------------------------- */
+
 .hero-copy{
-  padding:40px 0;
+  position:relative;
+  z-index:5;
+  padding:30px 0;
 }
 
 .hero h1{
   max-width:690px;
   margin:0;
-  font-size:clamp(3.4rem,7vw,6.8rem);
-  line-height:.9;
+  color:var(--accent);
+  font-size:clamp(3.5rem,6.5vw,6.5rem);
+  line-height:.88;
   letter-spacing:-.075em;
   font-weight:780;
 }
 
 .hero h1 em{
-  color:var(--accent);
+  color:var(--accent-dark);
   font-style:normal;
 }
 
 .hero-lead{
-  max-width:580px;
-  margin:28px 0 0;
+  max-width:560px;
+  margin:30px 0 0;
   color:var(--ink-soft);
-  font-size:clamp(1.05rem,1.7vw,1.28rem);
+  font-size:clamp(1.05rem,1.5vw,1.22rem);
+  line-height:1.65;
 }
 
 .hero-actions{
   display:flex;
   flex-wrap:wrap;
   gap:12px;
-  margin-top:30px;
+  margin-top:32px;
 }
 
 .hero-note{
@@ -321,98 +452,187 @@ textarea{
   gap:10px;
   margin-top:22px;
   color:var(--ink-soft);
-  font-size:.84rem;
+  font-size:.82rem;
 }
 
 .hero-note::before{
   content:"";
-  width:9px;
-  height:9px;
+  width:8px;
+  height:8px;
+  flex-shrink:0;
   border-radius:50%;
   background:var(--accent);
-  box-shadow:0 0 0 6px rgba(11,121,103,.1);
-  flex-shrink:0;
+  box-shadow:
+    0 0 0 6px rgba(24,185,159,.10);
 }
+
+/* ---------------------------------------------------------
+   IMAGE AREA
+   --------------------------------------------------------- */
 
 .hero-visual{
   position:relative;
-  min-height:590px;
+  min-height:620px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
+
+/* Decorative shape behind image */
+
+.hero-image-backdrop{
+  position:absolute;
+  width:500px;
+  height:500px;
+  right:-40px;
+  top:50%;
+  transform:translateY(-50%);
+  border-radius:50%;
+  background:#e3faf6;
+}
+
+/* ---------------------------------------------------------
+   IMAGE FRAME
+   --------------------------------------------------------- */
+
+.hero-image-frame{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:600px;
+  height:590px;
+  overflow:hidden;
+  border-radius:
+    46px
+    46px
+    150px
+    46px;
+  background:#dcefea;
+  box-shadow:
+    0 30px 80px rgba(23,59,54,.16);
+  transform:rotate(1.5deg);
+}
+
+/* Image */
 
 .hero-image{
+  display:block;
   width:100%;
-  height:590px;
+  height:100%;
   object-fit:cover;
-  object-position:center;
-  border-radius:34px;
-  box-shadow:var(--shadow);
-}
-
-.hero-visual::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:2;
-  border-radius:34px;
-  background:rgba(11,79,67,0);
-  transition:background .3s ease;
-  pointer-events:none;
-}
-
-.hero-visual:hover::after{
-  background:rgba(11,79,67,.38);
-}
-
-.hero-card{
-  position:absolute;
-  top:50%;
-  left:50%;
-  z-index:3;
-  width:min(430px,80%);
-  padding:0;
-  background:transparent;
-  color:#fff;
-  text-align:center;
-  opacity:0;
-  visibility:hidden;
-  transform:translate(-50%,-45%);
+  object-position:center center;
+  transform:scale(1.03);
   transition:
-    opacity .3s ease,
-    visibility .3s ease,
-    transform .3s ease;
-  pointer-events:none;
+    transform .6s ease;
 }
 
-.hero-visual:hover .hero-card{
-  opacity:1;
-  visibility:visible;
-  transform:translate(-50%,-50%);
+
+/* Slight zoom on hover */
+
+.hero-visual:hover .hero-image{
+  transform:scale(1.07);
 }
 
-.hero-card small{
+
+/* ---------------------------------------------------------
+   FLOATING CARD
+   --------------------------------------------------------- */
+
+.hero-floating-card{
+  position:absolute;
+  left:-25px;
+  bottom:55px;
+  z-index:5;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  width:260px;
+  padding:18px 20px;
+  border:1px solid rgba(255,255,255,.75);
+  border-radius:20px;
+  background:rgba(255,255,255,.92);
+  box-shadow:
+    0 20px 50px rgba(23,59,54,.14);
+  backdrop-filter:blur(12px);
+  transform:rotate(-2deg);
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease;
+}
+
+.hero-visual:hover .hero-floating-card{
+  transform:rotate(0deg) translateY(-5px);
+  box-shadow:
+    0 25px 60px rgba(23,59,54,.18);
+}
+
+/* Check icon */
+
+.hero-floating-icon{
+  display:grid;
+  place-items:center;
+  width:42px;
+  height:42px;
+  flex-shrink:0;
+  border-radius:50%;
+  background:var(--accent-light);
+  color:var(--accent-dark);
+  font-size:.9rem;
+  font-weight:900;
+}
+
+
+/* Card text */
+
+.hero-floating-card small{
   display:block;
-  margin-bottom:10px;
-  color:#fff;
-  font-size:.72rem;
+  margin-bottom:4px;
+  color:var(--accent-dark);
+  font-size:.65rem;
   font-weight:800;
-  letter-spacing:.11em;
+  letter-spacing:.1em;
   text-transform:uppercase;
-  text-shadow:0 2px 10px rgba(0,0,0,.25);
 }
 
-.hero-card strong{
+.hero-floating-card strong{
   display:block;
-  font-size:clamp(1.7rem,3vw,2.5rem);
-  line-height:1.05;
-  text-shadow:0 2px 15px rgba(0,0,0,.3);
+  color:var(--ink);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:1.15rem;
+  line-height:1.1;
 }
 
-.hero-card p{
-  margin:14px 0 0;
-  color:rgba(255,255,255,.9);
-  font-size:.92rem;
-  line-height:1.5;
-  text-shadow:0 2px 10px rgba(0,0,0,.35);
+/* ---------------------------------------------------------
+   SMALL PILL
+   --------------------------------------------------------- */
+
+.hero-pill{
+  position:absolute;
+  right:-15px;
+  top:70px;
+  z-index:5;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:11px 16px;
+  border:1px solid rgba(255,255,255,.7);
+  border-radius:999px;
+  background:rgba(255,255,255,.88);
+  color:var(--ink);
+  font-size:.72rem;
+  font-weight:700;
+  box-shadow:
+    0 12px 30px rgba(23,59,54,.10);
+  backdrop-filter:blur(10px);
+}
+
+.hero-pill span{
+  width:7px;
+  height:7px;
+
+  border-radius:50%;
+
+  background:var(--accent);
 }
 
 
@@ -422,7 +642,7 @@ textarea{
 
 .trust-strip{
   padding:24px 0;
-  background:var(--ink);
+  background:var(--accent);
   color:#fff;
 }
 
@@ -451,7 +671,6 @@ textarea{
   flex-shrink:0;
 }
 
-
 /* =========================================================
    CARE OPTIONS
    ========================================================= */
@@ -462,7 +681,8 @@ textarea{
 
 .care-grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:minmax(0,1fr);
+  max-width:420px;
   gap:18px;
 }
 
@@ -515,7 +735,6 @@ textarea{
   font-size:1.35rem;
 }
 
-
 /* =========================================================
    GLP-1 WEIGHT MANAGEMENT
    ========================================================= */
@@ -523,36 +742,40 @@ textarea{
 .feature{
   position:relative;
   width:100%;
-  padding:0;
+  padding:72px 0;
   overflow:hidden;
-  background:#a8cbbd;
+  background:#fff;
 }
 
 .feature-container{
   position:relative;
   width:min(1240px,calc(100% - 40px));
-  min-height:700px;
+  min-height:100px;
   margin:0 auto;
   display:grid;
   grid-template-columns:48% 52%;
   align-items:stretch;
-  background:transparent;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:32px;
+  background:#fff;
+  box-shadow:0 24px 70px rgba(23,59,54,.10);
 }
 
 .feature-copy{
   position:relative;
   z-index:3;
   max-width:620px;
-  padding:80px 20px;
+  padding:20px 30px;
   display:flex;
   flex-direction:column;
   justify-content:center;
-  background:transparent;
+  background:#fff;
 }
 
 .feature-eyebrow{
-  margin:0 0 20px;
-  color:#0b6559;
+  margin:0 0 18px;
+  color:var(--accent-dark);
   font-size:.78rem;
   font-weight:800;
   letter-spacing:.14em;
@@ -560,22 +783,14 @@ textarea{
 }
 
 .feature-copy h2{
-  max-width:680px;
+  max-width:600px;
   margin:0;
-  color:#173b36;
+  color:var(--ink);
   font-family:Georgia,"Times New Roman",serif;
-  font-size:clamp(3.2rem,5.2vw,5.3rem);
-  line-height:.92;
-  letter-spacing:-.055em;
+  font-size: clamp(1rem, 3.5vw, 2.5rem);
+  line-height:.80;
+  letter-spacing:-.060rem;
   font-weight:600;
-}
-
-.feature-description{
-  max-width:500px;
-  margin:25px 0 0;
-  color:#405d57;
-  font-size:1.08rem;
-  line-height:1.5;
 }
 
 .feature-list{
@@ -590,7 +805,7 @@ textarea{
   display:flex;
   align-items:flex-start;
   gap:12px;
-  color:#f0f8f6;
+  color:var(--ink-soft);
   font-size:.98rem;
   line-height:1.45;
 }
@@ -603,40 +818,187 @@ textarea{
   flex-shrink:0;
   margin-top:1px;
   border-radius:50%;
-  background:#0b7967;
-  color:#fff;
+  background:var(--accent-light);
+  color:var(--accent-dark);
   font-size:.72rem;
   font-weight:900;
-}
-
-.feature-copy .btn{
-  align-self:flex-start;
-  margin-top:5px;
 }
 
 .feature-image-wrap{
   position:relative;
   z-index:2;
-  min-height:700px;
+  min-height:50px;
   display:flex;
   align-items:flex-end;
   justify-content:center;
-  background:transparent;
+  padding:0;
+  background:#6ECBBC;
+  border-left:1px solid var(--line);
+}
+
+.feature-image-wrap::before{
+  content:"";
+  position:absolute;
+  width:360px;
+  height:360px;
+  right:-130px;
+  bottom:-150px;
+  border-radius:50%;
+  background:rgba(24,185,159,.10);
 }
 
 .feature-image{
+  position:relative;
+  z-index:1;
   display:block;
   width:100%;
-  max-width:720px;
-  height:700px;
+  max-width:900px;
+  height:auto;
+  max-height:600px;
   margin:0 auto;
   object-fit:contain;
   object-position:center bottom;
-  background:transparent;
-  transform:scale(1.60) translateX(-120px);
-  transform-origin:center bottom;
 }
 
+.feature-image-link:focus-visible{
+  outline:3px solid var(--accent);
+  outline-offset:-3px;
+}
+
+/* =========================================================
+   BALANCED LIFE CARE VIDEO
+   ========================================================= */
+
+.video-section{
+  position:relative;
+  padding:96px 0;
+  overflow:hidden;
+  background:linear-gradient(180deg,var(--accent-pale) 0%,#fff 100%);
+}
+
+.video-section::before{
+  content:"";
+  position:absolute;
+  width:320px;
+  height:320px;
+  right:-120px;
+  top:-120px;
+  border-radius:50%;
+  background:rgba(24,185,159,.10);
+}
+
+.video-section::after{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  left:-80px;
+  bottom:-80px;
+  border-radius:50%;
+  background:rgba(168,203,189,.22);
+}
+
+.video-section .container{
+  position:relative;
+  z-index:1;
+}
+
+.video-heading{
+  max-width:760px;
+  margin:0 auto 34px;
+  text-align:center;
+}
+
+.video-heading h2{
+  margin:0;
+  color:var(--ink);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(2.3rem,4.5vw,4.2rem);
+  line-height:1;
+  letter-spacing:-.045em;
+}
+
+.video-heading p{
+  max-width:650px;
+  margin:18px auto 0;
+  color:var(--ink-soft);
+  font-size:1rem;
+  line-height:1.65;
+}
+
+.video-card{
+  position:relative;
+  max-width:1080px;
+  margin:0 auto;
+  padding:12px;
+  border:1px solid rgba(24,185,159,.22);
+  border-radius:28px;
+  background:rgba(255,255,255,.82);
+  box-shadow:0 30px 80px rgba(23,59,54,.14);
+  backdrop-filter:blur(10px);
+}
+
+.video-card::before{
+  content:"";
+  position:absolute;
+  inset:12px;
+  border-radius:20px;
+  pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.7);
+}
+
+.video-player-wrap{
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  background:var(--ink);
+  aspect-ratio:16 / 9;
+}
+
+.video-player-wrap video{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.video-badge{
+  position:absolute;
+  top:22px;
+  left:22px;
+  z-index:2;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:9px 13px;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:999px;
+  background:rgba(23,59,54,.72);
+  color:#fff;
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  backdrop-filter:blur(8px);
+}
+
+.video-badge::before{
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 0 5px rgba(24,185,159,.16);
+}
+
+.video-note{
+  margin:18px auto 0;
+  max-width:900px;
+  color:var(--ink-soft);
+  text-align:center;
+  font-size:.82rem;
+  line-height:1.55;
+}
 
 /* =========================================================
    PRODUCTS CAROUSEL
@@ -644,7 +1006,7 @@ textarea{
 
 .products-section{
   padding:100px 0;
-  background:#f7f5ef;
+  background:var(--cream);
   overflow:hidden;
 }
 
@@ -775,7 +1137,7 @@ textarea{
   width:7px;
   height:7px;
   border-radius:50%;
-  background:#0b7967;
+  background:var(--accent-dark);
 }
 
 .product-name{
@@ -793,7 +1155,6 @@ textarea{
   font-weight:650;
 }
 
-/* Product buttons removed */
 .product-actions{
   display:none;
 }
@@ -818,7 +1179,7 @@ textarea{
   width:25%;
   height:100%;
   border-radius:999px;
-  background:#1d1d1d;
+  background:var(--accent);
   transform:translateX(0);
   transition:transform .6s ease;
 }
@@ -844,7 +1205,6 @@ textarea{
   letter-spacing:.1em;
   text-transform:uppercase;
 }
-
 
 /* =========================================================
    HOW IT WORKS
@@ -890,7 +1250,6 @@ textarea{
   font-size:.92rem;
 }
 
-
 /* =========================================================
    ABOUT
    ========================================================= */
@@ -916,6 +1275,7 @@ textarea{
   font-size:clamp(2.5rem,5vw,5rem);
   line-height:.94;
   letter-spacing:-.065em;
+  color:var(--accent);
 }
 
 .about-copy{
@@ -937,7 +1297,7 @@ textarea{
   margin-top:34px;
   padding:28px;
   border-radius:22px;
-  background:var(--ink);
+  background:var(--accent);
   color:#fff;
 }
 
@@ -953,14 +1313,13 @@ textarea{
   font-size:.92rem;
 }
 
-
 /* =========================================================
    CONTACT
    ========================================================= */
 
 .contact{
-  background:var(--ink);
-  color:#fff;
+  background:#f7f2e7;
+  color:#18B99F;
 }
 
 .contact-grid{
@@ -980,7 +1339,7 @@ textarea{
 .contact-copy>p{
   max-width:500px;
   margin:24px 0 0;
-  color:rgba(255,255,255,.72);
+  color:#128a74;
   font-size:1.05rem;
 }
 
@@ -991,7 +1350,7 @@ textarea{
 }
 
 .contact-details a{
-  color:#fff;
+  color:#128a74;
   text-decoration:none;
 }
 
@@ -1036,7 +1395,7 @@ textarea{
 .field input:focus,
 .field textarea:focus{
   border-color:var(--accent);
-  box-shadow:0 0 0 3px rgba(11,121,103,.1);
+  box-shadow:0 0 0 3px rgba(24,185,159,.1);
 }
 
 .field textarea{
@@ -1049,14 +1408,13 @@ textarea{
   margin-top:18px;
 }
 
-
 /* =========================================================
    DISCLAIMER
    ========================================================= */
 
 .disclaimer{
   padding:35px 0;
-  background:#102c28;
+  background:#159983;
   color:rgba(255,255,255,.68);
   font-size:.76rem;
 }
@@ -1068,7 +1426,6 @@ textarea{
 .disclaimer p:last-child{
   margin-bottom:0;
 }
-
 
 /* =========================================================
    FOOTER
@@ -1082,9 +1439,8 @@ footer{
 
 .footer-grid{
   display:grid;
-  grid-template-columns:1.4fr 1fr 1fr;
+  grid-template-columns:1.8fr 1fr 1fr 1fr;
   gap:50px;
-  padding-bottom:45px;
 }
 
 .footer-brand img{
@@ -1126,15 +1482,92 @@ footer{
   font-size:.76rem;
 }
 
-
 /* =========================================================
    TABLET
    ========================================================= */
 
-@media(max-width:980px){
+@media(max-width:1100px){
+  .nav-links{
+    gap:17px;
+  }
 
+  .nav-links > a,
+  .nav-dropdown > .nav-dropdown-toggle,
+  .cart-link{
+    font-size:.81rem;
+  }
+}
+
+@media(max-width:980px){
   .nav-links{
     display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    width:100%;
+    margin:0;
+    padding:18px 20px 22px;
+    flex-direction:column;
+    align-items:stretch;
+    gap:4px;
+    background:#fff;
+    border-bottom:1px solid var(--line);
+    box-shadow:0 18px 35px rgba(23,59,54,.08);
+  }
+
+  .site-header.menu-open .nav-links{
+    display:flex;
+  }
+
+  .nav-links > a,
+  .nav-dropdown > .nav-dropdown-toggle,
+  .cart-link{
+    width:100%;
+    min-height:44px;
+    padding:10px 4px;
+    justify-content:space-between;
+  }
+
+  .nav-dropdown{
+    width:100%;
+  }
+
+  .dropdown-menu{
+    position:static;
+    width:100%;
+    min-width:0;
+    margin:0 0 5px;
+    padding:5px 8px 8px;
+    border:0;
+    border-radius:12px;
+    box-shadow:none;
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    transform:none;
+    display:none;
+  }
+
+  .nav-dropdown::after{
+    display:none;
+  }
+
+  .dropdown-menu::before{
+    display:none;
+  }
+
+  .nav-dropdown.is-open .dropdown-menu{
+    display:block;
+    transform:none;
+  }
+
+  .dropdown-menu a{
+    white-space:normal;
+  }
+
+  .cart-link{
+    justify-content:flex-start;
   }
 
   .menu-toggle{
@@ -1156,10 +1589,6 @@ footer{
 
   .hero-image{
     height:480px;
-  }
-
-  .care-grid{
-    grid-template-columns:repeat(2,1fr);
   }
 
   .trust-items{
@@ -1200,7 +1629,7 @@ footer{
 
   .feature-container{
     grid-template-columns:48% 52%;
-    min-height:600px;
+    min-height:200px;
   }
 
   .feature-copy{
@@ -1211,15 +1640,19 @@ footer{
     font-size:clamp(2.7rem,5vw,4.3rem);
   }
 
+  .feature-image-link{
+    min-height:560px;
+  }
+
   .feature-image-wrap{
-    min-height:600px;
+    min-height:560px;
   }
 
   .feature-image{
-    height:600px;
+    height:auto;
+    max-height:540px;
   }
 
-  /* Products */
   .products-heading{
     align-items:flex-start;
     flex-direction:column;
@@ -1232,16 +1665,13 @@ footer{
   .products-progress-bar{
     width:50%;
   }
-
 }
-
 
 /* =========================================================
    MOBILE
    ========================================================= */
 
 @media(max-width:700px){
-
   .container{
     width:calc(100% - 28px);
   }
@@ -1295,6 +1725,7 @@ footer{
 
   .care-grid{
     grid-template-columns:1fr;
+    max-width:none;
   }
 
   .care-card{
@@ -1318,7 +1749,6 @@ footer{
     margin-top:35px;
   }
 
-
   /* GLP-1 mobile */
 
   .feature{
@@ -1330,27 +1760,39 @@ footer{
     display:flex;
     flex-direction:column;
     min-height:auto;
+    border-radius:24px;
   }
 
   .feature-copy{
     width:100%;
     max-width:none;
-    padding:50px 0 25px;
-    background:transparent;
+    padding:48px 26px 30px;
+    background:#fff;
   }
 
   .feature-copy h2{
-    font-size:clamp(2.8rem,13vw,4rem);
+    font-size:clamp(2.45rem,11vw,3.5rem);
+    line-height:.96;
   }
 
   .feature-description{
     font-size:1rem;
   }
 
-  .feature-image-wrap{
+  .feature-image-link{
     width:100%;
     min-height:auto;
     height:auto;
+    display:block;
+  }
+
+  .feature-image-wrap{
+    width:100%;
+    min-height:300px;
+    height:360px;
+    padding:20px;
+    border-left:0;
+    border-top:1px solid var(--line);
     display:flex;
     align-items:flex-end;
     justify-content:center;
@@ -1360,10 +1802,15 @@ footer{
     width:120%;
     max-width:600px;
     height:auto;
+    max-height:500px;
     object-fit:contain;
     object-position:center bottom;
+    transform:none;
   }
 
+  .feature-image-link:hover .feature-image{
+    transform:scale(1.015);
+  }
 
   /* Products mobile */
 
@@ -1392,7 +1839,6 @@ footer{
     width:100%;
   }
 
-
   /* Contact */
 
   .contact-form{
@@ -1407,35 +1853,28 @@ footer{
     grid-column:auto;
   }
 
-
   /* Footer */
 
-  .footer-grid{
-    grid-template-columns:1fr;
+   .footer-grid{
+    grid-template-columns:1fr 1fr;
+    gap:40px 30px;
   }
 
   .footer-brand{
     grid-column:auto;
   }
-
 }
-
 </style>
-
 </head>
 
-
 <body>
-
 
 <!-- =========================================================
      TOP BAR
      ========================================================= -->
 
 <div class="topbar">
-
   <div class="container topbar-inner">
-
     <span>
       Providing optimal care options for the body, mind, and soul.
     </span>
@@ -1443,75 +1882,123 @@ footer{
     <a href="#contact">
       Contact Balanced Life Care →
     </a>
-
   </div>
-
 </div>
-
 
 <!-- =========================================================
      HEADER
      ========================================================= -->
 
 <header class="site-header">
-
   <div class="container nav">
 
-    <a
-      class="brand"
-      href="#"
-      aria-label="Balanced Life Care home"
-    >
-
-      <img
-        src="../v1/assets/logo.png"
-        alt="Balanced Life Care"
-      >
-
+    <a class="brand" href="#" aria-label="Balanced Life Care home">
+      <img src="../v1/assets/logo.png" alt="Balanced Life Care">
     </a>
 
+    <nav class="nav-links" aria-label="Main navigation">
 
-    <nav
-      class="nav-links"
-      aria-label="Main navigation"
-    >
+      <a href="#">HOME</a>
 
-      <a href="#care">
-        Care Options
-      </a>
+      <a href="#about">ABOUT</a>
 
-      <a href="#weight-management">
-        Weight Management
-      </a>
+      <!-- CURATED CARE PLANS -->
+      <div class="nav-dropdown">
+        <button
+          class="nav-dropdown-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-haspopup="true"
+        >
+          CURATED CARE PLANS
+          <span class="dropdown-chevron" aria-hidden="true"></span>
+        </button>
 
-      <a href="#how-it-works">
-        How It Works
-      </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#weight-management">Weight Management</a>
+          </li>
+          <li>
+            <a href="#">Women's HRT</a>
+          </li>
+          <li>
+            <a href="#">Testosterone Replacement Therapy</a>
+          </li>
+          <li>
+            <a href="#">Sexual Wellness</a>
+          </li>
+        </ul>
+      </div>
 
-      <a href="#about">
-        About
+      <!-- CARE COLLECTION -->
+      <div class="nav-dropdown">
+        <button
+          class="nav-dropdown-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-haspopup="true"
+        >
+          CARE COLLECTION
+          <span class="dropdown-chevron" aria-hidden="true"></span>
+        </button>
+
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#">Beauty</a>
+          </li>
+          <li>
+            <a href="#">Equipment</a>
+          </li>
+          <li>
+            <a href="#">Fertility</a>
+          </li>
+          <li>
+            <a href="#">Supplements</a>
+          </li>
+        </ul>
+      </div>
+
+      <a href="#contact">HEALIN' NATURALS</a>
+
+      <a href="#contact">CONTACT</a>
+
+      <!-- CART: icon instead of emoji, no outline -->
+      <a class="cart-link" href="#" aria-label="Your Cart">
+        <svg
+          class="cart-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            d="M3 4H5L7.4 15.2C7.58 16.05 8.33 16.65 9.2 16.65H17.85C18.65 16.65 19.36 16.12 19.58 15.35L21 10H6.15"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <circle cx="9.5" cy="20" r="1.3" fill="currentColor"/>
+          <circle cx="17.5" cy="20" r="1.3" fill="currentColor"/>
+        </svg>
+        <span>Your Cart</span>
       </a>
 
     </nav>
-
 
     <button
       class="menu-toggle"
       type="button"
       aria-label="Open menu"
+      aria-expanded="false"
     >
-
       <span></span>
-
     </button>
 
   </div>
-
 </header>
 
-
 <main>
-
 
 <!-- =========================================================
      HERO
@@ -1521,6 +2008,7 @@ footer{
 
   <div class="container hero-grid">
 
+    <!-- LEFT -->
     <div class="hero-copy">
 
       <p class="eyebrow">
@@ -1535,19 +2023,14 @@ footer{
 
       <p class="hero-lead">
         Convenient and affordable Telehealth care and Teleconsulting
-        solutions designed to fit your body, mind, and soul — right
-        from the comfort of your home.
+        solutions designed to fit your body, mind, and soul —
+        right from the comfort of your home.
       </p>
 
       <div class="hero-actions">
-
-        <a
-          class="btn btn--outline"
-          href="#care"
-        >
+        <a class="btn btn--outline" href="#care">
           Explore Care Options
         </a>
-
       </div>
 
       <div class="hero-note">
@@ -1557,29 +2040,43 @@ footer{
     </div>
 
 
+    <!-- RIGHT -->
     <div class="hero-visual">
 
-      <img
-        class="hero-image"
-        src="../v1/assets/about-consultation.png"
-        alt="Balanced Life Care telehealth consultation"
-      >
+      <div class="hero-image-backdrop"></div>
 
-      <div class="hero-card">
+      <div class="hero-image-frame">
 
-        <small>
-          Balanced Life Care
-        </small>
+        <img
+          class="hero-image"
+          src="../v1/assets/about-consultation.png"
+          alt="Balanced Life Care telehealth consultation"
+        >
 
-        <strong>
-          Care that fits into your life.
-        </strong>
+      </div>
 
-        <p>
-          We connect individuals with experienced healthcare providers
-          through accessible telehealth care.
-        </p>
+      <div class="hero-floating-card">
 
+        <div class="hero-floating-icon">
+          ✓
+        </div>
+
+        <div>
+          <small>
+            Balanced Life Care
+          </small>
+
+          <strong>
+            Care that fits<br>
+            into your life.
+          </strong>
+        </div>
+
+      </div>
+
+      <div class="hero-pill">
+        <span></span>
+        Accessible care from home
       </div>
 
     </div>
@@ -1588,292 +2085,43 @@ footer{
 
 </section>
 
-
 <!-- =========================================================
      TRUST STRIP
      ========================================================= -->
 
 <section class="trust-strip">
-
   <div class="container trust-items">
 
     <div class="trust-item">
-
-      <span class="trust-icon">
-        ✓
-      </span>
-
-      <span>
-        Telehealth access throughout the United States
-      </span>
-
+      <span class="trust-icon">✓</span>
+      <span>Telehealth access throughout the United States</span>
     </div>
 
-
     <div class="trust-item">
-
-      <span class="trust-icon">
-        ✓
-      </span>
-
-      <span>
-        Convenient care from home
-      </span>
-
+      <span class="trust-icon">✓</span>
+      <span>Convenient care from home</span>
     </div>
 
-
     <div class="trust-item">
-
-      <span class="trust-icon">
-        ✓
-      </span>
-
-      <span>
-        Affordable self-pay options
-      </span>
-
+      <span class="trust-icon">✓</span>
+      <span>Affordable self-pay options</span>
     </div>
 
-
     <div class="trust-item">
-
-      <span class="trust-icon">
-        ✓
-      </span>
-
-      <span>
-        Care coordination with licensed independent providers
-      </span>
-
+      <span class="trust-icon">✓</span>
+      <span>Care coordination with licensed independent providers</span>
     </div>
 
   </div>
-
 </section>
-
-
-<!-- =========================================================
-     CARE OPTIONS
-     ========================================================= -->
-
-<section
-  class="section care-section"
-  id="care"
->
-
-  <div class="container">
-
-    <div class="section-heading">
-
-      <p class="eyebrow">
-        Explore your options
-      </p>
-
-      <h2>
-        Care built around what matters to you.
-      </h2>
-
-      <p>
-        From medical weight loss to sexual wellness and mental health,
-        Balanced Life Care helps connect you with care options for
-        your body, mind, and soul.
-      </p>
-
-    </div>
-
-
-    <div class="care-grid">
-
-
-      <a
-        class="care-card"
-        href="#weight-management"
-      >
-
-        <span class="care-number">
-          01 / WEIGHT MANAGEMENT
-        </span>
-
-        <div>
-
-          <h3>
-            Medical Weight Loss
-          </h3>
-
-          <p>
-            Progressive medical weight loss programs designed to create
-            lasting, transformative results.
-          </p>
-
-        </div>
-
-        <span class="care-arrow">
-          ↗
-        </span>
-
-      </a>
-
-
-      <a
-        class="care-card"
-        href="#womens-hrt"
-      >
-
-        <span class="care-number">
-          02 / WOMEN'S HEALTH
-        </span>
-
-        <div>
-
-          <h3>
-            Women’s HRT
-          </h3>
-
-          <p>
-            Explore curated care options designed around women’s health needs.
-          </p>
-
-        </div>
-
-        <span class="care-arrow">
-          ↗
-        </span>
-
-      </a>
-
-
-      <a
-        class="care-card"
-        href="#mens-health"
-      >
-
-        <span class="care-number">
-          03 / MEN'S HEALTH
-        </span>
-
-        <div>
-
-          <h3>
-            Testosterone Replacement
-          </h3>
-
-          <p>
-            Explore testosterone replacement care options through the
-            Balanced Life Care network.
-          </p>
-
-        </div>
-
-        <span class="care-arrow">
-          ↗
-        </span>
-
-      </a>
-
-
-      <a
-        class="care-card"
-        href="#sexual-wellness"
-      >
-
-        <span class="care-number">
-          04 / SEXUAL WELLNESS
-        </span>
-
-        <div>
-
-          <h3>
-            Sexual Wellness
-          </h3>
-
-          <p>
-            Convenient telehealth options for sexual wellness needs.
-          </p>
-
-        </div>
-
-        <span class="care-arrow">
-          ↗
-        </span>
-
-      </a>
-
-
-      <a
-        class="care-card"
-        href="#sti-care"
-      >
-
-        <span class="care-number">
-          05 / SEXUAL HEALTH
-        </span>
-
-        <div>
-
-          <h3>
-            STD Testing &amp; Treatment
-          </h3>
-
-          <p>
-            Access telehealth care options for STD testing and treatment needs.
-          </p>
-
-        </div>
-
-        <span class="care-arrow">
-          ↗
-        </span>
-
-      </a>
-
-
-      <a
-        class="care-card"
-        href="#mental-health"
-      >
-
-        <span class="care-number">
-          06 / MENTAL HEALTH
-        </span>
-
-        <div>
-
-          <h3>
-            Mental Health
-          </h3>
-
-          <p>
-            Accessible telehealth options for mental health support.
-          </p>
-
-        </div>
-
-        <span class="care-arrow">
-          ↗
-        </span>
-
-      </a>
-
-
-    </div>
-
-  </div>
-
-</section>
-
 
 <!-- =========================================================
      GLP-1 WEIGHT MANAGEMENT
      ========================================================= -->
 
-<section
-  class="feature"
-  id="weight-management"
->
+<section class="feature" id="weight-management">
 
   <div class="feature-container">
-
 
     <div class="feature-copy">
 
@@ -1885,103 +2133,85 @@ footer{
         GLP-1 medical weight loss plans.
       </h2>
 
-      <p class="feature-description">
-        Progressive medical weight loss programs designed to create
-        lasting, transformative results.
-      </p>
-
       <ul class="feature-list">
 
         <li>
-
-          <span>
-            ✓
-          </span>
-
-          <span>
-            Convenient telehealth care from home
-          </span>
-
+          <span>✓</span>
+          <span>Convenient telehealth care from home</span>
         </li>
 
-
         <li>
-
-          <span>
-            ✓
-          </span>
-
-          <span>
-            Provider-guided care when clinically appropriate
-          </span>
-
+          <span>✓</span>
+          <span>Provider-guided care when clinically appropriate</span>
         </li>
 
-
         <li>
-
-          <span>
-            ✓
-          </span>
-
-          <span>
-            Curated weight management options
-          </span>
-
+          <span>✓</span>
+          <span>Curated weight management options</span>
         </li>
 
-
         <li>
-
-          <span>
-            ✓
-          </span>
-
-          <span>
-            Ongoing care coordination through Balanced Life Care
-          </span>
-
+          <span>✓</span>
+          <span>Ongoing care coordination through Balanced Life Care</span>
         </li>
 
       </ul>
 
-
-      <a
-        class="btn"
-        href="#contact"
-      >
-        Explore Weight Management
-      </a>
-
     </div>
 
-
     <div class="feature-image-wrap">
-
+       <a href="/your-page" class="feature-image-link"></a>
       <img
         class="feature-image"
         src="../v2/assets/glp1-plans.png"
         alt="Balanced Life Care GLP-1 medical weight loss plans"
       >
-
+      </a>
     </div>
 
   </div>
 
 </section>
 
+<!-- =========================================================
+     BALANCED LIFE CARE VIDEO
+     ========================================================= -->
+
+<section class="video-section" id="video" aria-labelledby="video-title">
+  <div class="container">
+    <div class="video-heading">
+      <p class="eyebrow">Balanced Life Care</p>
+      <h2 id="video-title">See how your care journey works.</h2>
+      <p>
+        Take a quick look at the Balanced Life Care experience and how
+        convenient telehealth care fits into everyday life.
+      </p>
+    </div>
+
+    <div class="video-card">
+      <div class="video-player-wrap">
+        <span class="video-badge">Watch the video</span>
+        <video controls playsinline preload="metadata">
+          <source src="../v1/assets/balanced-life-care.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
+    <p class="video-note">
+      This video is for general informational purposes and does not guarantee
+      eligibility for any treatment or medical service.
+    </p>
+  </div>
+</section>
 
 <!-- =========================================================
      PRODUCTS CAROUSEL
      ========================================================= -->
 
-<section
-  class="products-section"
-  id="products"
->
+<section class="products-section" id="products">
 
   <div class="container">
-
 
     <div class="products-heading">
 
@@ -2001,7 +2231,6 @@ footer{
         </p>
 
       </div>
-
 
       <div class="products-controls">
 
@@ -2027,7 +2256,6 @@ footer{
 
     </div>
 
-
     <div
       class="products-viewport"
       id="products-viewport"
@@ -2039,22 +2267,21 @@ footer{
         id="products-track"
       >
 
-
         <!-- PRODUCT 01 -->
-
         <article class="product-card">
 
           <div class="product-image product-image--loading">
-             <img
-             src="../v2/assets/phentermine-weight-loss.webp"
-             alt="Phentermine Weight Loss Treatment"
+
+            <img
+              src="../v2/assets/phentermine-weight-loss.webp"
+              alt="Phentermine Weight Loss Treatment"
             >
+
             <span class="product-badge">
               Featured
             </span>
 
           </div>
-
 
           <div class="product-info">
 
@@ -2074,22 +2301,21 @@ footer{
 
         </article>
 
-
         <!-- PRODUCT 02 -->
-
         <article class="product-card">
 
           <div class="product-image product-image--loading">
-               <img
-             src="../v2/assets/craving-control.jpg"
-             alt="Craving Control"
+
+            <img
+              src="../v2/assets/craving-control.jpg"
+              alt="Craving Control"
             >
+
             <span class="product-badge">
               Popular
             </span>
 
           </div>
-
 
           <div class="product-info">
 
@@ -2109,21 +2335,20 @@ footer{
 
         </article>
 
-
         <!-- PRODUCT 03 -->
-
         <article class="product-card">
 
           <div class="product-image product-image--loading">
+
             <img
-             src="../v2/assets/hydrochlorothiazide.jpg"
-             alt=" Hydrochlorothiazide"
+              src="../v2/assets/hydrochlorothiazide.jpg"
+              alt="Hydrochlorothiazide"
             >
+
           </div>
 
-
           <div class="product-info">
-          
+
             <span class="product-status">
               Available
             </span>
@@ -2140,18 +2365,17 @@ footer{
 
         </article>
 
-
         <!-- PRODUCT 04 -->
-
         <article class="product-card">
 
           <div class="product-image product-image--loading">
-             <img
-             src="../v2/assets/phendimetrazine.jpg"
-             alt=" Phendimetrazine Tartrate"
-            >
-          </div>
 
+            <img
+              src="../v2/assets/phendimetrazine.jpg"
+              alt="Phendimetrazine Tartrate"
+            >
+
+          </div>
 
           <div class="product-info">
 
@@ -2171,21 +2395,20 @@ footer{
 
         </article>
 
-
         <!-- PRODUCT 05 -->
-
         <article class="product-card">
 
           <div class="product-image product-image--loading">
-             <img
-             src="../v2/assets/Phentermine.png"
-             alt=" Phentermine/Topiramate"
+
+            <img
+              src="../v2/assets/Phentermine.png"
+              alt="Phentermine/Topiramate"
             >
+
           </div>
 
-
           <div class="product-info">
-            
+
             <span class="product-status">
               Available
             </span>
@@ -2202,22 +2425,21 @@ footer{
 
         </article>
 
-
         <!-- PRODUCT 06 -->
-
         <article class="product-card">
 
           <div class="product-image product-image--loading">
+
             <img
-             src="../v2/assets/SemaglutideTestimonial2.png"
-             alt=" Semaglutide"
+              src="../v2/assets/SemaglutideTestimonial2.png"
+              alt="Semaglutide"
             >
+
             <span class="product-badge">
               GLP-1
             </span>
 
           </div>
-
 
           <div class="product-info">
 
@@ -2237,29 +2459,23 @@ footer{
 
         </article>
 
-
       </div>
-
     </div>
-
 
     <div class="products-footer">
 
       <div class="products-progress">
-
         <div
           class="products-progress-bar"
           id="products-progress-bar"
         ></div>
-
       </div>
-
 
       <span
         class="products-status"
         id="products-status"
       >
-        1 / 3
+        1 / 6
       </span>
 
     </div>
@@ -2268,15 +2484,11 @@ footer{
 
 </section>
 
-
 <!-- =========================================================
      HOW IT WORKS
      ========================================================= -->
 
-<section
-  class="section process"
-  id="how-it-works"
->
+<section class="section process" id="how-it-works">
 
   <div class="container">
 
@@ -2297,15 +2509,10 @@ footer{
 
     </div>
 
-
     <div class="process-grid">
 
-
       <article class="process-step">
-
-        <span class="step-number">
-          01
-        </span>
+        <span class="step-number">01</span>
 
         <h3>
           Choose your care option
@@ -2314,15 +2521,10 @@ footer{
         <p>
           Explore the care plans and services that match your needs.
         </p>
-
       </article>
 
-
       <article class="process-step">
-
-        <span class="step-number">
-          02
-        </span>
+        <span class="step-number">02</span>
 
         <h3>
           Connect through telehealth
@@ -2331,15 +2533,10 @@ footer{
         <p>
           Begin your care journey from the comfort of your home.
         </p>
-
       </article>
 
-
       <article class="process-step">
-
-        <span class="step-number">
-          03
-        </span>
+        <span class="step-number">03</span>
 
         <h3>
           Provider review
@@ -2349,15 +2546,10 @@ footer{
           Independent licensed physicians and practitioners determine
           appropriate medical care.
         </p>
-
       </article>
 
-
       <article class="process-step">
-
-        <span class="step-number">
-          04
-        </span>
+        <span class="step-number">04</span>
 
         <h3>
           Continue your care
@@ -2367,9 +2559,7 @@ footer{
           Follow the care plan and stay connected to the appropriate
           provider and support resources.
         </p>
-
       </article>
-
 
     </div>
 
@@ -2377,18 +2567,13 @@ footer{
 
 </section>
 
-
 <!-- =========================================================
      ABOUT
      ========================================================= -->
 
-<section
-  class="section about"
-  id="about"
->
+<section class="section about" id="about">
 
   <div class="container about-grid">
-
 
     <div class="about-title">
 
@@ -2401,7 +2586,6 @@ footer{
       </h2>
 
     </div>
-
 
     <div class="about-copy">
 
@@ -2418,12 +2602,10 @@ footer{
       </p>
 
       <p>
-        Whether you need help with medical weight loss, STD testing and
-        treatment, sexual wellness, or mental health services, Balanced
-        Life Care offers affordable self-pay options for people who are
-        uninsured or underinsured.
+        Balanced Life Care offers affordable self-pay options for people
+        who are uninsured or underinsured and helps connect individuals
+        with appropriate care providers.
       </p>
-
 
       <div class="about-highlight">
 
@@ -2444,18 +2626,13 @@ footer{
 
 </section>
 
-
 <!-- =========================================================
      CONTACT
      ========================================================= -->
 
-<section
-  class="section contact"
-  id="contact"
->
+<section class="section contact" id="contact">
 
   <div class="container contact-grid">
-
 
     <div class="contact-copy">
 
@@ -2471,11 +2648,9 @@ footer{
       </h2>
 
       <p>
-        Whether you need help with weight loss, mental health, sexual
-        wellness, or another care option, get in touch with Balanced
-        Life Care.
+        Whether you need help with weight management or another care
+        option, get in touch with Balanced Life Care.
       </p>
-
 
       <div class="contact-details">
 
@@ -2491,7 +2666,6 @@ footer{
 
     </div>
 
-
     <form
       class="contact-form"
       action="#"
@@ -2500,9 +2674,7 @@ footer{
 
       <div class="form-grid">
 
-
         <div class="field">
-
           <label for="first-name">
             First Name
           </label>
@@ -2513,12 +2685,9 @@ footer{
             type="text"
             autocomplete="given-name"
           >
-
         </div>
 
-
         <div class="field">
-
           <label for="last-name">
             Last Name
           </label>
@@ -2529,12 +2698,9 @@ footer{
             type="text"
             autocomplete="family-name"
           >
-
         </div>
 
-
         <div class="field">
-
           <label for="phone">
             Phone Number
           </label>
@@ -2545,12 +2711,9 @@ footer{
             type="tel"
             autocomplete="tel"
           >
-
         </div>
 
-
         <div class="field">
-
           <label for="email">
             Email
           </label>
@@ -2561,12 +2724,9 @@ footer{
             type="email"
             autocomplete="email"
           >
-
         </div>
 
-
         <div class="field field--full">
-
           <label for="subject">
             Subject
           </label>
@@ -2576,12 +2736,9 @@ footer{
             name="subject"
             type="text"
           >
-
         </div>
 
-
         <div class="field field--full">
-
           <label for="message">
             Message
           </label>
@@ -2590,12 +2747,9 @@ footer{
             id="message"
             name="message"
           ></textarea>
-
         </div>
 
-
       </div>
-
 
       <button
         class="btn"
@@ -2609,7 +2763,6 @@ footer{
   </div>
 
 </section>
-
 
 <!-- =========================================================
      DISCLAIMER
@@ -2641,9 +2794,7 @@ footer{
 
 </section>
 
-
 </main>
-
 
 <!-- =========================================================
      FOOTER
@@ -2653,108 +2804,252 @@ footer{
 
   <div class="container">
 
-    <div class="footer-grid">
+<div class="footer-grid">
+
+  <div class="footer-brand">
+
+    <img 
+      src="../v1/assets/logo-reversed.png"
+      alt="Balanced Life Care"
+    >
+
+    <p>
+      Telehealth care coordination for the body, mind, and soul.
+      Serving people looking for convenient and affordable self-pay
+      care options.
+    </p>
+
+  </div>
 
 
-      <div class="footer-brand">
+  <!-- Care Collection -->
+  <div class="footer-col">
 
-        <img
-          src="../v1/assets/logo-reversed.png"
-          alt="Balanced Life Care"
-        >
+    <h3>
+      Care Collection
+    </h3>
 
-        <p>
-          Telehealth care coordination for the body, mind, and soul.
-          Serving people looking for convenient and affordable self-pay
-          care options.
-        </p>
+    <a href="#weight-management">
+      Weight Management
+    </a>
 
-      </div>
+    <a href="#women's-hrt">
+      Women's HRT
+    </a>
 
+    <a href="#testosterone-replacement-therapy">
+      Testosterone Replacement Therapy
+    </a>
 
-      <div class="footer-col">
+    <a href="#sexual-wellness">
+      Sexual Wellness
+    </a>
 
-        <h3>
-          Care
-        </h3>
-
-        <a href="#weight-management">
-          Weight Management
-        </a>
-
-        <a href="#womens-hrt">
-          Women’s HRT
-        </a>
-
-        <a href="#mens-health">
-          Testosterone Replacement
-        </a>
-
-        <a href="#sexual-wellness">
-          Sexual Wellness
-        </a>
-
-        <a href="#sti-care">
-          STD Testing &amp; Treatment
-        </a>
-
-        <a href="#mental-health">
-          Mental Health
-        </a>
-
-      </div>
+  </div>
 
 
-      <div class="footer-col">
+  <!-- Wellness Collection -->
+  <div class="footer-col">
 
-        <h3>
-          Company
-        </h3>
+    <h3>
+      Wellness
+    </h3>
 
-        <a href="#about">
-          About
-        </a>
+    <a href="#beauty">
+      Beauty
+    </a>
 
-        <a href="#how-it-works">
-          How It Works
-        </a>
+    <a href="#equipment">
+      Equipment
+    </a>
 
-        <a href="#contact">
-          Contact
-        </a>
+    <a href="#fertility">
+      Fertility
+    </a>
 
-        <a href="mailto:support@balancedlife-care.com">
-          Email Us
-        </a>
+    <a href="#supplements">
+      Supplements
+    </a>
 
-        <a href="tel:+17025837891">
-          Call Us
-        </a>
-
-      </div>
+  </div>
 
 
-    </div>
+  <!-- Company -->
+  <div class="footer-col">
 
+    <h3>
+      Company
+    </h3>
+
+    <a href="#about">
+      About
+    </a>
+
+    <a href="#contact">
+      Contact
+    </a>
+
+    <a href="mailto:support@balancedlife-care.com">
+      Email Us
+    </a>
+
+    <a href="tel:+17025837891">
+      Call Us
+    </a>
+
+  </div>
+
+</div>
 
     <div class="footer-bottom">
-
       © 2022–2026 Balanced Life Care, LLC. All rights reserved.
-
     </div>
 
   </div>
 
 </footer>
 
-
 <!-- =========================================================
-     PRODUCTS CAROUSEL JAVASCRIPT
+     JAVASCRIPT
      ========================================================= -->
 
 <script>
-
 document.addEventListener("DOMContentLoaded", function(){
+
+  /* =========================================================
+     MOBILE MENU
+     ========================================================= */
+
+  const siteHeader = document.querySelector(".site-header");
+  const menuToggle = document.querySelector(".menu-toggle");
+  const navLinks = document.querySelector(".nav-links");
+
+  if(menuToggle && siteHeader && navLinks){
+
+    menuToggle.addEventListener("click", function(){
+
+      const isOpen =
+        siteHeader.classList.toggle("menu-open");
+
+      menuToggle.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+      );
+
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close menu" : "Open menu"
+      );
+
+    });
+
+    navLinks.querySelectorAll("a").forEach(function(link){
+
+      link.addEventListener("click", function(){
+
+        siteHeader.classList.remove("menu-open");
+
+        menuToggle.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+        menuToggle.setAttribute(
+          "aria-label",
+          "Open menu"
+        );
+
+      });
+
+    });
+  }
+
+
+  /* =========================================================
+     DROPDOWN MENUS
+     Hover works on desktop.
+     Click works on desktop and mobile.
+     ========================================================= */
+
+  const dropdowns =
+    Array.from(
+      document.querySelectorAll(".nav-dropdown")
+    );
+
+  dropdowns.forEach(function(dropdown){
+
+    const toggle =
+      dropdown.querySelector(".nav-dropdown-toggle");
+
+    if(!toggle){
+      return;
+    }
+
+    toggle.addEventListener("click", function(event){
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const shouldOpen =
+        !dropdown.classList.contains("is-open");
+
+      dropdowns.forEach(function(otherDropdown){
+
+        otherDropdown.classList.remove("is-open");
+
+        const otherToggle =
+          otherDropdown.querySelector(".nav-dropdown-toggle");
+
+        if(otherToggle){
+          otherToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+        }
+
+      });
+
+      dropdown.classList.toggle(
+        "is-open",
+        shouldOpen
+      );
+
+      toggle.setAttribute(
+        "aria-expanded",
+        String(shouldOpen)
+      );
+
+    });
+
+  });
+
+  document.addEventListener("click", function(event){
+
+    if(!event.target.closest(".nav-dropdown")){
+
+      dropdowns.forEach(function(dropdown){
+
+        dropdown.classList.remove("is-open");
+
+        const toggle =
+          dropdown.querySelector(".nav-dropdown-toggle");
+
+        if(toggle){
+          toggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+        }
+
+      });
+
+    }
+
+  });
+
+  /* =========================================================
+     PRODUCTS CAROUSEL
+     ========================================================= */
 
   const track =
     document.getElementById("products-track");
@@ -2774,36 +3069,27 @@ document.addEventListener("DOMContentLoaded", function(){
   const progressBar =
     document.getElementById("products-progress-bar");
 
-
   if(
     !track ||
     !viewport ||
     !prevBtn ||
-    !nextBtn
+    !nextBtn ||
+    !status ||
+    !progressBar
   ){
     return;
   }
-
 
   const products =
     Array.from(
       track.querySelectorAll(".product-card")
     );
 
-
   const totalProducts =
     products.length;
 
-
   let currentIndex = 0;
-
   let autoPlay = null;
-
-
-  /*
-   * Determine how many products
-   * are visible at the current screen width.
-   */
 
   function getVisibleProducts(){
 
@@ -2819,45 +3105,27 @@ document.addEventListener("DOMContentLoaded", function(){
 
   }
 
-
-  /*
-   * Calculate the exact distance
-   * required to move one product.
-   */
-
   function getStepSize(){
 
     if(!products.length){
       return 0;
     }
 
-
     const card =
       products[0];
-
 
     const cardWidth =
       card.getBoundingClientRect().width;
 
-
     const trackStyle =
       window.getComputedStyle(track);
-
 
     const gap =
       parseFloat(trackStyle.columnGap) || 0;
 
-
     return cardWidth + gap;
 
   }
-
-
-  /*
-   * Find the last position that still
-   * keeps the visible cards inside
-   * the carousel.
-   */
 
   function getMaxIndex(){
 
@@ -2868,25 +3136,17 @@ document.addEventListener("DOMContentLoaded", function(){
 
   }
 
-
-  /*
-   * Update the carousel position.
-   */
-
   function updateCarousel(animate = true){
 
     const step =
       getStepSize();
 
-
     if(!step){
       return;
     }
 
-
     const maxIndex =
       getMaxIndex();
-
 
     currentIndex =
       Math.max(
@@ -2897,20 +3157,13 @@ document.addEventListener("DOMContentLoaded", function(){
         )
       );
 
-
     track.style.transition =
       animate
         ? "transform .6s cubic-bezier(.22,.61,.36,1)"
         : "none";
 
-
     track.style.transform =
       `translate3d(-${currentIndex * step}px, 0, 0)`;
-
-
-    /*
-     * Product counter.
-     */
 
     const displayedProduct =
       Math.min(
@@ -2918,189 +3171,105 @@ document.addEventListener("DOMContentLoaded", function(){
         totalProducts
       );
 
-
     status.textContent =
       `${displayedProduct} / ${totalProducts}`;
-
-
-    /*
-     * Progress bar.
-     */
 
     const progress =
       totalProducts > 1
         ? currentIndex / (totalProducts - 1)
         : 0;
 
-
     progressBar.style.transform =
       `translateX(${progress * 300}%)`;
 
   }
-
-
-  /*
-   * Move forward.
-   *
-   * When the final position is reached,
-   * return to the beginning.
-   */
 
   function goNext(){
 
     const maxIndex =
       getMaxIndex();
 
-
     if(currentIndex >= maxIndex){
-
       currentIndex = 0;
-
     }else{
-
       currentIndex++;
-
     }
-
 
     updateCarousel(true);
 
   }
-
-
-  /*
-   * Move backward.
-   *
-   * When we're at the beginning,
-   * jump to the final position.
-   */
 
   function goPrevious(){
 
     const maxIndex =
       getMaxIndex();
 
-
     if(currentIndex <= 0){
-
       currentIndex = maxIndex;
-
     }else{
-
       currentIndex--;
-
     }
-
 
     updateCarousel(true);
 
   }
 
-
-  /*
-   * Start automatic movement.
-   *
-   * Every 5 seconds.
-   */
-
   function startAutoPlay(){
 
     stopAutoPlay();
 
-
     autoPlay =
       setInterval(
         function(){
-
           goNext();
-
         },
         5000
       );
 
   }
 
-
-  /*
-   * Stop automatic movement.
-   */
-
   function stopAutoPlay(){
 
     if(autoPlay){
-
       clearInterval(autoPlay);
-
       autoPlay = null;
-
     }
 
   }
 
-
-  /*
-   * Next arrow.
-   */
-
   nextBtn.addEventListener(
     "click",
     function(){
-
       goNext();
-
       startAutoPlay();
-
     }
   );
-
-
-  /*
-   * Previous arrow.
-   */
 
   prevBtn.addEventListener(
     "click",
     function(){
-
       goPrevious();
-
       startAutoPlay();
-
     }
   );
-
-
-  /*
-   * Pause while hovering over
-   * the product carousel.
-   */
 
   viewport.addEventListener(
     "mouseenter",
     stopAutoPlay
   );
 
-
   viewport.addEventListener(
     "mouseleave",
     startAutoPlay
   );
 
-
-  /*
-   * Recalculate position after
-   * the browser window changes size.
-   */
-
   let resizeTimer;
-
 
   window.addEventListener(
     "resize",
     function(){
 
       clearTimeout(resizeTimer);
-
 
       resizeTimer =
         setTimeout(
@@ -3112,7 +3281,6 @@ document.addEventListener("DOMContentLoaded", function(){
                 getMaxIndex()
               );
 
-
             updateCarousel(false);
 
           },
@@ -3122,26 +3290,17 @@ document.addEventListener("DOMContentLoaded", function(){
     }
   );
 
-
-  /*
-   * Initial carousel setup.
-   */
-
   requestAnimationFrame(
     function(){
 
       updateCarousel(false);
-
       startAutoPlay();
 
     }
   );
 
 });
-
 </script>
 
-
 </body>
-
 </html>
