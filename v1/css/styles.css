@@ -1,19 +1,19 @@
-/* Palette sampled from the logo: teal-green #06BDA1 and charcoal #313032,
-   on white. --green is the logo ink (fills, graphics); --brand is the
-   text-safe darkening of it (4.9:1 on white). */
+/* Theme colour #18B99F with charcoal #313032, on white. --green is the
+   theme ink (fills, graphics); --brand is the text-safe darkening of it
+   (5.0:1 on white, 4.6:1 on --brand-soft) and --brand-2 the hover step. */
 :root {
   --bg: #ffffff;
   --surface: #ffffff;
-  --surface-2: #f1faf7;
+  --surface-2: #f3fbf9;
   --ink: #0e1211;
   --ink-2: #4c5654;
   --ink-3: #78827f;
   --line: #e4eae8;
   --line-2: #cfd8d5;
-  --green: #06bda1;
-  --brand: #068068;
-  --brand-2: #04604e;
-  --brand-soft: #e2f8f2;
+  --green: #18b99f;
+  --brand: #107d6c;
+  --brand-2: #0b584c;
+  --brand-soft: #e8faf7;
   --alert: #b3261e;
   --gold: #d99400;
   --gold-bg: #fff3d4;
@@ -747,7 +747,7 @@ header.is-hidden {
 .hero .hero-card {
   background: color-mix(in srgb, var(--surface) 92%, transparent);
   backdrop-filter: blur(10px);
-  box-shadow: 0 2px 4px rgba(20, 40, 35, .05), 0 30px 60px -34px rgba(6, 128, 104, .45);
+  box-shadow: 0 2px 4px rgba(20, 40, 35, .05), 0 30px 60px -34px rgba(16, 125, 108, .45);
 }
 
 .eyebrow {
@@ -919,7 +919,7 @@ header.is-hidden {
   width: 100%;
   height: auto;
   border-radius: var(--radius-lg);
-  box-shadow: 0 2px 6px rgba(14, 18, 17, .06), 0 34px 60px -34px rgba(6, 128, 104, .5);
+  box-shadow: 0 2px 6px rgba(14, 18, 17, .06), 0 34px 60px -34px rgba(16, 125, 108, .5);
 }
 
 .glp1-figure figcaption {
@@ -998,7 +998,7 @@ header.is-hidden {
   overflow: hidden;
   background: var(--ink);
   line-height: 0;
-  box-shadow: 0 2px 6px rgba(14, 18, 17, .06), 0 40px 70px -38px rgba(6, 128, 104, .55);
+  box-shadow: 0 2px 6px rgba(14, 18, 17, .06), 0 40px 70px -38px rgba(16, 125, 108, .55);
 }
 
 .video-frame video {
@@ -1019,8 +1019,56 @@ header.is-hidden {
 
 /* ---------- About ---------- */
 .about {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background: var(--surface-2);
   padding: 76px 0;
+}
+
+/* ---------- Animated About backdrop ---------- */
+.about-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(48% 62% at 82% 12%, color-mix(in srgb, var(--green) 26%, transparent) 0%, transparent 62%),
+    radial-gradient(44% 58% at 62% 96%, color-mix(in srgb, var(--brand) 20%, transparent) 0%, transparent 64%),
+    radial-gradient(60% 70% at 108% 54%, color-mix(in srgb, var(--green) 18%, transparent) 0%, transparent 60%);
+  background-size: 180% 180%, 170% 170%, 160% 160%;
+  animation: about-drift 26s ease-in-out infinite alternate;
+}
+
+/* a second, slower layer keeps the motion from looking like one pan */
+.about-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(color-mix(in srgb, var(--brand) 26%, transparent) 1px, transparent 1px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(70% 70% at 76% 40%, #000, transparent 70%);
+  mask-image: radial-gradient(70% 70% at 76% 40%, #000, transparent 70%);
+  opacity: .5;
+  animation: about-dots 32s linear infinite;
+}
+
+@keyframes about-drift {
+  0% { background-position: 0% 0%, 100% 100%, 50% 50%; }
+  50% { background-position: 30% 20%, 70% 70%, 40% 60%; }
+  100% { background-position: 10% 45%, 90% 30%, 60% 35%; }
+}
+
+@keyframes about-dots {
+  from { background-position: 0 0; }
+  to { background-position: 260px 130px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-bg,
+  .about-bg::after {
+    animation: none;
+  }
 }
 
 @media (max-width: 940px) {
@@ -1031,9 +1079,17 @@ header.is-hidden {
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1.05fr;
+  grid-template-columns: minmax(0, 47%) minmax(0, 1fr);
   gap: 52px;
   align-items: center;
+}
+
+.about-gallery {
+  grid-column: 1;
+}
+
+.about-copy {
+  grid-column: 2;
 }
 
 @media (max-width: 940px) {
@@ -1041,19 +1097,17 @@ header.is-hidden {
     grid-template-columns: 1fr;
     gap: 32px;
   }
-}
 
-.about-figure {
-  margin: 0;
-  position: relative;
-}
+  /* copy first, gallery under it once the columns collapse */
+  .about-copy {
+    grid-column: 1;
+    grid-row: 1;
+  }
 
-.about-figure img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: var(--radius-lg);
-  box-shadow: 0 2px 6px rgba(14, 18, 17, .06), 0 36px 64px -36px rgba(6, 128, 104, .5);
+  .about-gallery {
+    grid-column: 1;
+    grid-row: 2;
+  }
 }
 
 .about-eyebrow {
@@ -1066,11 +1120,82 @@ header.is-hidden {
 }
 
 .about h2 {
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 .about p {
+  max-width: 54ch;
   color: var(--ink-2);
+}
+
+/* the opening paragraph carries the section — give it a size step */
+.about .about-lede {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+/* ---------- About masonry gallery ---------- */
+/* left column gallery: a 2-up grid whose first tile spans both columns.
+   It sits inside the site container like every other section. */
+.about-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-gallery > li {
+  margin: 0;
+}
+
+.gal-feature {
+  grid-column: 1 / -1;
+}
+
+.gal-feature .gal img {
+  aspect-ratio: 16 / 9;
+}
+
+.gal {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: var(--surface);
+  cursor: zoom-in;
+  overflow: hidden;
+  line-height: 0;
+  box-shadow: 0 1px 2px rgba(14, 18, 17, .06), 0 14px 26px -20px rgba(16, 125, 108, .6);
+  transition: transform .2s, box-shadow .2s;
+}
+
+.gal img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform .35s ease;
+}
+
+.gal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(14, 18, 17, .07), 0 20px 34px -20px rgba(16, 125, 108, .75);
+}
+
+.gal:hover img {
+  transform: scale(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gal,
+  .gal img {
+    transition: none;
+  }
 }
 
 .about-more[hidden] {
@@ -1078,22 +1203,27 @@ header.is-hidden {
 }
 
 .readmore {
-  margin-top: 6px;
-  background: none;
-  border: 0;
-  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 11px 20px;
+  border: 1px solid var(--line-2);
+  border-radius: 100px;
+  background: var(--surface);
+  color: var(--brand);
   font: inherit;
   font-size: .95rem;
   font-weight: 600;
-  color: var(--brand);
   cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
+  transition: border-color .16s, background .16s, color .16s, transform .16s;
 }
 
 .readmore:hover {
+  border-color: var(--brand);
+  background: var(--brand-soft);
   color: var(--brand-2);
+  transform: translateY(-1px);
 }
 
 .readmore svg {
@@ -1518,6 +1648,46 @@ footer a:hover {
   text-decoration: underline;
 }
 
+/* ---------- Social ---------- */
+.social {
+  display: flex;
+  gap: 10px;
+  margin: 0 0 18px;
+  padding: 0;
+  list-style: none;
+}
+
+.social a,
+.social-pending {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, .16);
+  color: #c6cfcc;
+  transition: background .16s, color .16s, border-color .16s;
+}
+
+.social a:hover {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--ink);
+}
+
+/* icon shown ahead of having a URL — deliberately flatter than the live
+   links so it doesn't read as clickable */
+.social-pending {
+  opacity: .55;
+  cursor: default;
+}
+
+.social svg {
+  width: 17px;
+  height: 17px;
+  fill: currentColor;
+}
+
 .seal {
   display: inline-flex;
   align-items: center;
@@ -1557,7 +1727,7 @@ footer a:hover {
   background: var(--brand);
   color: #fff;
   cursor: pointer;
-  box-shadow: 0 6px 18px -6px rgba(6,128,104,.65), 0 2px 6px rgba(14,18,17,.12);
+  box-shadow: 0 6px 18px -6px rgba(16, 125, 108,.65), 0 2px 6px rgba(14,18,17,.12);
   opacity: 0;
   visibility: hidden;
   transform: translateY(14px) scale(.85);
@@ -1649,7 +1819,7 @@ footer a:hover {
 .product:hover,
 .product:focus-within {
   border-color: color-mix(in srgb, var(--brand) 45%, var(--line));
-  box-shadow: 0 2px 6px rgba(14, 18, 17, .05), 0 22px 40px -26px rgba(6, 128, 104, .55);
+  box-shadow: 0 2px 6px rgba(14, 18, 17, .05), 0 22px 40px -26px rgba(16, 125, 108, .55);
   transform: translateY(-3px);
 }
 

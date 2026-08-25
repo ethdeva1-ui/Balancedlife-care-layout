@@ -129,7 +129,7 @@ function closeLightbox(){
   if(lastZoomTrigger){ lastZoomTrigger.focus(); lastZoomTrigger = null; }
 }
 
-document.querySelectorAll('.zoom').forEach(function(btn){
+document.querySelectorAll('[data-zoom-src]').forEach(function(btn){
   btn.addEventListener('click', function(){ openLightbox(btn); });
 });
 
