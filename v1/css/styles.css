@@ -299,15 +299,74 @@ header.is-hidden {
   border-color: var(--brand);
 }
 
+/* hamburger: the middle bar is the element itself, the outer two are its
+   pseudo-elements, so the whole thing folds into an X on toggle */
 .menu-btn {
   display: none;
+  place-items: center;
+  width: 44px;
+  height: 44px;
   margin-left: auto;
-  background: none;
+  padding: 0;
   border: 1px solid var(--line-2);
-  border-radius: 10px;
-  padding: 8px 12px;
+  border-radius: 12px;
+  background: none;
   color: var(--ink);
-  font-size: .9rem;
+}
+
+.menu-bars,
+.menu-bars::before,
+.menu-bars::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform .22s ease, opacity .16s ease;
+}
+
+.menu-bars {
+  position: relative;
+}
+
+.menu-bars::before,
+.menu-bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.menu-bars::before {
+  top: -6px;
+}
+
+.menu-bars::after {
+  top: 6px;
+}
+
+.menu-btn[aria-expanded="true"] {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.menu-btn[aria-expanded="true"] .menu-bars {
+  background: transparent;
+}
+
+.menu-btn[aria-expanded="true"] .menu-bars::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.menu-btn[aria-expanded="true"] .menu-bars::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-bars,
+  .menu-bars::before,
+  .menu-bars::after {
+    transition: none;
+  }
 }
 
 /* ---------- Active page / section ---------- */
@@ -547,9 +606,13 @@ header.is-hidden {
   }
 
   .menu-btn {
-    display: block;
+    display: grid;
     order: 3;
     margin-left: 0;
+  }
+
+  .nav {
+    gap: 12px;
   }
 
   .brand {
