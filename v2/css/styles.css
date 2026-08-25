@@ -15,7 +15,6 @@
 
   --font-sans:"Inter",ui-sans-serif,system-ui,-apple-system,
     BlinkMacSystemFont,"Segoe UI",sans-serif;
-  --font-display:"Fraunces",Georgia,"Times New Roman",serif;
 
   /* Vertical rhythm: full sections and the lighter bands between them.
      Both scale down at the breakpoints below. */
@@ -997,7 +996,7 @@ textarea{
 .feature-copy h2{
   max-width:600px;
   margin:0;
-  color:var(--ink);
+  color:#18B99F;
   font-family:var(--font-display);
   font-optical-sizing:auto;
   font-size:clamp(1.8rem,3.2vw,2.7rem);
@@ -1220,9 +1219,80 @@ textarea{
    ========================================================= */
 
 .products-section{
+  position:relative;
   padding:var(--section-y) 0;
   background:var(--cream);
   overflow:hidden;
+  isolation:isolate;
+}
+
+/* Animated background */
+.products-section::before{
+  content:"";
+  position:absolute;
+  width:750px;
+  height:750px;
+  top:-350px;
+  right:-200px;
+  border-radius:50%;
+  background:radial-gradient(
+    circle,
+    rgba(24,185,159,.28) 0%,
+    rgba(24,185,159,.15) 35%,
+    rgba(24,185,159,.05) 60%,
+    transparent 75%
+  );
+  filter:blur(12px);
+  z-index:-1;
+  animation:products-bg-1 8s ease-in-out infinite alternate;
+}
+
+/* Second animated background glow */
+.products-section::after{
+  content:"";
+  position:absolute;
+  width:650px;
+  height:650px;
+  bottom:-350px;
+  left:-200px;
+  border-radius:50%;
+  background:radial-gradient(
+    circle,
+    rgba(168,203,189,.35) 0%,
+    rgba(24,185,159,.15) 40%,
+    transparent 75%
+  );
+  filter:blur(15px);
+  z-index:-1;
+  animation:products-bg-2 10s ease-in-out infinite alternate;
+}
+
+@keyframes products-bg-1{
+  0%{
+    transform:translate(0,0) scale(1);
+  }
+
+  50%{
+    transform:translate(-120px,100px) scale(1.2);
+  }
+
+  100%{
+    transform:translate(-30px,180px) scale(.95);
+  }
+}
+
+@keyframes products-bg-2{
+  0%{
+    transform:translate(0,0) scale(1);
+  }
+
+  50%{
+    transform:translate(140px,-100px) scale(1.2);
+  }
+
+  100%{
+    transform:translate(220px,-30px) scale(.9);
+  }
 }
 
 .products-heading{
@@ -1428,8 +1498,45 @@ textarea{
    HOW IT WORKS
    ========================================================= */
 
-.process{
-  background:#fff;
+.process {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* Animated background glow */
+.process::before {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  top: 10%;
+  left: -220px;
+  border-radius: 50%;
+  background: rgba(24, 185, 159, 0.08);
+  filter: blur(10px);
+  animation: processGlow 8s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.process::after {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  right: -180px;
+  bottom: -100px;
+  border-radius: 50%;
+  background: rgba(168, 203, 189, 0.18);
+  filter: blur(8px);
+  animation: processGlowReverse 10s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+/* Make sure content stays above the background */
+.process .container {
+  position: relative;
+  z-index: 2;
 }
 
 /* The steps read as one flow, so the intro is centred over them. */
@@ -1590,8 +1697,89 @@ textarea{
    ========================================================= */
 
 .about{
+  position:relative;
   background:var(--cream);
   overflow:hidden;
+  isolation:isolate;
+}
+
+/* Animated background glow */
+.about::before{
+  content:"";
+  position:absolute;
+  width:650px;
+  height:650px;
+  top:-300px;
+  right:-180px;
+  border-radius:50%;
+
+  background:radial-gradient(
+    circle,
+    rgba(24,185,159,.18) 0%,
+    rgba(24,185,159,.09) 35%,
+    rgba(24,185,159,.03) 60%,
+    transparent 75%
+  );
+
+  filter:blur(10px);
+  z-index:-1;
+
+  animation:aboutGlow 9s ease-in-out infinite alternate;
+}
+
+/* Second background glow */
+.about::after{
+  content:"";
+  position:absolute;
+  width:550px;
+  height:550px;
+  bottom:-300px;
+  left:-180px;
+  border-radius:50%;
+
+  background:radial-gradient(
+    circle,
+    rgba(168,203,189,.30) 0%,
+    rgba(24,185,159,.12) 40%,
+    transparent 75%
+  );
+
+  filter:blur(12px);
+  z-index:-1;
+
+  animation:aboutGlowTwo 11s ease-in-out infinite alternate;
+}
+
+@keyframes aboutGlow{
+
+  0%{
+    transform:translate(0,0) scale(1);
+  }
+
+  50%{
+    transform:translate(-100px,100px) scale(1.18);
+  }
+
+  100%{
+    transform:translate(-30px,180px) scale(.95);
+  }
+
+}
+
+@keyframes aboutGlowTwo{
+
+  0%{
+    transform:translate(0,0) scale(1);
+  }
+
+  50%{
+    transform:translate(120px,-80px) scale(1.18);
+  }
+
+  100%{
+    transform:translate(220px,-20px) scale(.9);
+  }
+
 }
 
 .about-grid{
@@ -1619,6 +1807,24 @@ textarea{
   height:300px;
   border-radius:50%;
   background:#e3faf6;
+
+  animation:aboutBackdrop 7s ease-in-out infinite alternate;
+}
+
+@keyframes aboutBackdrop{
+
+  0%{
+    transform:translate(0,0) scale(1);
+  }
+
+  50%{
+    transform:translate(20px,25px) scale(1.08);
+  }
+
+  100%{
+    transform:translate(-10px,50px) scale(.94);
+  }
+
 }
 
 .about-media-frame{
@@ -1632,6 +1838,15 @@ textarea{
     150px;
   background:#dcefea;
   box-shadow:var(--shadow);
+
+  transition:
+    transform .5s ease,
+    box-shadow .5s ease;
+}
+
+.about-media-frame:hover{
+  transform:translateY(-7px);
+  box-shadow:0 30px 70px rgba(23,59,54,.18);
 }
 
 .about-media-frame img{
@@ -1729,8 +1944,109 @@ textarea{
    TESTIMONIALS
    ========================================================= */
 
+/* =========================================================
+   TESTIMONIALS — ANIMATED BACKGROUND
+   ========================================================= */
+
 .testimonials{
+  position:relative;
   background:#fff;
+  overflow:hidden;
+  isolation:isolate;
+}
+
+/* Moving light sweep */
+.testimonials::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+
+  width:180%;
+  height:180%;
+
+  top:-40%;
+  left:-40%;
+
+  background:
+    linear-gradient(
+      115deg,
+      transparent 0%,
+      transparent 35%,
+      rgba(24,185,159,.04) 42%,
+      rgba(24,185,159,.14) 48%,
+      rgba(168,203,189,.08) 53%,
+      transparent 62%,
+      transparent 100%
+    );
+
+  transform:translateX(-30%);
+  animation:testimonialLightSweep 7s ease-in-out infinite;
+}
+
+/* Subtle rotating pattern */
+.testimonials::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+
+  width:700px;
+  height:700px;
+
+  top:50%;
+  left:50%;
+
+  border-radius:50%;
+
+  background:
+    repeating-conic-gradient(
+      from 0deg,
+      rgba(24,185,159,.035) 0deg,
+      transparent 12deg,
+      rgba(24,185,159,.025) 24deg,
+      transparent 36deg
+    );
+
+  filter:blur(2px);
+
+  transform:translate(-50%,-50%);
+  animation:testimonialPattern 25s linear infinite;
+}
+
+
+@keyframes testimonialLightSweep{
+
+  0%{
+    transform:translateX(-35%);
+    opacity:.3;
+  }
+
+  30%{
+    opacity:1;
+  }
+
+  60%{
+    transform:translateX(20%);
+    opacity:.8;
+  }
+
+  100%{
+    transform:translateX(45%);
+    opacity:.3;
+  }
+
+}
+
+
+@keyframes testimonialPattern{
+
+  from{
+    transform:translate(-50%,-50%) rotate(0deg);
+  }
+
+  to{
+    transform:translate(-50%,-50%) rotate(360deg);
+  }
+
 }
 
 .testimonials-heading{
@@ -1792,22 +2108,71 @@ textarea{
 
 .testimonial{
   position:relative;
+  flex:0 0 calc(
+    (100% - (var(--shown) - 1) * var(--testimonial-gap)) / var(--shown)
+  );
+
   display:flex;
   min-width:0;
   flex-direction:column;
+
   margin:0;
   padding:30px 28px 26px;
-  background:var(--cream);
+
+  background:rgba(247,245,239,.92);
   border:1px solid var(--line);
   border-radius:var(--radius-md);
+
   transition:
-    transform .25s ease,
-    box-shadow .25s ease;
+    transform .4s cubic-bezier(.2,.8,.2,1),
+    box-shadow .4s ease,
+    border-color .4s ease;
 }
 
+/* Animated accent line */
+.testimonial::before{
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:28px;
+  right:28px;
+
+  height:2px;
+
+  border-radius:10px;
+
+  background:linear-gradient(
+    90deg,
+    transparent,
+    var(--accent),
+    transparent
+  );
+
+  opacity:.35;
+
+  transform:scaleX(.3);
+  transition:
+    transform .5s ease,
+    opacity .5s ease;
+}
+
+
 .testimonial:hover{
-  transform:translateY(-4px);
-  box-shadow:0 18px 40px -18px rgba(23,59,54,.35);
+  transform:translateY(-10px) scale(1.015);
+
+  box-shadow:
+    0 25px 55px -20px rgba(23,59,54,.35),
+    0 0 0 1px rgba(24,185,159,.08);
+
+  border-color:rgba(24,185,159,.35);
+}
+
+
+.testimonial:hover::before{
+  transform:scaleX(1);
+  opacity:1;
 }
 
 .testimonial-mark{
@@ -1818,6 +2183,20 @@ textarea{
   font-weight:700;
   font-size:3.2rem;
   line-height:.6;
+
+  animation:testimonialMark 4s ease-in-out infinite;
+}
+
+@keyframes testimonialMark{
+
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-4px);
+  }
+
 }
 
 .testimonial blockquote{
