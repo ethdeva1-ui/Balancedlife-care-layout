@@ -39,49 +39,39 @@
            ROOT
         ========================================================= */
 
-        :root {
+      :root {
+    --ink: #11152f;
+    --muted: #6d7288;
 
-            --ink: #11152f;
+    --purple: #0b4f43;
+    --purple-dark: #063d35;
 
-            --muted: #6d7288;
+    --blue: #15a288;
+    --aqua: #5de0d1;
 
-            --purple: #8b7cf6;
+    --green-light: #5de0d1;
+    --green: #15a288;
+    --green-dark: #0b4f43;
 
-            --purple-dark: #625ad6;
+    --lavender: #eeeaff;
+    --light-blue: #dff3ff;
+    --light-aqua: #dffcf8;
+    --peach: #fff0e9;
 
-            --blue: #63b8ff;
+    --white: #ffffff;
+    --cream: #fafaff;
 
-            --aqua: #5de0d1;
+    --border: rgba(17, 21, 47, 0.08);
 
-            --lavender: #eeeaff;
+    --container: 1240px;
 
-            --light-blue: #dff3ff;
+    --radius-xl: 42px;
+    --radius-lg: 30px;
+    --radius-md: 22px;
 
-            --light-aqua: #dffcf8;
-
-            --peach: #fff0e9;
-
-            --white: #ffffff;
-
-            --cream: #fafaff;
-
-            --border:
-                rgba(17, 21, 47, 0.08);
-
-            --container: 1240px;
-
-            --radius-xl: 42px;
-
-            --radius-lg: 30px;
-
-            --radius-md: 22px;
-
-            --shadow:
-                0 30px 90px
-                rgba(55, 60, 105, 0.12);
-
-        }
-
+    --shadow:
+        0 30px 90px rgba(55, 60, 105, 0.12);
+}
 
         /* =========================================================
            RESET
@@ -227,7 +217,7 @@
                 rgba(255,255,255,.72);
 
             color:
-                #6960c9;
+                var(--green);
 
             font-size:
                 11px;
@@ -255,7 +245,7 @@
             background:
                 linear-gradient(
                     135deg,
-                    var(--purple),
+                    var(--green),
                     var(--aqua)
                 );
 
@@ -294,9 +284,9 @@
             background:
                 linear-gradient(
                     100deg,
-                    #625ad6,
-                    #7191ed 50%,
-                    #4bcfc1
+                    var(--green-dark),
+                    var(--green),
+                    var(--green-light)
                 );
 
             -webkit-background-clip:
@@ -307,6 +297,8 @@
 
             color:
                 transparent;
+
+               overflow: visible;
 
         }
 
@@ -508,7 +500,7 @@
         .nav-links a:hover {
 
             color:
-                var(--ink);
+            var(--green-light);
 
             transform:
                 translateY(-1px);
@@ -806,31 +798,34 @@
         }
 
         .hero-title {
+             width: 100%;
+             max-width: 1200px;
+             margin: 22px auto 0;
 
-            margin-top:
-                22px;
-
-            font-family:
-                "Manrope",
-                sans-serif;
+             font-family:
+             "Manrope",
+             sans-serif;
 
             font-size:
-                clamp(
-                    55px,
-                    6.2vw,
-                    88px
-                );
+             clamp(
+              55px,
+              6.2vw,
+              88px
+             );
 
-            line-height:
-                .91;
+             line-height: .91;
+             letter-spacing: -.068em;
+            font-weight: 800;
 
-            letter-spacing:
-                -.068em;
+            overflow: visible;
+            }
 
-            font-weight:
-                800;
-
-        }
+            .hero-centered-content {
+             width: 100%;
+             max-width: 1500px;
+             margin: 0 auto;
+             overflow: visible;
+            }
 
         .hero-description {
 
@@ -893,8 +888,8 @@
             background:
                 linear-gradient(
                     135deg,
-                    #756ce8,
-                    #62b5f4
+                    var(--green),
+                    var(--green-light)
                 );
 
             box-shadow:
@@ -2243,7 +2238,7 @@
             background:
                 linear-gradient(
                     90deg,
-                    var(--purple),
+                    var(--green),
                     var(--aqua)
                 );
 
@@ -2514,7 +2509,7 @@
             background:
                 linear-gradient(
                     100deg,
-                    var(--purple-dark),
+                    var(--green-dark),
                     var(--aqua)
                 );
 
@@ -2715,8 +2710,8 @@
             background:
                 linear-gradient(
                     100deg,
-                    #7067db,
-                    #5acfc4
+                    var(--green),
+                    var(--green-light)
                 );
 
             -webkit-background-clip:
@@ -3885,7 +3880,7 @@
 .nav-links > a:hover,
 .nav-dropdown-toggle:hover,
 .cart-link:hover {
-    color: #625ad6 !important;
+    color:  var(--green) !important;
 }
 
 .nav-dropdown {
@@ -3950,7 +3945,7 @@
 
 .nav-dropdown-menu a:hover {
     background: #eeeaff;
-    color: #625ad6 !important;
+    color:  var(--green) !important;
     transform: translateX(3px);
 }
 
@@ -4121,7 +4116,7 @@
     padding: 7px 10px;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.88);
-    color: #625ad6;
+    color: var(--green-dark);
     font-size: 0.62rem;
     font-weight: 900;
     letter-spacing: 0.1em;
@@ -4296,7 +4291,7 @@
     padding: 7px 11px !important;
     border-radius: 999px !important;
     background: rgba(255, 255, 255, 0.94) !important;
-    color: #625ad6 !important;
+    color: var(--green-dark) !important;
     font-size: 9px !important;
     font-weight: 900 !important;
     line-height: 1 !important;
@@ -4337,9 +4332,9 @@
     border-radius: inherit;
     background: linear-gradient(
         90deg,
-        #625ad6,
-        #63b8ff,
-        #5de0d1
+        var(--green-dark),
+        var(--green),
+        var(--green-light)
     );
     transition: width 0.5s ease;
 }
@@ -4467,9 +4462,9 @@
 .cta-section {
     background: linear-gradient(
         135deg,
-        #625ad6,
-        #63b8ff 52%,
-        #5de0d1
+        var(--green-dark),
+        var(--green),
+        var(--green-light)
     ) !important;
 }
 
@@ -4857,7 +4852,7 @@
 
 .contact-details-new span {
     margin-right: 7px;
-    color: #625ad6;
+    color: var(--green-dark);
 }
 
 .contact-action-new {
@@ -4871,9 +4866,9 @@
     border-radius: 30px;
     background: linear-gradient(
         145deg,
-        #625ad6,
-        #6ca6ed 55%,
-        #5de0d1
+        var(--green-dark),
+        var(--green),
+        var(--green-light)
     );
     color: white;
     box-shadow: 0 25px 60px rgba(98, 90, 214, 0.22);
@@ -6279,13 +6274,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <style id="final-homepage-fixes">
-/* =========================================================
-   FINAL LAYOUT FIXES
-   - floating transparent header
-   - centered hero products
-   - smaller uniform carousel cards
-   - contact form
-========================================================= */
 .nav-wrapper{
     top:18px!important;
     padding:0 24px!important;
@@ -6311,7 +6299,7 @@ document.addEventListener('DOMContentLoaded', () => {
     color:#3f465e!important;
     text-shadow:0 1px 18px rgba(255,255,255,.75);
 }
-.nav-wrapper .nav-links>a:hover,.nav-wrapper .nav-dropdown-toggle:hover,.nav-wrapper .cart-link:hover{color:#625ad6!important}
+.nav-wrapper .nav-links>a:hover,.nav-wrapper .nav-dropdown-toggle:hover,.nav-wrapper .cart-link:hover{color: var(--green)!important}
 
 /* HERO: truly centered and equal-width */
 .hero-new{overflow:hidden!important}
@@ -6498,7 +6486,7 @@ document.addEventListener('DOMContentLoaded', () => {
     border:0;
     border-radius:999px;
     padding:15px 22px;
-    background:linear-gradient(135deg,#625ad6,#6ca6ed 55%,#5de0d1);
+    background:linear-gradient(135deg,var(--green-dark),var(--green) 55%,var(--green-light));
     color:white;
     font-size:12px;
     font-weight:900;
