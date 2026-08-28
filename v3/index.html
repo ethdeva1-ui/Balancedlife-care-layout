@@ -8796,6 +8796,197 @@ body.zoom-open {
     }
 }
 
+/* =========================================================
+   CONTACT FORM — UNIFORM TYPE
+   Labels 12px, fields 13px, helper 11px and the button 12px
+   all sat below the site scale. Everything now uses DM Sans
+   at the same steps as the rest of the page.
+   ========================================================= */
+
+.form-field-new label {
+    font-family: "DM Sans", sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    line-height: 1.4 !important;
+    letter-spacing: 0 !important;
+    color: #343b55 !important;
+}
+
+.form-field-new input,
+.form-field-new textarea {
+    font-family: "DM Sans", sans-serif !important;
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    letter-spacing: 0 !important;
+    padding: 15px 17px !important;
+    color: var(--ink) !important;
+}
+
+.form-field-new input::placeholder,
+.form-field-new textarea::placeholder {
+    font-family: "DM Sans", sans-serif !important;
+    font-size: 15px !important;
+    color: #9aa0b2 !important;
+}
+
+.form-field-new textarea {
+    min-height: 150px !important;
+}
+
+.form-submit-new > span {
+    font-family: "DM Sans", sans-serif !important;
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+    letter-spacing: 0 !important;
+    color: #6f7488 !important;
+}
+
+.form-submit-new button {
+    font-family: "DM Sans", sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0 !important;
+    padding: 15px 24px !important;
+}
+
+/* The contact links beside the form belong to the same block. */
+.contact-details-new a {
+    font-family: "DM Sans", sans-serif !important;
+    font-size: 14.5px !important;
+    font-weight: 700 !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0 !important;
+    padding: 13px 19px !important;
+}
+
+@media (max-width: 650px) {
+    .form-field-new label {
+        font-size: 13.5px !important;
+    }
+
+    .form-field-new input,
+    .form-field-new textarea,
+    .form-field-new input::placeholder,
+    .form-field-new textarea::placeholder {
+        font-size: 14.5px !important;
+    }
+
+    .form-submit-new > span {
+        font-size: 12.5px !important;
+    }
+
+    .contact-details-new a {
+        font-size: 14px !important;
+    }
+}
+
+/* =========================================================
+   NAV SCALE — LARGER MENU TYPE, LOGO REBALANCED
+   Links were 0.70rem (~11px); raised to ~13px and the bar,
+   logo and mobile panel offsets grown to match.
+   ========================================================= */
+
+.nav-wrapper .nav {
+    min-height: 78px !important;
+}
+
+.nav-wrapper .nav-links > a,
+.nav-wrapper .nav-dropdown-toggle,
+.nav-wrapper .cart-link {
+    font-size: 0.82rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.045em !important;
+}
+
+.nav-wrapper .cart-icon {
+    font-size: 17px !important;
+}
+
+.nav-wrapper .nav-dropdown-toggle span {
+    font-size: 15px !important;
+}
+
+.nav-wrapper .nav-dropdown-menu a {
+    font-size: 0.8rem !important;
+    letter-spacing: 0.01em !important;
+}
+
+.nav-wrapper .nav-links > a.nav-highlight {
+    padding: 10px 18px !important;
+}
+
+.nav-wrapper .brand-image img {
+    height: 54px !important;
+    max-height: 54px !important;
+}
+
+.mobile-menu {
+    top: 86px !important;
+    max-height: calc(100vh - 102px) !important;
+}
+
+.mobile-menu a,
+.mobile-menu details summary {
+    font-size: 15px !important;
+}
+
+.mobile-menu details a {
+    font-size: 14px !important;
+}
+
+@media (max-width: 1100px) {
+    .nav-wrapper .nav-links {
+        gap: 17px !important;
+    }
+
+    .nav-wrapper .nav-links > a,
+    .nav-wrapper .nav-dropdown-toggle,
+    .nav-wrapper .cart-link {
+        font-size: 0.76rem !important;
+    }
+
+    .nav-wrapper .nav-links > a.nav-highlight {
+        padding: 9px 14px !important;
+    }
+
+    .nav-wrapper .brand-image img {
+        height: 48px !important;
+        max-height: 48px !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .nav-wrapper .nav {
+        min-height: 72px !important;
+    }
+
+    .mobile-menu {
+        top: 80px !important;
+        max-height: calc(100vh - 96px) !important;
+    }
+}
+
+@media (max-width: 650px) {
+    .nav-wrapper .nav {
+        min-height: 68px !important;
+    }
+
+    .nav-wrapper .brand-image img {
+        height: 42px !important;
+        max-height: 42px !important;
+    }
+
+    .mobile-menu {
+        top: 76px !important;
+        max-height: calc(100vh - 92px) !important;
+    }
+
+    .mobile-menu a,
+    .mobile-menu details summary {
+        font-size: 14.5px !important;
+    }
+}
+
 </style>
 
 <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
