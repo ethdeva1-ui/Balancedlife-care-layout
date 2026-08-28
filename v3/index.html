@@ -5057,7 +5057,7 @@
 <div class="nav-wrapper">
     <nav class="nav" id="navbar">
         <a href="#home" class="brand brand-image" aria-label="Balanced Life Care home">
-            <img src="v1/assets/logo.png" alt="Balanced Life Care" data-asset="logo.png" onerror="this.onerror=null;this.src='v1/assets/logo.jpg';">
+            <img src="../v1/assets/logo.png" alt="Balanced Life Care" data-asset="logo.png" onerror="this.onerror=null;this.src='../v1/assets/logo.jpg';">
         </a>
 
         <div class="nav-links">
@@ -5081,7 +5081,7 @@
                     <a href="#products">Supplements</a>
                 </div>
             </div>
-            <a href="#video">Healin' Naturals</a>
+            <a href="#video" class="nav-highlight"><span class="nav-highlight-mark" aria-hidden="true">✦</span>Healin' Naturals</a>
             <a href="#contact">Contact</a>
             <a class="cart-link" href="https://balancedlife-care.com/cart/" target="_blank" rel="noopener" aria-label="Shopping cart"><span class="cart-icon">🛒</span> Cart</a>
         </div>
@@ -5095,7 +5095,7 @@
     <a href="#about">About</a>
     <details><summary>Curated Care Plans</summary><a href="#products">Weight management</a><a href="#contact">Womens HRT</a><a href="#contact">Testosterone replacement therapy</a><a href="#contact">Sexual wellness</a></details>
     <details><summary>Care Collection</summary><a href="#products">Beauty</a><a href="#products">Equipment</a><a href="#products">Fertility</a><a href="#products">Supplements</a></details>
-    <a href="#video">Healin' Naturals</a>
+    <a href="#video" class="nav-highlight"><span class="nav-highlight-mark" aria-hidden="true">✦</span>Healin' Naturals</a>
     <a href="#contact">Contact</a>
     <a href="https://balancedlife-care.com/cart/" target="_blank" rel="noopener">🛒 Cart</a>
 </div>
@@ -5837,7 +5837,7 @@
         <div class="footer-grid footer-grid-new">
             <div class="footer-brand">
                 <a href="#home" class="brand brand-image footer-brand-logo">
-                    <img src="v1/assets/logo.png" alt="Balanced Life Care" onerror="this.onerror=null;this.src='v1/assets/logo.jpg';">
+                    <img src="../v1/assets/logo.png" alt="Balanced Life Care" onerror="this.onerror=null;this.src='../v1/assets/logo.jpg';">
                 </a>
                 <p>Balanced Life Care connects you with convenient care options designed around your everyday goals and wellbeing.</p>
             </div>
@@ -6234,14 +6234,57 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileToggle = document.getElementById('mobileToggle');
     const mobileMenu = document.getElementById('mobileMenu');
 
-    const onScroll = () => navbar?.classList.toggle('scrolled', window.scrollY > 20);
-    onScroll();
+    // Header reveals on scroll up, tucks away on scroll down.
+    const navWrapper = navbar?.closest('.nav-wrapper');
+    const REVEAL_AFTER = 120;   // always visible above this point
+    const DELTA = 6;            // ignore sub-pixel / trackpad jitter
+    let lastY = Math.max(window.scrollY, 0);
+    let ticking = false;
+
+    const closeDropdowns = () => {
+        document.querySelectorAll('.nav-dropdown.open').forEach(d => {
+            d.classList.remove('open');
+            d.querySelector('.nav-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+        });
+    };
+
+    const showNav = () => navWrapper?.classList.remove('nav-hidden');
+
+    const applyScrollState = () => {
+        ticking = false;
+        const y = Math.max(window.scrollY, 0);
+        navbar?.classList.toggle('scrolled', y > 20);
+
+        if (navWrapper) {
+            const delta = y - lastY;
+            const menuOpen = mobileMenu?.classList.contains('active');
+
+            if (y <= REVEAL_AFTER || menuOpen) {
+                showNav();
+            } else if (delta > DELTA) {
+                navWrapper.classList.add('nav-hidden');
+                closeDropdowns();
+            } else if (delta < -DELTA) {
+                showNav();
+            }
+        }
+
+        if (Math.abs(y - lastY) > DELTA || y <= REVEAL_AFTER) lastY = y;
+    };
+
+    const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(applyScrollState);
+    };
+    applyScrollState();
     window.addEventListener('scroll', onScroll, {passive:true});
 
     mobileToggle?.addEventListener('click', () => {
         const open = mobileMenu.classList.toggle('active');
         mobileToggle.setAttribute('aria-expanded', String(open));
         mobileToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        if (open) showNav();
     });
     mobileMenu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
         mobileMenu.classList.remove('active');
@@ -6268,8 +6311,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Resolve the V1 assets from common homepage locations so the product images
     // still load whether this file lives beside v1 or inside a child folder.
     const assetCandidates = (file) => [
-        `v1/assets/${file}`,
         `../v1/assets/${file}`,
+        `v1/assets/${file}`,
         `/v1/assets/${file}`
     ];
     document.querySelectorAll('img[data-asset]').forEach(img => {
@@ -7754,7 +7797,406 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 }
 
+/* =========================================================
+   HEADER / MENU LAYOUT + LOGO SIZING FIX
+   Consolidates the conflicting nav + .brand-image rules that
+   accumulated across the earlier override blocks.
+   ========================================================= */
+
+/* Sticky bar sat 18px down, so page content scrolled through
+   the gap above it and the bar itself swallowed no clicks. */
+.nav-wrapper {
+    position: sticky !important;
+    top: 0 !important;
+    padding: 0 24px !important;
+    pointer-events: auto !important;
+}
+
+.nav-wrapper .nav {
+    min-height: 72px !important;
+    gap: 24px !important;
+}
+
+/* Logo is 668x278 (2.4:1). The old fixed 155x46 box with
+   object-fit:contain rendered it at ~110px inside a 168px
+   brand column, so it read small and sat off-centre.
+   Height-only sizing lets the artwork use the full bar. */
+.nav-wrapper .brand-image {
+    width: auto !important;
+    min-width: 0 !important;
+    flex: 0 0 auto !important;
+    justify-content: flex-start !important;
+}
+
+.nav-wrapper .brand-image img {
+    width: auto !important;
+    height: 50px !important;
+    max-height: 50px !important;
+    object-fit: contain !important;
+    object-position: left center !important;
+}
+
+/* Mobile panel was pinned at a fixed 95px under a bar whose
+   height had since changed, and sat below the bar's z-index. */
+.mobile-menu {
+    position: fixed !important;
+    top: 80px !important;
+    z-index: 1100 !important;
+    max-height: calc(100vh - 96px) !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain !important;
+}
+
+.footer-brand-logo {
+    width: auto !important;
+    min-width: 0 !important;
+}
+
+.footer-brand-logo img {
+    width: auto !important;
+    height: 56px !important;
+}
+
+@media (max-width: 1100px) {
+    .nav-wrapper .brand-image img {
+        height: 44px !important;
+        max-height: 44px !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .nav-wrapper .nav {
+        min-height: 66px !important;
+    }
+
+    .mobile-menu {
+        top: 74px !important;
+        max-height: calc(100vh - 90px) !important;
+    }
+}
+
+@media (max-width: 650px) {
+    .nav-wrapper {
+        top: 0 !important;
+        padding: 0 12px !important;
+    }
+
+    .nav-wrapper .nav {
+        min-height: 66px !important;
+        padding: 0 4px !important;
+    }
+
+    .nav-wrapper .brand-image img {
+        height: 40px !important;
+        max-height: 40px !important;
+    }
+
+    .mobile-menu {
+        top: 70px !important;
+        left: 12px !important;
+        right: 12px !important;
+        max-height: calc(100vh - 86px) !important;
+    }
+
+    .footer-brand-logo img {
+        height: 48px !important;
+    }
+}
+
+/* =========================================================
+   NAV HIGHLIGHT — "HEALIN' NATURALS"
+   Featured section: reads as a pill instead of a plain link
+   so it stands apart from the rest of the menu.
+   ========================================================= */
+
+.nav-wrapper .nav-links > a.nav-highlight {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    padding: 9px 16px !important;
+    border-radius: 999px !important;
+    border: 1px solid rgba(21, 162, 136, 0.32) !important;
+    background: linear-gradient(
+        135deg,
+        rgba(93, 224, 209, 0.20),
+        rgba(21, 162, 136, 0.12) 60%,
+        rgba(93, 224, 209, 0.20)
+    ) !important;
+    color: var(--green-dark) !important;
+    text-shadow: none !important;
+    box-shadow: 0 6px 18px rgba(21, 162, 136, 0.14) !important;
+    transition: transform .25s ease, box-shadow .25s ease,
+                background .25s ease, border-color .25s ease !important;
+}
+
+.nav-wrapper .nav-links > a.nav-highlight:hover {
+    transform: translateY(-2px) !important;
+    border-color: rgba(21, 162, 136, 0.55) !important;
+    background: linear-gradient(
+        135deg,
+        var(--green-dark),
+        var(--green) 55%,
+        var(--green-light)
+    ) !important;
+    color: #ffffff !important;
+    box-shadow: 0 12px 26px rgba(21, 162, 136, 0.28) !important;
+}
+
+.nav-highlight-mark {
+    font-size: 11px;
+    line-height: 1;
+    color: var(--green);
+    transition: color .25s ease, transform .25s ease;
+}
+
+.nav-wrapper .nav-links > a.nav-highlight:hover .nav-highlight-mark {
+    color: #ffffff;
+    transform: rotate(90deg);
+}
+
+/* Mobile panel: same idea, sized for the stacked list. */
+.mobile-menu a.nav-highlight {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0 4px;
+    padding: 13px 16px !important;
+    border: 1px solid rgba(21, 162, 136, 0.32);
+    border-radius: 16px;
+    background: linear-gradient(
+        135deg,
+        rgba(93, 224, 209, 0.20),
+        rgba(21, 162, 136, 0.12) 60%,
+        rgba(93, 224, 209, 0.20)
+    );
+    color: var(--green-dark) !important;
+    font-weight: 900;
+}
+
+@media (max-width: 1100px) {
+    .nav-wrapper .nav-links > a.nav-highlight {
+        padding: 8px 12px !important;
+    }
+}
+
+/* =========================================================
+   AUTO-HIDE HEADER
+   Visible at the top of the page and whenever the reader
+   scrolls up; slides out of the way on the way down.
+   ========================================================= */
+
+.nav-wrapper {
+    will-change: transform;
+    transition: transform .42s cubic-bezier(.22, .61, .36, 1),
+                background .3s ease,
+                box-shadow .3s ease !important;
+}
+
+.nav-wrapper.nav-hidden {
+    transform: translateY(-115%) !important;
+    box-shadow: none !important;
+}
+
+/* The mobile panel is a fixed sibling, so it has to travel with
+   the bar rather than hang in mid-air. */
+.mobile-menu {
+    transition: transform .42s cubic-bezier(.22, .61, .36, 1),
+                opacity .28s ease !important;
+}
+
+.nav-wrapper.nav-hidden ~ .mobile-menu {
+    transform: translateY(-130%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nav-wrapper,
+    .mobile-menu {
+        transition: none !important;
+    }
+
+    .nav-wrapper.nav-hidden {
+        transform: none !important;
+    }
+
+    .nav-wrapper.nav-hidden ~ .mobile-menu {
+        transform: none !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+}
+
+/* =========================================================
+   BACK-TO-TOP ARROW
+   Fades in once the reader is past the hero, floats gently
+   while idle, and lifts on hover.
+   ========================================================= */
+
+.back-to-top {
+    position: fixed;
+    right: 26px;
+    bottom: 26px;
+    z-index: 1200;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.92);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.82);
+    color: var(--green-dark);
+    font-size: 19px;
+    line-height: 1;
+    cursor: pointer;
+
+    box-shadow: 0 18px 40px rgba(35, 40, 80, 0.14);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(10px);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(18px) scale(0.85);
+    transition: opacity .35s ease,
+                transform .45s cubic-bezier(.22, .61, .36, 1),
+                visibility .35s ease,
+                background .3s ease,
+                border-color .3s ease,
+                color .3s ease,
+                box-shadow .3s ease;
+}
+
+.back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* Soft pulsing halo, so the control reads as live without shouting. */
+.back-to-top::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px solid rgba(21, 162, 136, 0.38);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.back-to-top.is-visible::before {
+    animation: backToTopHalo 2.8s ease-out infinite;
+}
+
+@keyframes backToTopHalo {
+    0%   { transform: scale(0.9);  opacity: 0.55; }
+    70%  { transform: scale(1.25); opacity: 0; }
+    100% { transform: scale(1.25); opacity: 0; }
+}
+
+/* The arrow itself drifts upward on a loop — the "scroll up" cue. */
+.back-to-top span {
+    display: block;
+    will-change: transform;
+}
+
+.back-to-top.is-visible span {
+    animation: backToTopBob 1.9s ease-in-out infinite;
+}
+
+@keyframes backToTopBob {
+    0%, 100% { transform: translateY(2px); }
+    50%      { transform: translateY(-3px); }
+}
+
+.back-to-top:hover {
+    background: linear-gradient(
+        135deg,
+        var(--green-dark),
+        var(--green) 55%,
+        var(--green-light)
+    );
+    border-color: rgba(255, 255, 255, 0.85);
+    color: #ffffff;
+    box-shadow: 0 22px 46px rgba(11, 79, 67, 0.30);
+}
+
+.back-to-top.is-visible:hover {
+    transform: translateY(-4px) scale(1.06);
+}
+
+.back-to-top:hover span {
+    animation-duration: .9s;
+}
+
+.back-to-top:focus-visible {
+    outline: 3px solid rgba(21, 162, 136, 0.45);
+    outline-offset: 4px;
+}
+
+.back-to-top:active {
+    transform: translateY(-1px) scale(0.97);
+}
+
+@media (max-width: 650px) {
+    .back-to-top {
+        right: 16px;
+        bottom: 16px;
+        width: 46px;
+        height: 46px;
+        font-size: 17px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .back-to-top,
+    .back-to-top.is-visible,
+    .back-to-top.is-visible:hover {
+        transition: opacity .2s ease, visibility .2s ease;
+        transform: none;
+    }
+
+    .back-to-top.is-visible::before,
+    .back-to-top.is-visible span {
+        animation: none;
+    }
+}
+
 </style>
+
+<button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
+    <span aria-hidden="true">&#8593;</span>
+</button>
+
+<script>
+(() => {
+    const btn = document.getElementById('backToTop');
+    if (!btn) return;
+
+    const SHOW_AFTER = 400;
+    let ticking = false;
+
+    const update = () => {
+        ticking = false;
+        btn.classList.toggle('is-visible', window.scrollY > SHOW_AFTER);
+    };
+
+    update();
+    window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(update);
+    }, {passive: true});
+
+    btn.addEventListener('click', () => {
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({top: 0, behavior: reduced ? 'auto' : 'smooth'});
+    });
+})();
+</script>
 
 </body>
 </html>
