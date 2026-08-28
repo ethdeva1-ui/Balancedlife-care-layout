@@ -5188,6 +5188,18 @@
             </div>
         </div>
 
+        <div class="product-disclaimer-wrap reveal delay-2">
+            <div class="product-disclaimer">
+                <span class="product-disclaimer-mark">i</span>
+                <p>
+                    <strong>Product Disclaimer:</strong>
+                    The product images displayed on this website are for illustrative purposes only
+                    and may not represent the actual medication packaging, labeling, or appearance of
+                    the product received.
+                </p>
+            </div>
+        </div>
+
         <div class="carousel-shell">
             <div class="carousel-controls">
                 <button class="carousel-control" id="carouselPrev" type="button" aria-label="Previous product">←</button>
@@ -6518,8 +6530,8 @@ document.addEventListener('DOMContentLoaded', () => {
 .hero-products-new .hero-product{
     width:100%!important;
     min-width:0!important;
-    min-height:465px!important;
-    height:465px!important;
+    min-height:500px!important;
+    height:500px!important;
     padding:14px!important;
     position:relative!important;
     inset:auto!important;
@@ -6583,8 +6595,8 @@ document.addEventListener('DOMContentLoaded', () => {
     min-width:270px!important;
     max-width:270px!important;
     flex:0 0 270px!important;
-    height:445px!important;
-    min-height:445px!important;
+    height:480px!important;
+    min-height:480px!important;
     padding:12px!important;
     border-radius:27px!important;
     display:flex!important;
@@ -6730,8 +6742,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     .hero-products-new .hero-product {
-        height: 430px !important;
-        min-height: 430px !important;
+        height: 470px !important;
+        min-height: 470px !important;
     }
 
     .hero-products-new .real-product-art {
@@ -6787,8 +6799,8 @@ document.addEventListener('DOMContentLoaded', () => {
         min-width: 250px !important;
         max-width: 250px !important;
         flex-basis: 250px !important;
-        height: 430px !important;
-        min-height: 430px !important;
+        height: 470px !important;
+        min-height: 470px !important;
     }
 
     .products-new .carousel-image {
@@ -8165,6 +8177,625 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 }
 
+/* =========================================================
+   PARAGRAPH TYPOGRAPHY — ONE UNIFORM SCALE
+   Body copy had drifted from 9px to 15px across the page.
+   Everything now sits on three steps of the same DM Sans
+   scale, anchored to the site's existing 15px .section-copy.
+   ========================================================= */
+
+/* 1. LEAD — section intros and the hero blurb */
+.hero-description,
+.section-copy,
+.glp1-intro {
+    font-family: "DM Sans", sans-serif !important;
+    font-size: 16px !important;
+    line-height: 1.8 !important;
+    color: var(--muted) !important;
+    letter-spacing: 0 !important;
+}
+
+/* 2. BODY — every card, panel and column description */
+.hero-products-new .hero-product-info p,
+.products-new .carousel-body p,
+.about-card p,
+.stat-card p,
+.process-card p,
+.glp1-benefit p,
+.footer-brand p {
+    font-family: "DM Sans", sans-serif !important;
+    font-size: 14.5px !important;
+    line-height: 1.7 !important;
+    letter-spacing: 0 !important;
+}
+
+/* Card copy keeps its own muted tone against the card fill. */
+.hero-products-new .hero-product-info p,
+.products-new .carousel-body p,
+.about-card p,
+.stat-card p,
+.process-card p,
+.glp1-benefit p {
+    color: var(--muted) !important;
+}
+
+/* 3. FINE PRINT — legal / disclaimer only, never below 12.5px */
+.glp1-disclaimer p,
+.footer-bottom,
+.footer-bottom p {
+    font-family: "DM Sans", sans-serif !important;
+    font-size: 12.5px !important;
+    line-height: 1.7 !important;
+    letter-spacing: 0 !important;
+}
+
+/* Reserved space rebalanced for the taller lines so cards in a
+   row still align on their headings and footers. */
+.hero-products-new .hero-product-info p {
+    min-height: 74px !important;
+}
+
+.products-new .carousel-body p {
+    min-height: 74px !important;
+}
+
+@media (max-width: 650px) {
+    .hero-description,
+    .section-copy,
+    .glp1-intro {
+        font-size: 15px !important;
+    }
+
+    .hero-products-new .hero-product-info p,
+    .products-new .carousel-body p,
+    .about-card p,
+    .stat-card p,
+    .process-card p,
+    .glp1-benefit p,
+    .footer-brand p {
+        font-size: 14px !important;
+    }
+
+    .hero-products-new .hero-product-info p {
+        min-height: 0 !important;
+    }
+}
+
+/* =========================================================
+   HERO FEATURE CARDS — READABLE TYPE
+   Titles were 11px and captions 9px; both now sit on the
+   same scale as the rest of the page.
+   ========================================================= */
+
+.hero-bottom-card {
+    min-height: 96px !important;
+    padding: 16px 18px !important;
+    gap: 13px !important;
+    align-items: center !important;
+}
+
+.hero-bottom-icon {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 13px !important;
+    font-size: 17px !important;
+    color: var(--green-dark) !important;
+}
+
+.hero-bottom-card strong {
+    display: block;
+    font-family: "Manrope", sans-serif !important;
+    font-size: 14.5px !important;
+    font-weight: 800 !important;
+    line-height: 1.3 !important;
+    letter-spacing: -0.01em !important;
+    color: var(--ink) !important;
+}
+
+.hero-bottom-card span {
+    display: block;
+    margin-top: 4px !important;
+    font-family: "DM Sans", sans-serif !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0 !important;
+    color: var(--muted) !important;
+}
+
+@media (max-width: 900px) {
+    .hero-bottom-card {
+        min-height: 90px !important;
+    }
+}
+
+@media (max-width: 650px) {
+    .hero-bottom-card {
+        min-height: 84px !important;
+        padding: 14px 16px !important;
+    }
+
+    .hero-bottom-card strong {
+        font-size: 14px !important;
+    }
+
+    .hero-bottom-card span {
+        font-size: 12.5px !important;
+    }
+}
+
+/* =========================================================
+   HERO FEATURE ROW — ALIGN WITH THE PRODUCT GRID ABOVE
+   The row inherited `left:10px !important` from the old
+   absolutely-positioned bar; once it became position:relative
+   that offset simply pushed the whole row 10px right of the
+   products grid. It also kept the 940px width below 900px,
+   where the grid above had already narrowed to 760px.
+   ========================================================= */
+
+.hero-bottom {
+    left: auto !important;
+    right: auto !important;
+    width: 100% !important;
+    max-width: 1080px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    gap: 24px !important;
+}
+
+@media (max-width: 1100px) {
+    .hero-bottom {
+        max-width: 940px !important;
+        gap: 20px !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .hero-bottom {
+        max-width: 760px !important;
+        gap: 14px !important;
+    }
+}
+
+@media (max-width: 650px) {
+    .hero-bottom {
+        max-width: 390px !important;
+        gap: 12px !important;
+    }
+}
+
+/* =========================================================
+   PRODUCT DISCLAIMER
+   Same glass treatment as the GLP-1 disclaimer so the two
+   notices read as one system.
+   ========================================================= */
+
+.product-disclaimer-wrap {
+    margin-top: 30px;
+    margin-bottom: 6px;
+}
+
+.product-disclaimer {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 18px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.88);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.55);
+    box-shadow: 0 16px 40px rgba(45, 52, 90, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.product-disclaimer-mark {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    margin-top: 1px;
+    border-radius: 50%;
+    background: #e9f8f5;
+    color: var(--green-dark);
+    font-family: "Manrope", sans-serif;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.product-disclaimer p {
+    margin: 0;
+    font-family: "DM Sans", sans-serif;
+    font-size: 12.5px;
+    line-height: 1.7;
+    letter-spacing: 0;
+    color: #6f7488;
+}
+
+.product-disclaimer p strong {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    color: var(--ink);
+}
+
+@media (max-width: 650px) {
+    .product-disclaimer-wrap {
+        margin-top: 24px;
+        margin-bottom: 4px;
+    }
+
+    .product-disclaimer {
+        gap: 11px;
+        padding: 16px;
+        border-radius: 16px;
+    }
+}
+
+/* =========================================================
+   ABOUT CHECK LIST + FOOTER — READABLE TYPE
+   The check list sat at 13px and the footer ran 10-12px on a
+   near-black ground; both now match the site type scale, with
+   footer text lifted to a contrast that actually reads.
+   ========================================================= */
+
+.about-list {
+    gap: 14px !important;
+}
+
+.about-list-item {
+    font-family: "DM Sans", sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0 !important;
+    color: #464b61 !important;
+    gap: 13px !important;
+    align-items: center !important;
+}
+
+.about-list-item .check {
+    width: 30px !important;
+    height: 30px !important;
+    flex: 0 0 auto !important;
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    color: var(--green-dark) !important;
+}
+
+/* ---- FOOTER ---- */
+
+.footer-column h4 {
+    font-family: "Manrope", sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.01em !important;
+    color: rgba(255, 255, 255, 0.96) !important;
+    margin-bottom: 16px !important;
+}
+
+.footer-column a {
+    font-family: "DM Sans", sans-serif !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    letter-spacing: 0 !important;
+    margin-bottom: 12px !important;
+    color: rgba(255, 255, 255, 0.74) !important;
+}
+
+.footer-column a:hover {
+    color: #ffffff !important;
+}
+
+.footer-brand p {
+    color: rgba(255, 255, 255, 0.74) !important;
+}
+
+.footer-bottom,
+.footer-bottom p,
+.footer-bottom div,
+.footer-disclaimer {
+    font-family: "DM Sans", sans-serif !important;
+    font-size: 13px !important;
+    line-height: 1.7 !important;
+    letter-spacing: 0 !important;
+    color: rgba(255, 255, 255, 0.62) !important;
+}
+
+@media (max-width: 650px) {
+    .about-list-item {
+        font-size: 14.5px !important;
+    }
+
+    .footer-column a,
+    .footer-column h4 {
+        font-size: 13.5px !important;
+    }
+
+    .footer-bottom,
+    .footer-bottom p,
+    .footer-bottom div,
+    .footer-disclaimer {
+        font-size: 12.5px !important;
+    }
+}
+
+/* =========================================================
+   GLP-1 BENEFIT LIST — READABLE TYPE
+   The bold lead-in was 12px, smaller than the copy beneath it
+   once paragraphs moved onto the site scale. It now reads as a
+   proper heading above its description.
+   ========================================================= */
+
+.glp1-benefits {
+    gap: 20px !important;
+}
+
+.glp1-benefit {
+    grid-template-columns: 34px 1fr !important;
+    gap: 14px !important;
+}
+
+.glp1-check {
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 12px !important;
+    font-size: 14px !important;
+    font-weight: 900 !important;
+    color: var(--green-dark) !important;
+}
+
+.glp1-benefit strong {
+    display: block;
+    font-family: "Manrope", sans-serif !important;
+    font-size: 15.5px !important;
+    font-weight: 800 !important;
+    line-height: 1.35 !important;
+    letter-spacing: -0.01em !important;
+    color: var(--ink) !important;
+}
+
+.glp1-benefit p {
+    margin-top: 6px !important;
+    font-size: 14.5px !important;
+    line-height: 1.65 !important;
+    color: var(--muted) !important;
+}
+
+@media (max-width: 650px) {
+    .glp1-benefits {
+        gap: 17px !important;
+    }
+
+    .glp1-benefit strong {
+        font-size: 15px !important;
+    }
+
+    .glp1-benefit p {
+        font-size: 14px !important;
+    }
+}
+
+
+
+/* =========================================================
+   PRODUCT IMAGE ZOOM
+   A magnifier button in the bottom-right of every product
+   frame; clicking it (or the carousel artwork) opens the
+   image full size over a dimmed page.
+   ========================================================= */
+
+.zoom-btn {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    z-index: 5;
+
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.86);
+    color: var(--green-dark);
+    line-height: 1;
+    cursor: pointer;
+
+    box-shadow: 0 8px 20px rgba(45, 52, 90, 0.14);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    opacity: 0;
+    transform: scale(.85);
+    transition: opacity .25s ease,
+                transform .3s cubic-bezier(.22, .61, .36, 1),
+                background .25s ease,
+                color .25s ease;
+}
+
+.zoom-btn svg {
+    display: block;
+    width: 17px;
+    height: 17px;
+    stroke: currentColor;
+}
+
+.carousel-image:hover .zoom-btn,
+.real-product-art:hover .zoom-btn,
+.zoom-btn:focus-visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.zoom-btn:hover {
+    background: linear-gradient(
+        135deg,
+        var(--green-dark),
+        var(--green) 55%,
+        var(--green-light)
+    );
+    color: #ffffff;
+}
+
+.zoom-btn:focus-visible {
+    outline: 3px solid rgba(21, 162, 136, 0.45);
+    outline-offset: 3px;
+}
+
+/* Touch devices have no hover, so keep the control visible. */
+@media (hover: none) {
+    .zoom-btn {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ---- LIGHTBOX ---- */
+
+.zoom-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5vh 5vw;
+
+    background: rgba(11, 15, 35, 0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease;
+}
+
+.zoom-lightbox.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.zoom-lightbox-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    max-width: 100%;
+    max-height: 100%;
+
+    transform: scale(.94);
+    transition: transform .38s cubic-bezier(.22, .61, .36, 1);
+}
+
+.zoom-lightbox.is-open .zoom-lightbox-panel {
+    transform: scale(1);
+}
+
+.zoom-lightbox img {
+    display: block;
+    max-width: min(880px, 90vw);
+    max-height: 78vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+
+    padding: 28px;
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.38);
+}
+
+.zoom-lightbox-caption {
+    max-width: 640px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 14.5px;
+    line-height: 1.6;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.zoom-lightbox-close {
+    position: absolute;
+    top: -16px;
+    right: -16px;
+
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    background: #ffffff;
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1;
+    cursor: pointer;
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+    transition: transform .25s ease, background .25s ease, color .25s ease;
+}
+
+.zoom-lightbox-close:hover {
+    transform: scale(1.08);
+    background: var(--green-dark);
+    color: #ffffff;
+}
+
+.zoom-lightbox-close:focus-visible {
+    outline: 3px solid rgba(93, 224, 209, 0.7);
+    outline-offset: 3px;
+}
+
+body.zoom-open {
+    overflow: hidden;
+}
+
+@media (max-width: 650px) {
+    .zoom-btn {
+        right: 10px;
+        bottom: 10px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .zoom-btn svg {
+        width: 15px;
+        height: 15px;
+    }
+
+    .zoom-lightbox img {
+        padding: 18px;
+        border-radius: 24px;
+        max-height: 68vh;
+    }
+
+    .zoom-lightbox-close {
+        top: -10px;
+        right: -6px;
+        width: 38px;
+        height: 38px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .zoom-btn,
+    .zoom-lightbox,
+    .zoom-lightbox-panel,
+    .zoom-lightbox-close {
+        transition: opacity .15s ease, visibility .15s ease !important;
+        transform: none !important;
+    }
+}
+
 </style>
 
 <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
@@ -8194,6 +8825,104 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
         const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         window.scrollTo({top: 0, behavior: reduced ? 'auto' : 'smooth'});
+    });
+})();
+</script>
+
+
+
+<script>
+(() => {
+    // Zoom control on each product frame -> full-size image over a dimmed page.
+    const FRAMES = '.products-new .carousel-image, .hero-products-new .real-product-art';
+
+    const box = document.createElement('div');
+    box.className = 'zoom-lightbox';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.setAttribute('aria-label', 'Product image');
+    box.innerHTML =
+        '<div class="zoom-lightbox-panel">' +
+            '<button class="zoom-lightbox-close" type="button" aria-label="Close image">&#10005;</button>' +
+            '<img alt="">' +
+            '<div class="zoom-lightbox-caption"></div>' +
+        '</div>';
+    document.body.appendChild(box);
+
+    const big = box.querySelector('img');
+    const caption = box.querySelector('.zoom-lightbox-caption');
+    const closeBtn = box.querySelector('.zoom-lightbox-close');
+    let lastFocus = null;
+
+    const open = frame => {
+        const img = frame.querySelector('img');
+        if (!img) return;
+
+        const card = frame.closest('.carousel-card, .hero-product');
+        const title = card?.querySelector('h3')?.textContent.trim() || img.alt || '';
+
+        big.src = img.currentSrc || img.src;
+        big.alt = img.alt || title;
+        caption.textContent = title;
+
+        lastFocus = document.activeElement;
+        box.classList.add('is-open');
+        document.body.classList.add('zoom-open');
+        closeBtn.focus();
+    };
+
+    const close = () => {
+        box.classList.remove('is-open');
+        document.body.classList.remove('zoom-open');
+        lastFocus?.focus?.();
+        lastFocus = null;
+    };
+
+    closeBtn.addEventListener('click', close);
+    box.addEventListener('click', e => {
+        if (e.target === box || e.target.classList.contains('zoom-lightbox-panel')) close();
+    });
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && box.classList.contains('is-open')) close();
+    });
+
+    document.querySelectorAll(FRAMES).forEach(frame => {
+        if (getComputedStyle(frame).position === 'static') frame.style.position = 'relative';
+
+        const btn = document.createElement('button');
+        btn.className = 'zoom-btn';
+        btn.type = 'button';
+        const label = frame.closest('.carousel-card, .hero-product')
+            ?.querySelector('h3')?.textContent.trim();
+        btn.setAttribute('aria-label', label ? 'Zoom image: ' + label : 'Zoom image');
+        btn.innerHTML =
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
+            'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' +
+                '<circle cx="10.5" cy="10.5" r="6.5"></circle>' +
+                '<line x1="15.4" y1="15.4" x2="21" y2="21"></line>' +
+                '<line x1="10.5" y1="7.6" x2="10.5" y2="13.4"></line>' +
+                '<line x1="7.6" y1="10.5" x2="13.4" y2="10.5"></line>' +
+            '</svg>';
+
+        // The hero frames sit inside <a> cards, so the click must not navigate.
+        btn.addEventListener('click', e => {
+            e.preventDefault();
+            e.stopPropagation();
+            open(frame);
+        });
+
+        frame.appendChild(btn);
+
+        // Clicking the artwork itself zooms. The hero frames sit inside <a>
+        // cards, so suppress the navigation for clicks on the image only —
+        // the rest of the card still follows its link.
+        frame.style.cursor = 'zoom-in';
+        frame.addEventListener('click', e => {
+            if (e.target.closest('.zoom-btn')) return;
+            e.preventDefault();
+            e.stopPropagation();
+            open(frame);
+        });
     });
 })();
 </script>
